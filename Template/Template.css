@@ -3,6 +3,10 @@ scene {
   height: 720px;
   display: inline-block;
 }
+canvas{
+  height: 100%;
+  width: 100%;
+}
 
 dialog[type=splash] {
   margin: 0px;
