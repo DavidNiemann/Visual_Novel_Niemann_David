@@ -8,7 +8,7 @@ var Template;
     Template.transitions = {
         puzzle: {
             duration: 1,
-            alpha: "./FreeTransitions/JigsawThemedTransitions/puzzle.png",
+            alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
             edge: 1
         }
     };
@@ -94,4 +94,4 @@ var Template;
     }
     Template.Scene = Scene;
 })(Template || (Template = {}));
-//# sourceMappingURL=Template.js.map
+//# sourceMappingURL=Game.js.map

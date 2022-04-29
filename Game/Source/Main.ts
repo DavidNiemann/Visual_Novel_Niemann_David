@@ -8,7 +8,7 @@ namespace Template {//https://itch.io/game-assets
   export let transitions = {
     puzzle: {
       duration: 1,
-      alpha: "./FreeTransitions/JigsawThemedTransitions/puzzle.png",
+      alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
       edge: 1
     }
   };
