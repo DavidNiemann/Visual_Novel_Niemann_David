@@ -1,9 +1,11 @@
+
 scene {
   width: 1280px;
   height: 720px;
   display: inline-block;
 }
-canvas{
+
+canvas {
   height: 100%;
   width: 100%;
 }
@@ -19,6 +21,7 @@ dialog[type=splash] {
   cursor: pointer;
   text-align: center;
 }
+
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
 }

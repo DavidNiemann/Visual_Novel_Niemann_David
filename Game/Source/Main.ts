@@ -8,33 +8,33 @@ namespace Template {//https://itch.io/game-assets
   export let transitions = {
     puzzle: {
       duration: 1,
-      alpha: "../FreeTransitions/JigsawThemedTransitions/puzzle.png",
+      alpha: "./FreeTransitions/JigsawThemedTransitions/puzzle.png",
       edge: 1
     }
   };
   export let sounds = {
-    nightclub: "../Audio/Dystopian.ogg",
+    nightclub: "./Audio/Nightclub.ogg",
     click: "Pfad"
   };
 
   export let locations = {
-    nightpark:  {
+    nightpark: {
       name: "nightpark",
-      background: "../Images copy/Backgrounds/Nightpark.png"
+      background: "./Images/Backgrounds/Nightpark.png"
     }
   };
 
   export let characters = {
-    narrator:  {
+    narrator: {
       name: ""
     },
     aisaka: {
       name: "Aisaka",
-      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      origin:  ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "../Images/Characters/aisaka_angry.png",
-        happy: "../Images/Characters/aisaka_angry.png",
-        upset: "../Images/Characters/aisaka_angry.png"
+        angry: "./Images/Characters/aisaka_angry.png",
+        happy: "./Images/Characters/aisaka_angry.png",
+        upset: "./Images/Characters/aisaka_angry.png"
       }
     }
   };
@@ -55,5 +55,8 @@ namespace Template {//https://itch.io/game-assets
 
     // start the sequence
     ƒS.Progress.go(scenes);
+
+    let uiElement: HTMLElement = document.querySelector("[type=interface]");
+    dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
   }
 }
