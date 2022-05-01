@@ -1,34 +1,34 @@
 "use strict";
-var Template;
-(function (Template) {
-    Template.ƒ = FudgeCore;
-    Template.ƒS = FudgeStory;
+var VisualNovle;
+(function (VisualNovle) {
+    VisualNovle.ƒ = FudgeCore;
+    VisualNovle.ƒS = FudgeStory;
     console.log("FudgeStory template starting");
     // define transitions
-    Template.transitions = {
+    VisualNovle.transitions = {
         puzzle: {
             duration: 1,
             alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
             edge: 1
         }
     };
-    Template.sounds = {
+    VisualNovle.sounds = {
         nightclub: "./Audio/Nightclub.ogg",
         click: "Pfad"
     };
-    Template.locations = {
+    VisualNovle.locations = {
         nightpark: {
             name: "nightpark",
             background: "./Images/Backgrounds/Nightpark.png"
         }
     };
-    Template.characters = {
+    VisualNovle.characters = {
         narrator: {
             name: ""
         },
         aisaka: {
             name: "Aisaka",
-            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            origin: VisualNovle.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 angry: "./Images/Characters/aisaka_angry.png",
                 happy: "./Images/Characters/aisaka_angry.png",
@@ -36,23 +36,82 @@ var Template;
             }
         }
     };
-    Template.dataForSave = {
+    VisualNovle.dataForSave = {
         nameProtagonist: "",
         scrore: 0
     };
+    function showCredits() {
+        VisualNovle.ƒS.Text.setClass("Credits");
+        VisualNovle.ƒS.Text.print("David Niemann");
+    }
+    VisualNovle.showCredits = showCredits;
+    //** MENÜ **
+    let inGameMenuButtens = {
+        save: "Save",
+        load: "Load",
+        close: "Close",
+        creadits: "Credits"
+    };
+    let gameMenu;
+    //true = open; false = close
+    let menuIsOpen = true;
+    async function buttonFunktionAlitiles(_option) {
+        switch (_option) {
+            case inGameMenuButtens.save:
+                await VisualNovle.ƒS.Progress.save();
+                break;
+            case inGameMenuButtens.load:
+                await VisualNovle.ƒS.Progress.load();
+                break;
+            case inGameMenuButtens.close:
+                gameMenu.close();
+                menuIsOpen = false;
+                break;
+            case inGameMenuButtens.creadits:
+                showCredits();
+                break;
+            default:
+                break;
+        }
+    }
+    document.addEventListener("keydown", hndKeyPress);
+    async function hndKeyPress(_event) {
+        switch (_event.code) {
+            case VisualNovle.ƒ.KEYBOARD_CODE.F8:
+                await VisualNovle.ƒS.Progress.save();
+                break;
+            case VisualNovle.ƒ.KEYBOARD_CODE.F9:
+                await VisualNovle.ƒS.Progress.load();
+                break;
+            case VisualNovle.ƒ.KEYBOARD_CODE.M:
+                if (menuIsOpen) {
+                    gameMenu.close();
+                    menuIsOpen = false;
+                }
+                else {
+                    gameMenu.open();
+                    menuIsOpen = true;
+                }
+                break;
+            default:
+                break;
+        }
+    }
     window.addEventListener("load", start);
     function start(_event) {
+        gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
+        buttonFunktionAlitiles("Close");
         let scenes = [
-            { scene: Template.Scene, name: "Scene" }
+            { scene: VisualNovle.Scene, name: "Scene" }
         ];
         // start the sequence
-        Template.ƒS.Progress.go(scenes);
+        VisualNovle.ƒS.Progress.go(scenes);
         let uiElement = document.querySelector("[type=interface]");
-        Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
+        VisualNovle.dataForSave = VisualNovle.ƒS.Progress.setData(VisualNovle.dataForSave, uiElement);
     }
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
+})(VisualNovle || (VisualNovle = {}));
+var VisualNovle;
+(function (VisualNovle) {
     async function Scene() {
         console.log("FudgeStory Template Scene starting");
         let text = {
@@ -68,30 +127,30 @@ var Template;
             isSayYes: "ja",
             isSayNo: "Nein"
         };
-        let firstDialogueElement = await Template.ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
+        let firstDialogueElement = await VisualNovle.ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
         switch (firstDialogueElement) {
             case firstDialogueAnswers.isSayOk:
-                Template.ƒS.Speech.clear();
+                VisualNovle.ƒS.Speech.clear();
                 break;
             case firstDialogueAnswers.isSayYes:
-                Template.ƒS.Speech.clear();
+                VisualNovle.ƒS.Speech.clear();
                 break;
             case firstDialogueAnswers.isSayNo:
-                Template.ƒS.Speech.clear();
+                VisualNovle.ƒS.Speech.clear();
                 break;
             default:
                 break;
         }
-        Template.ƒS.Sound.fade(Template.sounds.nightclub, 0.1, 1, true);
-        await Template.ƒS.Location.show(Template.locations.nightpark);
-        await Template.ƒS.Character.show(Template.characters.aisaka, Template.characters.aisaka.pose.angry, Template.ƒS.positions.bottomcenter);
-        await Template.ƒS.update(Template.transitions.puzzle.duration, Template.transitions.puzzle.alpha, Template.transitions.puzzle.edge);
-        await Template.ƒS.Speech.tell(Template.characters.aisaka, text.Protagonist.T001);
-        await Template.ƒS.Speech.tell(Template.characters.narrator, text.Navigator.T001);
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.update();
-        Template.ƒS.Sound.fade(Template.sounds.nightclub, 0, 0.1, false);
+        VisualNovle.ƒS.Sound.fade(VisualNovle.sounds.nightclub, 0.1, 1, true);
+        await VisualNovle.ƒS.Location.show(VisualNovle.locations.nightpark);
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.aisaka, VisualNovle.characters.aisaka.pose.angry, VisualNovle.ƒS.positions.bottomcenter);
+        await VisualNovle.ƒS.update(VisualNovle.transitions.puzzle.duration, VisualNovle.transitions.puzzle.alpha, VisualNovle.transitions.puzzle.edge);
+        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.aisaka, text.Protagonist.T001);
+        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, text.Navigator.T001);
+        VisualNovle.ƒS.Speech.hide();
+        await VisualNovle.ƒS.update();
+        VisualNovle.ƒS.Sound.fade(VisualNovle.sounds.nightclub, 0, 0.1, false);
     }
-    Template.Scene = Scene;
-})(Template || (Template = {}));
+    VisualNovle.Scene = Scene;
+})(VisualNovle || (VisualNovle = {}));
 //# sourceMappingURL=Game.js.map

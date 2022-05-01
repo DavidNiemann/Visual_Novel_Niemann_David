@@ -1,4 +1,4 @@
-declare namespace Template {
+declare namespace VisualNovle {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let transitions: {
@@ -36,7 +36,8 @@ declare namespace Template {
         nameProtagonist: string;
         scrore: number;
     };
+    function showCredits(): void;
 }
-declare namespace Template {
+declare namespace VisualNovle {
     function Scene(): ƒS.SceneReturn;
 }
