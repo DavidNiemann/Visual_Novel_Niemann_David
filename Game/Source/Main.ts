@@ -28,13 +28,13 @@ namespace VisualNovle {//https://itch.io/game-assets
     narrator: {
       name: ""
     },
-    aisaka: {
-      name: "Aisaka",
+    Protagonist: {
+      name: "Protagonist", //ToDo: Name eingeben oder ausdeken
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "./Images/Characters/aisaka_angry.png",
-        happy: "./Images/Characters/aisaka_angry.png",
-        upset: "./Images/Characters/aisaka_angry.png"
+        happy: "./Images/Characters/Protagonist/protagonist_happy.png",
+        sad: "./Images/Characters/Protagonist/protagonist_sad.png",
+        frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
       }
     }
   };
@@ -109,7 +109,8 @@ namespace VisualNovle {//https://itch.io/game-assets
     gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
     buttonFunktionAlitiles("Close");
     let scenes: ƒS.Scenes = [
-      { scene: Scene, name: "Scene" }
+      /*  { scene: Scene, name: "Scene" } */
+      { scene: Prehistory, name: "Prehistory" }
     ];
 
     // start the sequence
@@ -117,5 +118,12 @@ namespace VisualNovle {//https://itch.io/game-assets
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
     dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+  }
+
+
+  export async function playMonologue(_character: ƒS.Character | Object, _text: { [textname: string]: string }): Promise<void> {
+    for (const key of Object.values(_text)) {
+      await ƒS.Speech.tell(_character, key);
+    }
   }
 }

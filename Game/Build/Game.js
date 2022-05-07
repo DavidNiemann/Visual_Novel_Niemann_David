@@ -26,13 +26,13 @@ var VisualNovle;
         narrator: {
             name: ""
         },
-        aisaka: {
-            name: "Aisaka",
+        Protagonist: {
+            name: "Protagonist",
             origin: VisualNovle.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "./Images/Characters/aisaka_angry.png",
-                happy: "./Images/Characters/aisaka_angry.png",
-                upset: "./Images/Characters/aisaka_angry.png"
+                happy: "./Images/Characters/Protagonist/protagonist_happy.png",
+                sad: "./Images/Characters/Protagonist/protagonist_sad.png",
+                frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
             }
         }
     };
@@ -102,13 +102,20 @@ var VisualNovle;
         gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            { scene: VisualNovle.Scene, name: "Scene" }
+            /*  { scene: Scene, name: "Scene" } */
+            { scene: VisualNovle.Prehistory, name: "Prehistory" }
         ];
         // start the sequence
         VisualNovle.ƒS.Progress.go(scenes);
         let uiElement = document.querySelector("[type=interface]");
         VisualNovle.dataForSave = VisualNovle.ƒS.Progress.setData(VisualNovle.dataForSave, uiElement);
     }
+    async function playMonologue(_character, _text) {
+        for (const key of Object.values(_text)) {
+            await VisualNovle.ƒS.Speech.tell(_character, key);
+        }
+    }
+    VisualNovle.playMonologue = playMonologue;
 })(VisualNovle || (VisualNovle = {}));
 var VisualNovle;
 (function (VisualNovle) {
@@ -116,41 +123,65 @@ var VisualNovle;
         console.log("FudgeStory Template Scene starting");
         let text = {
             Navigator: {
-                T001: "hallo"
+                T001: "es war einmal"
             },
             Protagonist: {
-                T001: "test"
+                T001: "hallo"
             }
         };
-        let firstDialogueAnswers = {
-            isSayOk: "Okay",
-            isSayYes: "ja",
-            isSayNo: "Nein"
+        /* let firstDialogueAnswers = {
+          isSayOk: "Okay",
+          isSayYes: "ja",
+          isSayNo: "Nein"
+    
+    
         };
-        let firstDialogueElement = await VisualNovle.ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
+     */
+        /* let firstDialogueElement = await ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
+    
         switch (firstDialogueElement) {
-            case firstDialogueAnswers.isSayOk:
-                VisualNovle.ƒS.Speech.clear();
-                break;
-            case firstDialogueAnswers.isSayYes:
-                VisualNovle.ƒS.Speech.clear();
-                break;
-            case firstDialogueAnswers.isSayNo:
-                VisualNovle.ƒS.Speech.clear();
-                break;
-            default:
-                break;
-        }
-        VisualNovle.ƒS.Sound.fade(VisualNovle.sounds.nightclub, 0.1, 1, true);
-        await VisualNovle.ƒS.Location.show(VisualNovle.locations.nightpark);
-        await VisualNovle.ƒS.Character.show(VisualNovle.characters.aisaka, VisualNovle.characters.aisaka.pose.angry, VisualNovle.ƒS.positions.bottomcenter);
-        await VisualNovle.ƒS.update(VisualNovle.transitions.puzzle.duration, VisualNovle.transitions.puzzle.alpha, VisualNovle.transitions.puzzle.edge);
-        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.aisaka, text.Protagonist.T001);
+          case firstDialogueAnswers.isSayOk:
+            ƒS.Speech.clear();
+            break;
+          case firstDialogueAnswers.isSayYes:
+            ƒS.Speech.clear();
+            break;
+          case firstDialogueAnswers.isSayNo:
+            ƒS.Speech.clear();
+            break;
+          default:
+            break;
+        } */
+        /*  ƒS.Sound.fade(sounds.nightclub, 0.1, 1, true); */
+        /*  await ƒS.Location.show(locations.nightpark); */
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.happy, new VisualNovle.ƒ.Vector2(100, -500));
+        await VisualNovle.ƒS.update(1);
+        /*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
         await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, text.Navigator.T001);
-        VisualNovle.ƒS.Speech.hide();
-        await VisualNovle.ƒS.update();
-        VisualNovle.ƒS.Sound.fade(VisualNovle.sounds.nightclub, 0, 0.1, false);
+        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.Protagonist, text.Protagonist.T001);
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.sad, new VisualNovle.ƒ.Vector2(-100, -500));
+        await VisualNovle.ƒS.update(1);
+        /* ƒS.Speech.hide(); */
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.frightend, new VisualNovle.ƒ.Vector2(0, -500));
+        await VisualNovle.ƒS.update(1);
+        /*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
     }
     VisualNovle.Scene = Scene;
+})(VisualNovle || (VisualNovle = {}));
+var VisualNovle;
+(function (VisualNovle) {
+    async function Prehistory() {
+        console.log("start Story", "Scene:  prehistory");
+        let text = {
+            Navigator: {
+                T001: "es war einmal",
+                T002: "Ein Komet knalte auf die Erde",
+                T003: "ein junger Mann",
+                T004: "sein Vater verschwand als er kleinwar, er war eine Abenteurer und ist auf Reisen gegange und Kamm nicht merh zurück"
+            }
+        };
+        await VisualNovle.playMonologue(VisualNovle.characters.narrator, text.Navigator);
+    }
+    VisualNovle.Prehistory = Prehistory;
 })(VisualNovle || (VisualNovle = {}));
 //# sourceMappingURL=Game.js.map

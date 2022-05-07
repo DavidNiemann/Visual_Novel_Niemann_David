@@ -22,13 +22,13 @@ declare namespace VisualNovle {
         narrator: {
             name: string;
         };
-        aisaka: {
+        Protagonist: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
-                angry: string;
                 happy: string;
-                upset: string;
+                sad: string;
+                frightend: string;
             };
         };
     };
@@ -37,7 +37,13 @@ declare namespace VisualNovle {
         scrore: number;
     };
     function showCredits(): void;
+    function playMonologue(_character: ƒS.Character | Object, _text: {
+        [textname: string]: string;
+    }): Promise<void>;
 }
 declare namespace VisualNovle {
     function Scene(): ƒS.SceneReturn;
+}
+declare namespace VisualNovle {
+    function Prehistory(): ƒS.SceneReturn;
 }
