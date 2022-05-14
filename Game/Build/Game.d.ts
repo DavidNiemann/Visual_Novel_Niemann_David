@@ -32,6 +32,40 @@ declare namespace VisualNovle {
             };
         };
     };
+    let items: {
+        blume: {
+            name: string;
+            description: string;
+            image: string;
+        };
+        fisch: {
+            name: string;
+            description: string;
+            image: string;
+        };
+        fee: {
+            name: string;
+            description: string;
+            image: string;
+        };
+        stein: {
+            name: string;
+            description: string;
+            image: string;
+        };
+        schwerd: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        buch: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+    };
     let dataForSave: {
         nameProtagonist: string;
         scrore: number;

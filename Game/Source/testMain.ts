@@ -2,8 +2,8 @@ namespace VisualNovle {//https://itch.io/game-assets
   export import ƒ = FudgeCore;
   export import ƒS = FudgeStory;
 
-  console.log("FudgeStory template starting");
 
+  let invetoryOpen: boolean = false;
   // define transitions
   export let transitions = {
     puzzle: {
@@ -36,6 +36,41 @@ namespace VisualNovle {//https://itch.io/game-assets
         sad: "./Images/Characters/Protagonist/protagonist_sad.png",
         frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
       }
+    }
+  };
+
+  export let items = {
+    blume: {
+      name: "Tulpe",
+      description: "Eine sehr schöne Blume",
+      image: "./Images/Items/blume.png"
+    },
+    fisch: {
+      name: "gewönlicher Fisch",
+      description: "Er scheint noch zu leben",
+      image: "./Images/Items/fisch.png"
+    },
+    fee: {
+      name: "Magische Fee",
+      description: "Ihre Magischen Kräfte soll alle wundel Heilen Könne",
+      image: "./Images/Items/fee.png"
+    },
+    stein: {
+      name: "Stein",
+      description: "ein Kleiner aber sehr schwer",
+      image: "./Images/Items/stein.png"
+    },
+    schwerd: {
+      name: "Schwert",
+      description: "achtung scharf",
+      image: "./Images/Items/schwert.png",
+      static: true
+    },
+    buch: {
+      name: "Buch",
+      description: "ein buch voller interessantes Wissen",
+      image: "./Images/Items/studie.png",
+      static: true
     }
   };
 
@@ -100,17 +135,29 @@ namespace VisualNovle {//https://itch.io/game-assets
           menuIsOpen = true;
         }
         break;
+      case ƒ.KEYBOARD_CODE.I:
+        if (invetoryOpen) {
+          ƒS.Inventory.close();
+          invetoryOpen = false;
+        } else {
+          ƒS.Inventory.open();
+          invetoryOpen = true;
+        }
+        break;
       default:
         break;
     }
   }
+
+
+
   window.addEventListener("load", start);
   function start(_event: Event): void {
     gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
     buttonFunktionAlitiles("Close");
     let scenes: ƒS.Scenes = [
-      /*  { scene: Scene, name: "Scene" } */
-      { scene: Prehistory, name: "Prehistory" }
+       { scene: Scene, name: "testScene" }
+      /*{ scene: Prehistory, name: "Prehistory" }*/
     ];
 
     // start the sequence

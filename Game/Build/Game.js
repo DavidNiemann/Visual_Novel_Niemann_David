@@ -3,7 +3,7 @@ var VisualNovle;
 (function (VisualNovle) {
     VisualNovle.ƒ = FudgeCore;
     VisualNovle.ƒS = FudgeStory;
-    console.log("FudgeStory template starting");
+    let invetoryOpen = false;
     // define transitions
     VisualNovle.transitions = {
         puzzle: {
@@ -34,6 +34,40 @@ var VisualNovle;
                 sad: "./Images/Characters/Protagonist/protagonist_sad.png",
                 frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
             }
+        }
+    };
+    VisualNovle.items = {
+        blume: {
+            name: "Tulpe",
+            description: "Eine sehr schöne Blume",
+            image: "./Images/Items/blume.png"
+        },
+        fisch: {
+            name: "gewönlicher Fisch",
+            description: "Er scheint noch zu leben",
+            image: "./Images/Items/fisch.png"
+        },
+        fee: {
+            name: "Magische Fee",
+            description: "Ihre Magischen Kräfte soll alle wundel Heilen Könne",
+            image: "./Images/Items/fee.png"
+        },
+        stein: {
+            name: "Stein",
+            description: "ein Kleiner aber sehr schwer",
+            image: "./Images/Items/stein.png"
+        },
+        schwerd: {
+            name: "Schwert",
+            description: "achtung scharf",
+            image: "./Images/Items/schwert.png",
+            static: true
+        },
+        buch: {
+            name: "Buch",
+            description: "ein buch voller interessantes Wissen",
+            image: "./Images/Items/studie.png",
+            static: true
         }
     };
     VisualNovle.dataForSave = {
@@ -93,6 +127,16 @@ var VisualNovle;
                     menuIsOpen = true;
                 }
                 break;
+            case VisualNovle.ƒ.KEYBOARD_CODE.I:
+                if (invetoryOpen) {
+                    VisualNovle.ƒS.Inventory.close();
+                    invetoryOpen = false;
+                }
+                else {
+                    VisualNovle.ƒS.Inventory.open();
+                    invetoryOpen = true;
+                }
+                break;
             default:
                 break;
         }
@@ -102,8 +146,8 @@ var VisualNovle;
         gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            /*  { scene: Scene, name: "Scene" } */
-            { scene: VisualNovle.Prehistory, name: "Prehistory" }
+            { scene: VisualNovle.Scene, name: "testScene" }
+            /*{ scene: Prehistory, name: "Prehistory" }*/
         ];
         // start the sequence
         VisualNovle.ƒS.Progress.go(scenes);
@@ -121,14 +165,14 @@ var VisualNovle;
 (function (VisualNovle) {
     async function Scene() {
         console.log("FudgeStory Template Scene starting");
-        let text = {
-            Navigator: {
-                T001: "es war einmal"
-            },
-            Protagonist: {
-                T001: "hallo"
-            }
-        };
+        /*  let text = {
+           Navigator: {
+             T001: "es war einmal"
+           },
+           Protagonist: {
+             T001: "hallo"
+           }
+         }; */
         /* let firstDialogueAnswers = {
           isSayOk: "Okay",
           isSayYes: "ja",
@@ -152,18 +196,25 @@ var VisualNovle;
           default:
             break;
         } */
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.fisch);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.blume);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.fee);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.schwerd);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.stein);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.buch);
+        /* dataForSave.nameProtagonist = await ƒS.Speech.getInput(); */
         /*  ƒS.Sound.fade(sounds.nightclub, 0.1, 1, true); */
         /*  await ƒS.Location.show(locations.nightpark); */
-        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.happy, new VisualNovle.ƒ.Vector2(100, -500));
-        await VisualNovle.ƒS.update(1);
+        /*  await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.happy, new ƒ.Vector2(100, -500)); */
+        /*  await ƒS.update(1); */
         /*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
-        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, text.Navigator.T001);
-        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.Protagonist, text.Protagonist.T001);
-        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.sad, new VisualNovle.ƒ.Vector2(-100, -500));
-        await VisualNovle.ƒS.update(1);
+        /*  await ƒS.Speech.tell(characters.narrator, text.Navigator.T001); */
+        /*  await ƒS.Speech.tell(characters.Protagonist, text.Protagonist.T001); */
+        /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.sad, new ƒ.Vector2(-100, -500)); */
+        /* await ƒS.update(1); */
         /* ƒS.Speech.hide(); */
-        await VisualNovle.ƒS.Character.show(VisualNovle.characters.Protagonist, VisualNovle.characters.Protagonist.pose.frightend, new VisualNovle.ƒ.Vector2(0, -500));
-        await VisualNovle.ƒS.update(1);
+        /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.frightend, new ƒ.Vector2(0, -500)); */
+        /* await ƒS.update(1); */
         /*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
     }
     VisualNovle.Scene = Scene;

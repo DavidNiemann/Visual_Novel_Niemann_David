@@ -1,4 +1,3 @@
-
 scene {
   width: 1280px;
   height: 720px;
@@ -24,4 +23,52 @@ dialog[type=splash] {
 
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+dialog[type="inventory"] {
+  background-color: rgb(233, 233, 233);
+  color: black;
+  border: 6px;
+  border-color: black;
+  border-style: solid;
+}
+
+dialog[type="inventory"]>ul {
+  list-style: none;
+  display: flex;
+  padding-left: 0px;
+  flex-direction: column;
+}
+
+dialog[type="inventory"]>ul>li {
+  list-style: none;
+  /* margin-bottom: 20px; */
+}
+
+dialog[type="inventory"] button {
+  display: none;
+}
+
+dialog[type="inventory"] img {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 0px;
+}
+
+dialog[type="inventory"]>ul>li>description {
+  
+}
+
+dialog[type="inventory"]>ul>li>name {
+  
+}
+
+dialog[type="inventory"]>ul>li>amount {
+ 
 }
