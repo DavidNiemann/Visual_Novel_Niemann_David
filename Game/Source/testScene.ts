@@ -2,14 +2,14 @@ namespace VisualNovle {
   export async function Scene(): ƒS.SceneReturn {
     console.log("FudgeStory Template Scene starting");
 
-   /*  let text = {
+    let text = {
       Navigator: {
         T001: "es war einmal"
       },
       Protagonist: {
         T001: "hallo"
       }
-    }; */
+    };
 
     /* let firstDialogueAnswers = {
       isSayOk: "Okay",
@@ -47,7 +47,7 @@ namespace VisualNovle {
     /*  await ƒS.update(1); */
 
     /*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
-    /*  await ƒS.Speech.tell(characters.narrator, text.Navigator.T001); */
+    await ƒS.Speech.tell(characters.narrator, text.Navigator.T001);
     /*  await ƒS.Speech.tell(characters.Protagonist, text.Protagonist.T001); */
 
     /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.sad, new ƒ.Vector2(-100, -500)); */
@@ -58,6 +58,7 @@ namespace VisualNovle {
     /* await ƒS.update(1); */
 
     /*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
+    /* return "Prehistory"; */ // nur als string 
   }
 
 }

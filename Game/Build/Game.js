@@ -146,8 +146,8 @@ var VisualNovle;
         gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            { scene: VisualNovle.Scene, name: "testScene" }
-            /*{ scene: Prehistory, name: "Prehistory" }*/
+            { id: "1", scene: VisualNovle.Scene, name: "testScene", next: "2" },
+            { id: "2", scene: VisualNovle.Prehistory, name: "Prehistory", next: "" }
         ];
         // start the sequence
         VisualNovle.ƒS.Progress.go(scenes);
@@ -165,14 +165,14 @@ var VisualNovle;
 (function (VisualNovle) {
     async function Scene() {
         console.log("FudgeStory Template Scene starting");
-        /*  let text = {
-           Navigator: {
-             T001: "es war einmal"
-           },
-           Protagonist: {
-             T001: "hallo"
-           }
-         }; */
+        let text = {
+            Navigator: {
+                T001: "es war einmal"
+            },
+            Protagonist: {
+                T001: "hallo"
+            }
+        };
         /* let firstDialogueAnswers = {
           isSayOk: "Okay",
           isSayYes: "ja",
@@ -208,7 +208,7 @@ var VisualNovle;
         /*  await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.happy, new ƒ.Vector2(100, -500)); */
         /*  await ƒS.update(1); */
         /*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
-        /*  await ƒS.Speech.tell(characters.narrator, text.Navigator.T001); */
+        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, text.Navigator.T001);
         /*  await ƒS.Speech.tell(characters.Protagonist, text.Protagonist.T001); */
         /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.sad, new ƒ.Vector2(-100, -500)); */
         /* await ƒS.update(1); */
@@ -216,6 +216,7 @@ var VisualNovle;
         /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.frightend, new ƒ.Vector2(0, -500)); */
         /* await ƒS.update(1); */
         /*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
+        /* return "Prehistory"; */ // nur als string 
     }
     VisualNovle.Scene = Scene;
 })(VisualNovle || (VisualNovle = {}));

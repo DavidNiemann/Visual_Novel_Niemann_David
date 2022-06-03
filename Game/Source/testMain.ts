@@ -156,8 +156,8 @@ namespace VisualNovle {//https://itch.io/game-assets
     gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
     buttonFunktionAlitiles("Close");
     let scenes: ƒS.Scenes = [
-       { scene: Scene, name: "testScene" }
-      /*{ scene: Prehistory, name: "Prehistory" }*/
+      { id: "1", scene: Scene, name: "testScene", next: "2" },
+      { id: "2", scene: Prehistory, name: "Prehistory", next: "" }
     ];
 
     // start the sequence
@@ -173,4 +173,5 @@ namespace VisualNovle {//https://itch.io/game-assets
       await ƒS.Speech.tell(_character, key);
     }
   }
+
 }
