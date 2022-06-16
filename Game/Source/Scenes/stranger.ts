@@ -37,34 +37,37 @@ namespace VisualNovle {
             back_to_the_way: {
                 Narrator_001: `${dataForSave.nameProtagonist}` + " ist am Fuße der " + `${locations.mountains.name}` + " Berge angekommen.",
                 Protagonist_002: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>",
-                Narrator_003: `${dataForSave.nameProtagonist}` + "schlagt ein Lager auf und legt sich hin."
+                Narrator_003: `${dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin."
             }
 
         };
 
-        let answersForStranger: {
+        let answersForStranger = {
 
-            hand_over: "Übergebe eine Leere Flasche",
-            ignore: "Ignoriere den Fremden",
-            give_nothing: "Dem Fremden nichts geben"
+            isHandOver: "Übergebe eine Leere Flasche",
+            isIgnore: "Ignoriere den Fremden",
+            isGiveNothing: "Dem Fremden nichts geben"
 
         };
         await playParagraph(storiesText.encounter_with_the_stranger);
+        console.log(answersForStranger);
         let answerToTheStranger = await ƒS.Menu.getInput(answersForStranger);
 
         switch (answerToTheStranger) {
-            case answersForStranger.hand_over:
+            case answersForStranger.isHandOver:
                 //ƒS.Speech.clear();
                 if (ƒS.Inventory.getAmount(items.empty_glass_bottle)) {
+                    items.empty_glass_bottle.static = false;
+                    ƒS.Inventory.open();
                     await playParagraph(storiesText.hand_over_the_bottle);
                     break;
                 }
                 await ƒS.Speech.tell(characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
-            case answersForStranger.give_nothing:
+            case answersForStranger.isGiveNothing:
                 // ƒS.Speech.clear()
                 await playParagraph(storiesText.give_nothing_to_the_stranger);
                 break;
-            case answersForStranger.ignore:
+            case answersForStranger.isGiveNothing:
                 //ƒS.Speech.clear();
                 await playParagraph(storiesText.ignore_the_stranger);
                 break;

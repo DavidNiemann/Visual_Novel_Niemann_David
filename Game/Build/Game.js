@@ -621,7 +621,10 @@ var VisualNovle;
         await VisualNovle.playParagraph(storiesText.transition_to_the_village);
         //TODO: Dorf sitchtabar machen
         await VisualNovle.playParagraph(storiesText.about_the_way);
-        //TODO: items Geben Schwert, Leib brot , wasser Beutel, Heiltrank
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.healing_potion);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.sword);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.water_bag);
+        VisualNovle.ƒS.Inventory.add(VisualNovle.items.loaf_of_bread);
     }
     VisualNovle.theCurse = theCurse;
 })(VisualNovle || (VisualNovle = {}));
@@ -721,22 +724,29 @@ var VisualNovle;
                 Narrator_003: `${VisualNovle.dataForSave.nameProtagonist}` + "schlagt ein Lager auf und legt sich hin."
             }
         };
-        let answersForStranger;
+        let answersForStranger = {
+            isHandOver: "Übergebe eine Leere Flasche",
+            isIgnore: "Ignoriere den Fremden",
+            isGiveNothing: "Dem Fremden nichts geben"
+        };
         await VisualNovle.playParagraph(storiesText.encounter_with_the_stranger);
+        console.log(answersForStranger);
         let answerToTheStranger = await VisualNovle.ƒS.Menu.getInput(answersForStranger);
         switch (answerToTheStranger) {
-            case answersForStranger.hand_over:
+            case answersForStranger.isHandOver:
                 //ƒS.Speech.clear();
                 if (VisualNovle.ƒS.Inventory.getAmount(VisualNovle.items.empty_glass_bottle)) {
+                    VisualNovle.items.empty_glass_bottle.static = false;
+                    VisualNovle.ƒS.Inventory.open();
                     await VisualNovle.playParagraph(storiesText.hand_over_the_bottle);
                     break;
                 }
                 await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
-            case answersForStranger.give_nothing:
+            case answersForStranger.isGiveNothing:
                 // ƒS.Speech.clear()
                 await VisualNovle.playParagraph(storiesText.give_nothing_to_the_stranger);
                 break;
-            case answersForStranger.ignore:
+            case answersForStranger.isGiveNothing:
                 //ƒS.Speech.clear();
                 await VisualNovle.playParagraph(storiesText.ignore_the_stranger);
                 break;

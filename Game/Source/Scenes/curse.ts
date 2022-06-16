@@ -87,8 +87,10 @@ namespace VisualNovle {
         await playParagraph(storiesText.transition_to_the_village);
         //TODO: Dorf sitchtabar machen
         await playParagraph(storiesText.about_the_way);
-        //TODO: items Geben Schwert, Leib brot , wasser Beutel, Heiltrank
-
+        ƒS.Inventory.add(items.healing_potion);
+        ƒS.Inventory.add(items.sword);
+        ƒS.Inventory.add(items.water_bag);
+        ƒS.Inventory.add(items.loaf_of_bread);
 
     }
 }  
