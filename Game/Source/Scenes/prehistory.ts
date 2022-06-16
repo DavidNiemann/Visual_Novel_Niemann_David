@@ -1,5 +1,5 @@
 namespace VisualNovle {
-    export async function Prehistory(): ƒS.SceneReturn {
+    export async function prehistory(): ƒS.SceneReturn {
         console.log("start Story", "Scene:  prehistory");
 
         let storiesText = {
@@ -24,6 +24,5 @@ namespace VisualNovle {
         await ƒS.Speech.tell(characters.narrator, "Dieser Junge heißt");
         dataForSave.nameProtagonist = await ƒS.Speech.getInput();
         characters.protagonist.name =  dataForSave.nameProtagonist;
-        //TODO: nach namen Frangen
     }
 }  

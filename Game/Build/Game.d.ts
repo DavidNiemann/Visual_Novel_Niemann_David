@@ -99,5 +99,8 @@ declare namespace VisualNovle {
     function grassland(): ƒS.SceneReturn;
 }
 declare namespace VisualNovle {
-    function Prehistory(): ƒS.SceneReturn;
+    function prehistory(): ƒS.SceneReturn;
+}
+declare namespace VisualNovle {
+    function theStranger(): ƒS.SceneReturn;
 }

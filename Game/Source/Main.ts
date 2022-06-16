@@ -235,10 +235,11 @@ namespace VisualNovle {//https://itch.io/game-assets
         gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes: ƒS.Scenes = [
-            { id: "1", scene: Prehistory, name: "Prehistory", next: "2" },
+            { id: "1", scene: prehistory, name: "Prehistory", next: "2" },
             { id: "2", scene: childhood, name: "childhood", next: "3" },
             { id: "3", scene: theCurse, name: "the curse", next: "4" },
-            { id: "4", scene: grassland, name: "the grassland" }
+            { id: "4", scene: grassland, name: "the grassland", next: "5" },
+            { id: "5", scene: theStranger, name: "the Stranger" }
         ];
 
         // start the sequence

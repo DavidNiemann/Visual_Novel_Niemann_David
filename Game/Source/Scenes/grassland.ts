@@ -1,7 +1,7 @@
 namespace VisualNovle {
 
     export async function grassland(): ƒS.SceneReturn {
-        console.log("Scene:  childhood");
+        console.log("Scene:  grassland");
 
         let storiesText = {
             before_the_fight: {

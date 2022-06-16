@@ -224,10 +224,11 @@ var VisualNovle;
         gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            { id: "1", scene: VisualNovle.Prehistory, name: "Prehistory", next: "2" },
+            { id: "1", scene: VisualNovle.prehistory, name: "Prehistory", next: "2" },
             { id: "2", scene: VisualNovle.childhood, name: "childhood", next: "3" },
             { id: "3", scene: VisualNovle.theCurse, name: "the curse", next: "4" },
-            { id: "4", scene: VisualNovle.grassland, name: "the grassland" }
+            { id: "4", scene: VisualNovle.grassland, name: "the grassland", next: "5" },
+            { id: "5", scene: VisualNovle.theStranger, name: "the Stranger" }
         ];
         // start the sequence
         VisualNovle.ƒS.Progress.go(scenes);
@@ -627,7 +628,7 @@ var VisualNovle;
 var VisualNovle;
 (function (VisualNovle) {
     async function grassland() {
-        console.log("Scene:  childhood");
+        console.log("Scene:  grassland");
         let storiesText = {
             before_the_fight: {
                 Narrator_001: "nach paar Stunden ist  " + `${VisualNovle.dataForSave.nameProtagonist}` + " schon mitten auf den " + `${VisualNovle.locations.grasslands.name}` + " unterwegs, es ist ruhig. ",
@@ -655,7 +656,7 @@ var VisualNovle;
 })(VisualNovle || (VisualNovle = {}));
 var VisualNovle;
 (function (VisualNovle) {
-    async function Prehistory() {
+    async function prehistory() {
         console.log("start Story", "Scene:  prehistory");
         let storiesText = {
             backstory: {
@@ -675,8 +676,75 @@ var VisualNovle;
         await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, "Dieser Junge heißt");
         VisualNovle.dataForSave.nameProtagonist = await VisualNovle.ƒS.Speech.getInput();
         VisualNovle.characters.protagonist.name = VisualNovle.dataForSave.nameProtagonist;
-        //TODO: nach namen Frangen
     }
-    VisualNovle.Prehistory = Prehistory;
+    VisualNovle.prehistory = prehistory;
+})(VisualNovle || (VisualNovle = {}));
+var VisualNovle;
+(function (VisualNovle) {
+    async function theStranger() {
+        console.log("Scene:  The Stranger");
+        let storiesText = {
+            encounter_with_the_stranger: {
+                Narrator_001: `${VisualNovle.dataForSave.nameProtagonist}` + "ist fast bei den " + `${VisualNovle.locations.mountains.name}` + " angekommen, es wurde schon spät.",
+                Narrator_002: "Die Sonne geht hinter dem Berg geradeunter.",
+                Narrator_003: `${VisualNovle.dataForSave.nameProtagonist}` + " sieht eine Gestalt in der Ferne",
+                Protagonist_004: "da ist jemand",
+                Protagonist_005: "egal ich darf keine Zeit verlieren, ignorier ich einfach.",
+                Narrator_006: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet.",
+                Stranger_007: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten.",
+                Stranger_008: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten."
+            },
+            hand_over_the_bottle: {
+                Protagonist_001: "hier sie können Diese leere Flaschen eins Heils tranks haben.",
+                Stranger_002: "was für eine Wunderschönes Exemplar.Vielen Dank.",
+                Stranger_003: "wohin sind sie unterwegs ?",
+                Protagonist_004: "ich bin auf dem Weg zum " + `${VisualNovle.locations.forest.name}` + " ich muss eine " + `${VisualNovle.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
+                Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche."
+            },
+            ignore_the_stranger: {
+                Protagonist_001: "Ich kann ihnen leider nichts geben.",
+                Stranger_002: "sehr schade.",
+                Stranger_003: "wohin sind sie unterwegs?",
+                Protagonist_004: "ich bin auf dem Weg zum " + `${VisualNovle.locations.forest.name}` + " ich muss eine " + `${VisualNovle.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
+                Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg."
+            },
+            give_nothing_to_the_stranger: {
+                Protagonist_001: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>"
+            },
+            after_the_stranger: {
+                Narrator_001: "<name>läuft in einem schnellen Schritt weiter.",
+                Protagonist_002: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>"
+            },
+            back_to_the_way: {
+                Narrator_001: `${VisualNovle.dataForSave.nameProtagonist}` + " ist am Fuße der " + `${VisualNovle.locations.mountains.name}` + " Berge angekommen.",
+                Protagonist_002: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>",
+                Narrator_003: `${VisualNovle.dataForSave.nameProtagonist}` + "schlagt ein Lager auf und legt sich hin."
+            }
+        };
+        let answersForStranger;
+        await VisualNovle.playParagraph(storiesText.encounter_with_the_stranger);
+        let answerToTheStranger = await VisualNovle.ƒS.Menu.getInput(answersForStranger);
+        switch (answerToTheStranger) {
+            case answersForStranger.hand_over:
+                //ƒS.Speech.clear();
+                if (VisualNovle.ƒS.Inventory.getAmount(VisualNovle.items.empty_glass_bottle)) {
+                    await VisualNovle.playParagraph(storiesText.hand_over_the_bottle);
+                    break;
+                }
+                await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
+            case answersForStranger.give_nothing:
+                // ƒS.Speech.clear()
+                await VisualNovle.playParagraph(storiesText.give_nothing_to_the_stranger);
+                break;
+            case answersForStranger.ignore:
+                //ƒS.Speech.clear();
+                await VisualNovle.playParagraph(storiesText.ignore_the_stranger);
+                break;
+            default:
+                break;
+        }
+        await VisualNovle.playParagraph(storiesText.back_to_the_way);
+    }
+    VisualNovle.theStranger = theStranger;
 })(VisualNovle || (VisualNovle = {}));
 //# sourceMappingURL=Game.js.map
