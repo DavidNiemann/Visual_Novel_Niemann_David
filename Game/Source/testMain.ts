@@ -1,4 +1,4 @@
-namespace VisualNovle {//https://itch.io/game-assets
+namespace Test {//https://itch.io/game-assets
   export import ƒ = FudgeCore;
   export import ƒS = FudgeStory;
 
@@ -151,13 +151,12 @@ namespace VisualNovle {//https://itch.io/game-assets
 
 
 
-  window.addEventListener("load", start);
+  //window.addEventListener("load", start);
   function start(_event: Event): void {
     gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
     buttonFunktionAlitiles("Close");
     let scenes: ƒS.Scenes = [
-      { id: "1", scene: Scene, name: "testScene", next: "2" },
-      { id: "2", scene: Prehistory, name: "Prehistory", next: "" }
+      { id: "1", scene: Scene, name: "testScene", next: "2" }
     ];
 
     // start the sequence
