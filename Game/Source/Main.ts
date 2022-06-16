@@ -209,25 +209,25 @@ namespace VisualNovle {//https://itch.io/game-assets
                 break;
         }
     }
-    export let animations = {
-        startSpeaking: {
-            start: {
-                scaling: new ƒS.Position(1, 1)
-            },
-            end: { scaling: new ƒS.Position(1.2, 1.2) },
-            duration: 1,
-            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-        },
-        endSpeaking: {
-            start: {
-                scaling: new ƒS.Position(1.2, 1.2)
-            },
-            end: { scaling: new ƒS.Position(1, 1) },
-            duration: 1,
-            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-        }
-
-    };
+    /*  export let animations = {
+         startSpeaking: {
+             start: {
+                 scaling: new ƒS.Position(1, 1)
+             },
+             end: { scaling: new ƒS.Position(1.2, 1.2) },
+             duration: 1,
+             playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+         },
+         endSpeaking: {
+             start: {
+                 scaling: new ƒS.Position(1.2, 1.2)
+             },
+             end: { scaling: new ƒS.Position(1, 1) },
+             duration: 1,
+             playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+         }
+ 
+     }; */
 
 
     window.addEventListener("load", start);
@@ -237,7 +237,8 @@ namespace VisualNovle {//https://itch.io/game-assets
         let scenes: ƒS.Scenes = [
             { id: "1", scene: Prehistory, name: "Prehistory", next: "2" },
             { id: "2", scene: childhood, name: "childhood", next: "3" },
-            { id: "3", scene: theCurse, name: "the curse" }
+            { id: "3", scene: theCurse, name: "the curse", next: "4" },
+            { id: "4", scene: grassland, name: "the grassland" }
         ];
 
         // start the sequence
@@ -252,7 +253,7 @@ namespace VisualNovle {//https://itch.io/game-assets
                     await ƒS.Speech.tell(characters.narrator, _text[key]);
                     break;
                 case "P":
-                    await ƒS.Speech.tell(characters.Protagonist, _text[key]);
+                    await ƒS.Speech.tell(characters.protagonist, _text[key]);
                     break;
                 case "M":
                     await ƒS.Speech.tell(characters.mother, _text[key]);
@@ -264,7 +265,7 @@ namespace VisualNovle {//https://itch.io/game-assets
                     await ƒS.Speech.tell(characters.fairy, _text[key]);
                     break;
                 case "D":
-                    await ƒS.Speech.tell(characters.Doctor, _text[key]);
+                    await ƒS.Speech.tell(characters.doctor, _text[key]);
                     break;
                 default:
                     break;

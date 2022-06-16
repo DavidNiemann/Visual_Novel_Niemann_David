@@ -85,28 +85,6 @@ declare namespace VisualNovle {
         bottleWasGiven: boolean;
     };
     function showCredits(): void;
-    let animations: {
-        startSpeaking: {
-            start: {
-                scaling: ƒ.Vector2;
-            };
-            end: {
-                scaling: ƒ.Vector2;
-            };
-            duration: number;
-            playmode: ƒ.ANIMATION_PLAYMODE;
-        };
-        endSpeaking: {
-            start: {
-                scaling: ƒ.Vector2;
-            };
-            end: {
-                scaling: ƒ.Vector2;
-            };
-            duration: number;
-            playmode: ƒ.ANIMATION_PLAYMODE;
-        };
-    };
     function playParagraph(_text: {
         [textname: string]: string;
     }): Promise<void>;
@@ -116,6 +94,9 @@ declare namespace VisualNovle {
 }
 declare namespace VisualNovle {
     function theCurse(): ƒS.SceneReturn;
+}
+declare namespace VisualNovle {
+    function grassland(): ƒS.SceneReturn;
 }
 declare namespace VisualNovle {
     function Prehistory(): ƒS.SceneReturn;
