@@ -6,7 +6,7 @@ namespace VisualNovle {
             introduction: {
                 Narrator_text_001: "Es gingen viele Jahre in die Lande.",
                 Narrator_text_002: "Seitdem Tod des Vaters, hatte die Familie es nicht  immer leicht, da sie nicht viel Geld hatten.",
-                Narrator_text_003: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. ",
+                Narrator_text_003: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. "
             },
             before_the_accident: {
                 Mother_text_001: "steh auf " + `${dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.",
@@ -20,7 +20,7 @@ namespace VisualNovle {
                 Narrator_text_009: "Erzähler: Mutter dreht sich.",
                 Mother_text_010: "Mutter HALTTTTTT, das ist eine ….",
                 Mother_text_011: "….",
-                Narrator_text_012: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${dataForSave.nameProtagonist}` + " und hebt in den Ohren zu.",
+                Narrator_text_012: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${dataForSave.nameProtagonist}` + " und hebt in den Ohren zu."
                 //U001: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
             },
             after_the_accident: {
@@ -28,18 +28,18 @@ namespace VisualNovle {
                 Mother_text_002: "ich liebe….",
                 Protagonist_text_003: "Mutter, mutter…MAMAAAAAAA.",
                 Protagonist_text_004: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.",
-                Narrator_text_005: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen.",
+                Narrator_text_005: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen."
             },
             get_help: {
                 Narrator_text_001: `${dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation,",
-                Narrator_text_002: "Der Arzt namens Dr.Bader ging und " + `${dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück.",
+                Narrator_text_002: "Der Arzt namens Dr.Bader ging und " + `${dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück."
             },
             talk_with_the_doctor: {
                 Protagonist_text_001: "Helfen sie bitte meiner Mutter.",
                 Doctor_text_002: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.",
                 Doctor_text_003: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.",
                 Protagonist_text_005: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.",
-                Doctor_text_006: "bringen wir sie erstmals zurück ins Dorf.",
+                Doctor_text_006: "bringen wir sie erstmals zurück ins Dorf."
 
             },
             transition_to_the_village: {
@@ -73,6 +73,7 @@ namespace VisualNovle {
 
 
         };
+        
         await playParagraph(storiesText.introduction);
         //TODO:  übergang zum feld
         await playParagraph(storiesText.before_the_accident);

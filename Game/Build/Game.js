@@ -4,6 +4,8 @@ var VisualNovle;
     VisualNovle.ƒ = FudgeCore;
     VisualNovle.ƒS = FudgeStory;
     let invetoryOpen = false;
+    VisualNovle.protagonistPositionVector = new VisualNovle.ƒ.Vector2(+400, -700);
+    VisualNovle.otherPersonsPositionVector = new VisualNovle.ƒ.Vector2(-400, -700);
     // define transitions
     VisualNovle.transitions = {
         puzzle: {
@@ -33,7 +35,7 @@ var VisualNovle;
         },
         cave: {
             name: "Höhle",
-            background: "./Images/Backgrounds/carve.png"
+            background: "./Images/Backgrounds/cave.png"
         },
         mountains: {
             name: "Gebirge",
@@ -69,8 +71,8 @@ var VisualNovle;
             name: "Dr.Bader",
             origin: VisualNovle.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                happy: "./Images/Characters/Doctor/protagonist_happy.png",
-                sad: "./Images/Characters/Doctor/protagonist_sad.png",
+                happy: "./Images/Characters/Doctor/doctor_happy.png",
+                sad: "./Images/Characters/Doctor/doctor_sad.png"
             }
         },
         strange_man: {
@@ -198,6 +200,24 @@ var VisualNovle;
                 break;
         }
     }
+    VisualNovle.animations = {
+        startSpeaking: {
+            start: {
+                scaling: new VisualNovle.ƒS.Position(1, 1)
+            },
+            end: { scaling: new VisualNovle.ƒS.Position(1.2, 1.2) },
+            duration: 1,
+            playmode: VisualNovle.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        },
+        endSpeaking: {
+            start: {
+                scaling: new VisualNovle.ƒS.Position(1.2, 1.2)
+            },
+            end: { scaling: new VisualNovle.ƒS.Position(1, 1) },
+            duration: 1,
+            playmode: VisualNovle.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        }
+    };
     window.addEventListener("load", start);
     function start(_event) {
         gameMenu = VisualNovle.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
@@ -238,227 +258,245 @@ var VisualNovle;
     }
     VisualNovle.playParagraph = playParagraph;
 })(VisualNovle || (VisualNovle = {}));
-var Test;
-(function (Test) {
-    Test.ƒ = FudgeCore;
-    Test.ƒS = FudgeStory;
-    let invetoryOpen = false;
-    // define transitions
-    Test.transitions = {
-        puzzle: {
-            duration: 1,
-            alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
-            edge: 1
-        }
-    };
-    Test.sounds = {
-        nightclub: "./Audio/Nightclub.ogg",
-        click: "Pfad"
-    };
-    Test.locations = {
-        nightpark: {
-            name: "nightpark",
-            background: "./Images/Backgrounds/Nightpark.png"
-        }
-    };
-    Test.characters = {
-        narrator: {
-            name: ""
-        },
-        Protagonist: {
-            name: "Protagonist",
-            origin: Test.ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                happy: "./Images/Characters/Protagonist/protagonist_happy.png",
-                sad: "./Images/Characters/Protagonist/protagonist_sad.png",
-                frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
-            }
-        }
-    };
-    Test.items = {
-        blume: {
-            name: "Tulpe",
-            description: "Eine sehr schöne Blume",
-            image: "./Images/Items/blume.png"
-        },
-        fisch: {
-            name: "gewönlicher Fisch",
-            description: "Er scheint noch zu leben",
-            image: "./Images/Items/fisch.png"
-        },
-        fee: {
-            name: "Magische Fee",
-            description: "Ihre Magischen Kräfte soll alle wundel Heilen Könne",
-            image: "./Images/Items/fee.png"
-        },
-        stein: {
-            name: "Stein",
-            description: "ein Kleiner aber sehr schwer",
-            image: "./Images/Items/stein.png"
-        },
-        schwerd: {
-            name: "Schwert",
-            description: "achtung scharf",
-            image: "./Images/Items/schwert.png",
-            static: true
-        },
-        buch: {
-            name: "Buch",
-            description: "ein buch voller interessantes Wissen",
-            image: "./Images/Items/studie.png",
-            static: true
-        }
-    };
-    Test.dataForSave = {
-        nameProtagonist: "",
-        scrore: 0
-    };
-    function showCredits() {
-        Test.ƒS.Text.setClass("Credits");
-        Test.ƒS.Text.print("David Niemann");
+/* namespace Test {//https://itch.io/game-assets
+  export import ƒ = FudgeCore;
+  export import ƒS = FudgeStory;
+
+
+  let invetoryOpen: boolean = false;
+  // define transitions
+  export let transitions = {
+    puzzle: {
+      duration: 1,
+      alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
+      edge: 1
     }
-    Test.showCredits = showCredits;
-    //** MENÜ **
-    let inGameMenuButtens = {
-        save: "Save",
-        load: "Load",
-        close: "Close",
-        creadits: "Credits"
+  };
+  export let sounds = {
+    nightclub: "./Audio/Nightclub.ogg",
+    click: "Pfad"
+  };
+
+  export let locations = {
+    nightpark: {
+      name: "nightpark",
+      background: "./Images/Backgrounds/Nightpark.png"
+    }
+  };
+
+  export let characters = {
+    narrator: {
+      name: ""
+    },
+    Protagonist: {
+      name: "Protagonist", //ToDo: Name eingeben oder ausdeken
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        happy: "./Images/Characters/Protagonist/protagonist_happy.png",
+        sad: "./Images/Characters/Protagonist/protagonist_sad.png",
+        frightend: "./Images/Characters/Protagonist/protagonist_frightend.png"
+      }
+    }
+  };
+
+  export let items = {
+    blume: {
+      name: "Tulpe",
+      description: "Eine sehr schöne Blume",
+      image: "./Images/Items/blume.png"
+    },
+    fisch: {
+      name: "gewönlicher Fisch",
+      description: "Er scheint noch zu leben",
+      image: "./Images/Items/fisch.png"
+    },
+    fee: {
+      name: "Magische Fee",
+      description: "Ihre Magischen Kräfte soll alle wundel Heilen Könne",
+      image: "./Images/Items/fee.png"
+    },
+    stein: {
+      name: "Stein",
+      description: "ein Kleiner aber sehr schwer",
+      image: "./Images/Items/stein.png"
+    },
+    schwerd: {
+      name: "Schwert",
+      description: "achtung scharf",
+      image: "./Images/Items/schwert.png",
+      static: true
+    },
+    buch: {
+      name: "Buch",
+      description: "ein buch voller interessantes Wissen",
+      image: "./Images/Items/studie.png",
+      static: true
+    }
+  };
+
+  export let dataForSave = {
+    nameProtagonist: "",
+    scrore: 0
+  };
+
+  export function showCredits(): void {
+    ƒS.Text.setClass("Credits");
+    ƒS.Text.print("David Niemann");
+  }
+
+  //** MENÜ **
+  let inGameMenuButtens = {
+    save: "Save",
+    load: "Load",
+    close: "Close",
+    creadits: "Credits"
+  };
+
+  let gameMenu: ƒS.Menu;
+  //true = open; false = close
+  let menuIsOpen: Boolean = true;
+
+  async function buttonFunktionAlitiles(_option: string): Promise<void> {
+    switch (_option) {
+      case inGameMenuButtens.save:
+        await ƒS.Progress.save();
+        break;
+      case inGameMenuButtens.load:
+        await ƒS.Progress.load();
+        break;
+      case inGameMenuButtens.close:
+        gameMenu.close();
+        menuIsOpen = false;
+        break;
+      case inGameMenuButtens.creadits:
+        showCredits();
+        break;
+      default:
+        break;
+    }
+  }
+
+  document.addEventListener("keydown", hndKeyPress);
+  async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
+    switch (_event.code) {
+      case ƒ.KEYBOARD_CODE.F8:
+        await ƒS.Progress.save();
+        break;
+      case ƒ.KEYBOARD_CODE.F9:
+        await ƒS.Progress.load();
+        break;
+      case ƒ.KEYBOARD_CODE.M:
+        if (menuIsOpen) {
+          gameMenu.close();
+          menuIsOpen = false;
+        }
+        else {
+          gameMenu.open();
+          menuIsOpen = true;
+        }
+        break;
+      case ƒ.KEYBOARD_CODE.I:
+        if (invetoryOpen) {
+          ƒS.Inventory.close();
+          invetoryOpen = false;
+        } else {
+          ƒS.Inventory.open();
+          invetoryOpen = true;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+
+
+  //window.addEventListener("load", start);
+  function start(_event: Event): void {
+    gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
+    buttonFunktionAlitiles("Close");
+    let scenes: ƒS.Scenes = [
+      { id: "1", scene: Scene, name: "testScene", next: "2" }
+    ];
+
+    // start the sequence
+    ƒS.Progress.go(scenes);
+
+    let uiElement: HTMLElement = document.querySelector("[type=interface]");
+    dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+  }
+
+
+  export async function playMonologue(_character: ƒS.Character | Object, _text: { [textname: string]: string }): Promise<void> {
+    for (const key of Object.values(_text)) {
+      await ƒS.Speech.tell(_character, key);
+    }
+  }
+
+} */ 
+/* namespace Test {
+  export async function Scene(): ƒS.SceneReturn {
+    console.log("FudgeStory Template Scene starting");
+
+    let text = {
+      Navigator: {
+        T001: "es war einmal"
+      },
+      Protagonist: {
+        T001: "hallo"
+      }
     };
-    let gameMenu;
-    //true = open; false = close
-    let menuIsOpen = true;
-    async function buttonFunktionAlitiles(_option) {
-        switch (_option) {
-            case inGameMenuButtens.save:
-                await Test.ƒS.Progress.save();
-                break;
-            case inGameMenuButtens.load:
-                await Test.ƒS.Progress.load();
-                break;
-            case inGameMenuButtens.close:
-                gameMenu.close();
-                menuIsOpen = false;
-                break;
-            case inGameMenuButtens.creadits:
-                showCredits();
-                break;
-            default:
-                break;
-        }
-    }
-    document.addEventListener("keydown", hndKeyPress);
-    async function hndKeyPress(_event) {
-        switch (_event.code) {
-            case Test.ƒ.KEYBOARD_CODE.F8:
-                await Test.ƒS.Progress.save();
-                break;
-            case Test.ƒ.KEYBOARD_CODE.F9:
-                await Test.ƒS.Progress.load();
-                break;
-            case Test.ƒ.KEYBOARD_CODE.M:
-                if (menuIsOpen) {
-                    gameMenu.close();
-                    menuIsOpen = false;
-                }
-                else {
-                    gameMenu.open();
-                    menuIsOpen = true;
-                }
-                break;
-            case Test.ƒ.KEYBOARD_CODE.I:
-                if (invetoryOpen) {
-                    Test.ƒS.Inventory.close();
-                    invetoryOpen = false;
-                }
-                else {
-                    Test.ƒS.Inventory.open();
-                    invetoryOpen = true;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    //window.addEventListener("load", start);
-    function start(_event) {
-        gameMenu = Test.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
-        buttonFunktionAlitiles("Close");
-        let scenes = [
-            { id: "1", scene: Test.Scene, name: "testScene", next: "2" }
-        ];
-        // start the sequence
-        Test.ƒS.Progress.go(scenes);
-        let uiElement = document.querySelector("[type=interface]");
-        Test.dataForSave = Test.ƒS.Progress.setData(Test.dataForSave, uiElement);
-    }
-    async function playMonologue(_character, _text) {
-        for (const key of Object.values(_text)) {
-            await Test.ƒS.Speech.tell(_character, key);
-        }
-    }
-    Test.playMonologue = playMonologue;
-})(Test || (Test = {}));
-var Test;
-(function (Test) {
-    async function Scene() {
-        console.log("FudgeStory Template Scene starting");
-        let text = {
-            Navigator: {
-                T001: "es war einmal"
-            },
-            Protagonist: {
-                T001: "hallo"
-            }
-        };
-        /* let firstDialogueAnswers = {
-          isSayOk: "Okay",
-          isSayYes: "ja",
-          isSayNo: "Nein"
-    
-    
-        };
-     */
-        /* let firstDialogueElement = await ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
-    
-        switch (firstDialogueElement) {
-          case firstDialogueAnswers.isSayOk:
-            ƒS.Speech.clear();
-            break;
-          case firstDialogueAnswers.isSayYes:
-            ƒS.Speech.clear();
-            break;
-          case firstDialogueAnswers.isSayNo:
-            ƒS.Speech.clear();
-            break;
-          default:
-            break;
-        } */
-        Test.ƒS.Inventory.add(Test.items.fisch);
-        Test.ƒS.Inventory.add(Test.items.blume);
-        Test.ƒS.Inventory.add(Test.items.fee);
-        Test.ƒS.Inventory.add(Test.items.schwerd);
-        Test.ƒS.Inventory.add(Test.items.stein);
-        Test.ƒS.Inventory.add(Test.items.buch);
-        /* dataForSave.nameProtagonist = await ƒS.Speech.getInput(); */
-        /*  ƒS.Sound.fade(sounds.nightclub, 0.1, 1, true); */
-        /*  await ƒS.Location.show(locations.nightpark); */
-        /*  await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.happy, new ƒ.Vector2(100, -500)); */
-        /*  await ƒS.update(1); */
-        /*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
-        await Test.ƒS.Speech.tell(Test.characters.narrator, text.Navigator.T001);
-        /*  await ƒS.Speech.tell(characters.Protagonist, text.Protagonist.T001); */
-        /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.sad, new ƒ.Vector2(-100, -500)); */
-        /* await ƒS.update(1); */
-        /* ƒS.Speech.hide(); */
-        /* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.frightend, new ƒ.Vector2(0, -500)); */
-        /* await ƒS.update(1); */
-        /*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
-        /* return "Prehistory"; */ // nur als string 
-    }
-    Test.Scene = Scene;
-})(Test || (Test = {}));
+ */
+/* let firstDialogueAnswers = {
+  isSayOk: "Okay",
+  isSayYes: "ja",
+  isSayNo: "Nein"
+
+
+};
+*/
+/* let firstDialogueElement = await ƒS.Menu.getInput(firstDialogueAnswers, "individualCssClass");
+
+switch (firstDialogueElement) {
+  case firstDialogueAnswers.isSayOk:
+    ƒS.Speech.clear();
+    break;
+  case firstDialogueAnswers.isSayYes:
+    ƒS.Speech.clear();
+    break;
+  case firstDialogueAnswers.isSayNo:
+    ƒS.Speech.clear();
+    break;
+  default:
+    break;
+} */
+//ƒS.Inventory.add(items.fisch);
+//ƒS.Inventory.add(items.blume);
+//ƒS.Inventory.add(items.fee);
+//ƒS.Inventory.add(items.schwerd);
+//ƒS.Inventory.add(items.stein);
+//ƒS.Inventory.add(items.buch);
+/* dataForSave.nameProtagonist = await ƒS.Speech.getInput(); */
+/*  ƒS.Sound.fade(sounds.nightclub, 0.1, 1, true); */
+/*  await ƒS.Location.show(locations.nightpark); */
+/*  await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.happy, new ƒ.Vector2(100, -500)); */
+/*  await ƒS.update(1); */
+/*  await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge); */
+//await ƒS.Speech.tell(characters.narrator, text.Navigator.T001);
+/*  await ƒS.Speech.tell(characters.Protagonist, text.Protagonist.T001); */
+/* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.sad, new ƒ.Vector2(-100, -500)); */
+/* await ƒS.update(1); */
+/* ƒS.Speech.hide(); */
+/* await ƒS.Character.show(characters.Protagonist, characters.Protagonist.pose.frightend, new ƒ.Vector2(0, -500)); */
+/* await ƒS.update(1); */
+/*     ƒS.Sound.fade(sounds.nightclub, 0, 0.1, false); */
+/* return "Prehistory"; */ // nur als string 
+/*   }
+
+} */ 
+/// <reference path= "../main.ts"/>
 var VisualNovle;
+/// <reference path= "../main.ts"/>
 (function (VisualNovle) {
     async function childhood() {
         console.log("Scene:  childhood");
@@ -467,24 +505,31 @@ var VisualNovle;
                 Narrator_text_001: "In dieser Welt am Rande eines Dorfes in der Man die Magie wenig verwendete, lebt Junge, mit Seinem Vater und Mutter.",
                 Narrator_text_002: "An einem Tag ging der Vater auf Reise in die Nächste Stadt, um seiner Arbeit nachzugehen."
             },
-            childhoodStoryPart1: {
+            childhoodStory_Part1: {
                 Protagonist_text_001: "Mama wann kommt Papa endlich nach Hause.",
                 Mother_text_002: "Er Kommt wird schon bald wieder Kommen.",
                 Mother_text_003: "Du bist doch gewohnt, dass Er länger nicht zuhause ist. Wenn er arbeiten ist.",
                 Protagonist_text_004: "Ich weiß Mama, aber ist schon ungewöhnlich lange weg, dafür das er nur in die Stadt gehen wollte und einen leichten Auftrag erfüllen."
             },
-            childhoodStoryPart2: {
+            childhoodStory_Part2: {
                 Narrator_text_001: "ein Bote Kamm vorbei und brachte der Familie einen Brief in dem Stand,",
                 Narrator_text_002: "dass Der Vater bei einem Auftrag einen Händler zu begleiten von <Monster> überfallen wurde und dabei stab.",
                 Narrator_text_003: "Der Junge fing auf diese Nachricht an zu weinen.",
                 Narrator_text_004: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden."
             }
         };
+        await VisualNovle.ƒS.Location.show(VisualNovle.locations.village);
+        await VisualNovle.ƒS.update(1);
         await VisualNovle.playParagraph(storiesText.introduction);
         // TODO: übergang einfügen
-        await VisualNovle.playParagraph(storiesText.childhoodStoryPart1);
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.protagonist, VisualNovle.characters.protagonist.pose.sadChild, VisualNovle.protagonistPositionVector);
+        await VisualNovle.ƒS.Character.show(VisualNovle.characters.mother, VisualNovle.characters.mother.pose.happy, VisualNovle.otherPersonsPositionVector);
+        await VisualNovle.ƒS.update(1);
+        await VisualNovle.playParagraph(storiesText.childhoodStory_Part1);
+        VisualNovle.ƒS.Character.hideAll();
+        await VisualNovle.ƒS.update(1);
         // TODO: übergang einfügen
-        await VisualNovle.playParagraph(storiesText.childhoodStoryPart2);
+        await VisualNovle.playParagraph(storiesText.childhoodStory_Part2);
     }
     VisualNovle.childhood = childhood;
 })(VisualNovle || (VisualNovle = {}));
@@ -496,7 +541,7 @@ var VisualNovle;
             introduction: {
                 Narrator_text_001: "Es gingen viele Jahre in die Lande.",
                 Narrator_text_002: "Seitdem Tod des Vaters, hatte die Familie es nicht  immer leicht, da sie nicht viel Geld hatten.",
-                Narrator_text_003: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. ",
+                Narrator_text_003: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. "
             },
             before_the_accident: {
                 Mother_text_001: "steh auf " + `${VisualNovle.dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.",
@@ -510,7 +555,7 @@ var VisualNovle;
                 Narrator_text_009: "Erzähler: Mutter dreht sich.",
                 Mother_text_010: "Mutter HALTTTTTT, das ist eine ….",
                 Mother_text_011: "….",
-                Narrator_text_012: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovle.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu.",
+                Narrator_text_012: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovle.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu."
                 //U001: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
             },
             after_the_accident: {
@@ -518,18 +563,18 @@ var VisualNovle;
                 Mother_text_002: "ich liebe….",
                 Protagonist_text_003: "Mutter, mutter…MAMAAAAAAA.",
                 Protagonist_text_004: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.",
-                Narrator_text_005: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen.",
+                Narrator_text_005: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen."
             },
             get_help: {
                 Narrator_text_001: `${VisualNovle.dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation,",
-                Narrator_text_002: "Der Arzt namens Dr.Bader ging und " + `${VisualNovle.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück.",
+                Narrator_text_002: "Der Arzt namens Dr.Bader ging und " + `${VisualNovle.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück."
             },
             talk_with_the_doctor: {
                 Protagonist_text_001: "Helfen sie bitte meiner Mutter.",
                 Doctor_text_002: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.",
                 Doctor_text_003: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.",
                 Protagonist_text_005: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.",
-                Doctor_text_006: "bringen wir sie erstmals zurück ins Dorf.",
+                Doctor_text_006: "bringen wir sie erstmals zurück ins Dorf."
             },
             transition_to_the_village: {
                 Narrator_text_001: "der Arzt und " + `${VisualNovle.dataForSave.nameProtagonist}` + " bringen die Mutter vorsichtig zurück ins Dorf."

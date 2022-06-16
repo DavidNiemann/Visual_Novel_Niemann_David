@@ -3,6 +3,8 @@ namespace VisualNovle {//https://itch.io/game-assets
     export import ƒS = FudgeStory;
 
     let invetoryOpen: boolean = false;
+    export let protagonistPositionVector: ƒ.Vector2 = new ƒ.Vector2(+400, -700);
+    export let otherPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(-400, -700);
     // define transitions
     export let transitions = {
         puzzle: {
@@ -33,7 +35,7 @@ namespace VisualNovle {//https://itch.io/game-assets
         },
         cave: {
             name: "Höhle",
-            background: "./Images/Backgrounds/carve.png"
+            background: "./Images/Backgrounds/cave.png"
         },
         mountains: {
             name: "Gebirge",
@@ -70,8 +72,8 @@ namespace VisualNovle {//https://itch.io/game-assets
             name: "Dr.Bader",
             origin: ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                happy: "./Images/Characters/Doctor/protagonist_happy.png",
-                sad: "./Images/Characters/Doctor/protagonist_sad.png",
+                happy: "./Images/Characters/Doctor/doctor_happy.png",
+                sad: "./Images/Characters/Doctor/doctor_sad.png"
 
             }
         },
@@ -122,7 +124,7 @@ namespace VisualNovle {//https://itch.io/game-assets
             description: "Eine einfache leere Glasflasche, es ist hochwertig angefertigt",
             image: "./Images/Items/bottle.png",
             static: true
-        }, 
+        },
         loaf_of_bread: {
             name: "Ein Laib Brot",
             description: "Ein frisch gebackenes Brot",
@@ -207,7 +209,25 @@ namespace VisualNovle {//https://itch.io/game-assets
                 break;
         }
     }
+    export let animations = {
+        startSpeaking: {
+            start: {
+                scaling: new ƒS.Position(1, 1)
+            },
+            end: { scaling: new ƒS.Position(1.2, 1.2) },
+            duration: 1,
+            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        },
+        endSpeaking: {
+            start: {
+                scaling: new ƒS.Position(1.2, 1.2)
+            },
+            end: { scaling: new ƒS.Position(1, 1) },
+            duration: 1,
+            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        }
 
+    };
 
 
     window.addEventListener("load", start);

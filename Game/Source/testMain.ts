@@ -1,4 +1,4 @@
-namespace Test {//https://itch.io/game-assets
+/* namespace Test {//https://itch.io/game-assets
   export import ƒ = FudgeCore;
   export import ƒS = FudgeStory;
 
@@ -173,4 +173,4 @@ namespace Test {//https://itch.io/game-assets
     }
   }
 
-}
+} */
