@@ -26,6 +26,8 @@ namespace VisualNovle {
         await ƒS.Location.show(locations.grasslands);
         await ƒS.update(1);
         await playParagraph(storiesText.before_the_fight);
+        let success = await fight(enemys.slime);
+        console.log(success);
         //Dodo: add fight 
         await playParagraph(storiesText.after_the_fight);
     }

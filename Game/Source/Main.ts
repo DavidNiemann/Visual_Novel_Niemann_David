@@ -130,6 +130,12 @@ namespace VisualNovle {//https://itch.io/game-assets
             description: "Ein frisch gebackenes Brot",
             image: "./Images/Items/bread.png",
             static: true
+        },
+        magic_water: {
+            name: "Magisches Wasser",
+            description: "Wasser aus der Quelle der Großen Fee des Waldes",
+            image: "./Images/Items/magic_water.png",
+            static: true
         }
 
     };

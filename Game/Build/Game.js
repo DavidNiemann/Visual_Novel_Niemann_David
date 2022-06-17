@@ -126,6 +126,12 @@ var VisualNovle;
             description: "Ein frisch gebackenes Brot",
             image: "./Images/Items/bread.png",
             static: true
+        },
+        magic_water: {
+            name: "Magisches Wasser",
+            description: "Wasser aus der Quelle der Großen Fee des Waldes",
+            image: "./Images/Items/magic_water.png",
+            static: true
         }
     };
     VisualNovle.dataForSave = {
@@ -652,6 +658,8 @@ var VisualNovle;
         await VisualNovle.ƒS.Location.show(VisualNovle.locations.grasslands);
         await VisualNovle.ƒS.update(1);
         await VisualNovle.playParagraph(storiesText.before_the_fight);
+        let success = await VisualNovle.fight(VisualNovle.enemys.slime);
+        console.log(success);
         //Dodo: add fight 
         await VisualNovle.playParagraph(storiesText.after_the_fight);
     }
@@ -721,7 +729,7 @@ var VisualNovle;
             back_to_the_way: {
                 Narrator_001: `${VisualNovle.dataForSave.nameProtagonist}` + " ist am Fuße der " + `${VisualNovle.locations.mountains.name}` + " Berge angekommen.",
                 Protagonist_002: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>",
-                Narrator_003: `${VisualNovle.dataForSave.nameProtagonist}` + "schlagt ein Lager auf und legt sich hin."
+                Narrator_003: `${VisualNovle.dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin."
             }
         };
         let answersForStranger = {
@@ -756,5 +764,96 @@ var VisualNovle;
         await VisualNovle.playParagraph(storiesText.back_to_the_way);
     }
     VisualNovle.theStranger = theStranger;
+})(VisualNovle || (VisualNovle = {}));
+var VisualNovle;
+(function (VisualNovle) {
+    let health = 100;
+    let damage = 10;
+    let parryChance = 0.25;
+    let dodgeChance = 0.5;
+    VisualNovle.enemys = {
+        slime: {
+            name: "kleiner Schleim",
+            health: 30,
+            damage: 1
+        },
+        basilisk: {
+            name: "Basilisk",
+            health: 50,
+            damage: 25
+        }
+    };
+    let actions = {
+        attack: "angreifen",
+        parry: "parieren",
+        dodge: "ausweichen",
+        useItems: "Gegenstand benutzen"
+    };
+    async function fight(_enemy) {
+        let protagonistCurrentHealth = health;
+        let enemyCurrentHealth = _enemy.health;
+        let fightText = {
+            fightStart: " ein Kampf hat gengen " + `${_enemy.name}` + " begonnen ",
+            action: "was soll " + `${VisualNovle.dataForSave.nameProtagonist}` + " tun",
+            atackSuccessful: `${_enemy.name}` + " wurde getroffen, " + `${_enemy.name}` + " erhielt " + `${damage}` + " schade",
+            beHit: `${VisualNovle.dataForSave.nameProtagonist}` + " was hit, " + `${VisualNovle.dataForSave.nameProtagonist}` + " received " + `${_enemy.damage}` + " schaden",
+            remainingHealth: `${_enemy.name}` + " besitzt noch " + `${enemyCurrentHealth}`,
+            parrySuccessful: `${VisualNovle.dataForSave.nameProtagonist}` + " hat ervolgreich den Angriff abwehrt und hat " + `${_enemy.name}` + " " + `${damage}` + "schaden verusrsacht",
+            parryFailed: `${VisualNovle.dataForSave.nameProtagonist}` + " hat den Angriff nicht abwehren könenn und hat " + `${_enemy.damage}` + " schaden erhalten",
+            dodgeSuccessful: `${VisualNovle.dataForSave.nameProtagonist}` + " ist ervolgreich dem Angriff ausgewichen",
+            dodgeFailed: `${VisualNovle.dataForSave.nameProtagonist}` + " hat dem Angriff nicht auszuweichen und hat " + `${_enemy.damage}` + " schaden erhalten",
+            fightWon: `${VisualNovle.dataForSave.nameProtagonist}` + " hat den Kampf gewonnen",
+            fightLost: `${_enemy.name}` + " hat den Kampf gewonnen"
+        };
+        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.fightStart);
+        while (protagonistCurrentHealth > 0 && enemyCurrentHealth > 0) {
+            let chosenAction = await VisualNovle.ƒS.Menu.getInput(actions, "fightOptions");
+            switch (chosenAction) {
+                case actions.attack:
+                    enemyCurrentHealth -= damage;
+                    await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.atackSuccessful);
+                    protagonistCurrentHealth -= _enemy.damage;
+                    await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.beHit);
+                    break;
+                case actions.dodge:
+                    let dodgeSuccessful = Math.random();
+                    if (dodgeSuccessful <= dodgeChance) {
+                        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.dodgeSuccessful);
+                    }
+                    else {
+                        protagonistCurrentHealth -= _enemy.damage;
+                        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.dodgeFailed);
+                    }
+                    break;
+                case actions.parry:
+                    let parrySuccessful = Math.random();
+                    if (parrySuccessful <= parryChance) {
+                        enemyCurrentHealth -= damage;
+                        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.parrySuccessful);
+                    }
+                    else {
+                        protagonistCurrentHealth -= _enemy.damage;
+                        await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.parryFailed);
+                    }
+                    break;
+                case actions.useItems:
+                    // TODO: add item logik
+                    protagonistCurrentHealth -= _enemy.damage;
+                    await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.beHit);
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (protagonistCurrentHealth <= 0) {
+            await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.fightLost);
+            return false;
+        }
+        else {
+            await VisualNovle.ƒS.Speech.tell(VisualNovle.characters.narrator, fightText.fightWon);
+            return true;
+        }
+    }
+    VisualNovle.fight = fight;
 })(VisualNovle || (VisualNovle = {}));
 //# sourceMappingURL=Game.js.map

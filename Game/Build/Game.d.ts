@@ -78,6 +78,12 @@ declare namespace VisualNovle {
             image: string;
             static: boolean;
         };
+        magic_water: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
     };
     let dataForSave: {
         nameProtagonist: string;
@@ -103,4 +109,16 @@ declare namespace VisualNovle {
 }
 declare namespace VisualNovle {
     function theStranger(): ƒS.SceneReturn;
+}
+declare namespace VisualNovle {
+    type Enemy = {
+        name: string;
+        health: number;
+        damage: number;
+    };
+    export let enemys: {
+        [id: string]: Enemy;
+    };
+    export function fight(_enemy: Enemy): Promise<boolean>;
+    export {};
 }
