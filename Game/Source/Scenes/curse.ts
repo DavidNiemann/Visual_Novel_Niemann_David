@@ -1,4 +1,4 @@
-namespace VisualNovle {
+namespace VisualNovel {
     export async function theCurse(): ƒS.SceneReturn {
         console.log("Scene:  the Curse");
 

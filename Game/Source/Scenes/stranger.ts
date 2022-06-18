@@ -1,4 +1,4 @@
-namespace VisualNovle {
+namespace VisualNovel {
     export async function theStranger(): ƒS.SceneReturn {
         console.log("Scene:  The Stranger");
 
@@ -20,14 +20,14 @@ namespace VisualNovle {
                 Protagonist_004: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
                 Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche."
             },
-            ignore_the_stranger: {
+            give_nothing_to_the_stranger: {
                 Protagonist_001: "Ich kann ihnen leider nichts geben.",
                 Stranger_002: "sehr schade.",
                 Stranger_003: "wohin sind sie unterwegs?",
                 Protagonist_004: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
                 Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg."
             },
-            give_nothing_to_the_stranger: {
+            ignore_the_stranger: {
                 Protagonist_001: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>"
             },
             after_the_stranger: {
@@ -50,12 +50,11 @@ namespace VisualNovle {
 
         };
         await playParagraph(storiesText.encounter_with_the_stranger);
-        console.log(answersForStranger);
         let answerToTheStranger = await ƒS.Menu.getInput(answersForStranger);
 
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:
-                //ƒS.Speech.clear();
+
                 if (ƒS.Inventory.getAmount(items.empty_glass_bottle)) {
                     items.empty_glass_bottle.static = false;
                     ƒS.Inventory.open();
@@ -64,11 +63,11 @@ namespace VisualNovle {
                 }
                 await ƒS.Speech.tell(characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
             case answersForStranger.isGiveNothing:
-                // ƒS.Speech.clear()
+
                 await playParagraph(storiesText.give_nothing_to_the_stranger);
                 break;
-            case answersForStranger.isGiveNothing:
-                //ƒS.Speech.clear();
+            case answersForStranger.isIgnore:
+
                 await playParagraph(storiesText.ignore_the_stranger);
                 break;
             default:

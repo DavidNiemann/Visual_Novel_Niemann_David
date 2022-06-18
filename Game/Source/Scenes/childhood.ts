@@ -1,5 +1,5 @@
 /// <reference path= "../main.ts"/>
-namespace VisualNovle {
+namespace VisualNovel {
 
     export async function childhood(): ƒS.SceneReturn {
         console.log("Scene:  childhood");

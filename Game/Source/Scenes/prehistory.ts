@@ -1,4 +1,4 @@
-namespace VisualNovle {
+namespace VisualNovel {
     export async function prehistory(): ƒS.SceneReturn {
         console.log("start Story", "Scene:  prehistory");
 

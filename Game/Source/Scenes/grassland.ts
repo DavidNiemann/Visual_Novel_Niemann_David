@@ -1,4 +1,4 @@
-namespace VisualNovle {
+namespace VisualNovel {
 
     export async function grassland(): ƒS.SceneReturn {
         console.log("Scene:  grassland");

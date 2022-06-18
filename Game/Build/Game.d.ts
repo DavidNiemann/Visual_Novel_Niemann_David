@@ -1,46 +1,77 @@
-declare namespace VisualNovle {
+declare namespace VisualNovel {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let protagonistPositionVector: ƒ.Vector2;
     let otherPersonsPositionVector: ƒ.Vector2;
-    let transitions: {
-        puzzle: {
+    let dataForSave: {
+        nameProtagonist: string;
+        dayCounter: number;
+        bottleWasGiven: boolean;
+    };
+    function showCredits(): void;
+}
+declare namespace VisualNovel {
+    function childhood(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function theCurse(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function grassland(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function prehistory(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function theStranger(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    type Enemy = {
+        name: string;
+        health: number;
+        damage: number;
+    };
+    export let enemys: {
+        [id: string]: Enemy;
+    };
+    export function fight(_enemy: Enemy): Promise<boolean>;
+    export {};
+}
+declare namespace VisualNovel {
+    function playParagraph(_text: {
+        [textname: string]: string;
+    }): Promise<void>;
+}
+declare namespace VisualNovel {
+    let animations: {
+        startSpeaking: {
+            start: {
+                scaling: ƒ.Vector2;
+            };
+            end: {
+                scaling: ƒ.Vector2;
+            };
             duration: number;
-            alpha: string;
-            edge: number;
+            playmode: ƒ.ANIMATION_PLAYMODE;
+        };
+        endSpeaking: {
+            start: {
+                scaling: ƒ.Vector2;
+            };
+            end: {
+                scaling: ƒ.Vector2;
+            };
+            duration: number;
+            playmode: ƒ.ANIMATION_PLAYMODE;
         };
     };
-    let sounds: {
-        villageBackgroundMusic: string;
-        grasslandsBackgroundMusic: string;
-        forestBackgroundMusic: string;
-        caveBackgroundMusic: string;
-    };
-    let locations: {
-        village: {
-            name: string;
-            background: string;
-        };
-        grasslands: {
-            name: string;
-            background: string;
-        };
-        forest: {
-            name: string;
-            background: string;
-        };
-        cave: {
-            name: string;
-            background: string;
-        };
-        mountains: {
-            name: string;
-            background: string;
-        };
-    };
+}
+declare namespace VisualNovel {
     let characters: {
         [name: string]: ƒS.CharacterDefinition;
     };
+}
+declare namespace VisualNovel {
     let items: {
         flower: {
             name: string;
@@ -85,40 +116,26 @@ declare namespace VisualNovle {
             static: boolean;
         };
     };
-    let dataForSave: {
-        nameProtagonist: string;
-        dayCounter: number;
-        bottleWasGiven: boolean;
+}
+declare namespace VisualNovel {
+    let locations: {
+        [name: string]: ƒS.LocationDefinition;
     };
-    function showCredits(): void;
-    function playParagraph(_text: {
-        [textname: string]: string;
-    }): Promise<void>;
 }
-declare namespace VisualNovle {
-    function childhood(): ƒS.SceneReturn;
-}
-declare namespace VisualNovle {
-    function theCurse(): ƒS.SceneReturn;
-}
-declare namespace VisualNovle {
-    function grassland(): ƒS.SceneReturn;
-}
-declare namespace VisualNovle {
-    function prehistory(): ƒS.SceneReturn;
-}
-declare namespace VisualNovle {
-    function theStranger(): ƒS.SceneReturn;
-}
-declare namespace VisualNovle {
-    type Enemy = {
-        name: string;
-        health: number;
-        damage: number;
+declare namespace VisualNovel {
+    let sounds: {
+        villageBackgroundMusic: string;
+        grasslandsBackgroundMusic: string;
+        forestBackgroundMusic: string;
+        caveBackgroundMusic: string;
     };
-    export let enemys: {
-        [id: string]: Enemy;
+}
+declare namespace VisualNovel {
+    let transitions: {
+        puzzle: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
-    export function fight(_enemy: Enemy): Promise<boolean>;
-    export {};
 }

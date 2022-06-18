@@ -1,4 +1,4 @@
-namespace VisualNovle {
+namespace VisualNovel {
     let health: number = 100;
     let damage: number = 10;
     let parryChance: number = 0.25;
@@ -55,12 +55,14 @@ namespace VisualNovle {
             let chosenAction: string = await ƒS.Menu.getInput(actions, "fightOptions");
             switch (chosenAction) {
                 case actions.attack:
+
                     enemyCurrentHealth -= damage;
                     await ƒS.Speech.tell(characters.narrator, fightText.atackSuccessful);
                     protagonistCurrentHealth -= _enemy.damage;
                     await ƒS.Speech.tell(characters.narrator, fightText.beHit);
                     break;
                 case actions.dodge:
+
                     let dodgeSuccessful: number = Math.random();
                     if (dodgeSuccessful <= dodgeChance) {
                         await ƒS.Speech.tell(characters.narrator, fightText.dodgeSuccessful);
@@ -71,6 +73,7 @@ namespace VisualNovle {
                     }
                     break;
                 case actions.parry:
+
                     let parrySuccessful: number = Math.random();
                     if (parrySuccessful <= parryChance) {
                         enemyCurrentHealth -= damage;
