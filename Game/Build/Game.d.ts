@@ -1,8 +1,12 @@
 declare namespace VisualNovel {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
-    let protagonistPositionVector: ƒ.Vector2;
-    let otherPersonsPositionVector: ƒ.Vector2;
+    type StoryText = {
+        [textname: string]: {
+            text: string;
+            pose?: POSES;
+        };
+    };
     let dataForSave: {
         nameProtagonist: string;
         dayCounter: number;
@@ -38,9 +42,12 @@ declare namespace VisualNovel {
     export {};
 }
 declare namespace VisualNovel {
-    function playParagraph(_text: {
-        [textname: string]: string;
-    }): Promise<void>;
+    let protagonistPositionVector: ƒ.Vector2;
+    let otherPersonsPositionVector: ƒ.Vector2;
+    function playParagraph(_text: StoryText): Promise<void>;
+    function showCharacter(_character: string, _pose?: POSES): Promise<void>;
+    function endSpeakingAnimation(_character: string, _pose?: POSES): Promise<void>;
+    function startSpeakingAnimation(_character: string, _pose?: POSES): Promise<void>;
 }
 declare namespace VisualNovel {
     let animations: {
@@ -67,6 +74,13 @@ declare namespace VisualNovel {
     };
 }
 declare namespace VisualNovel {
+    enum POSES {
+        SAD = "sad",
+        FRIGHTEND = "frightend",
+        HAPPY = "happy",
+        NEUTRAL = "neutral",
+        CHILD = "child"
+    }
     let characters: {
         [name: string]: ƒS.CharacterDefinition;
     };

@@ -3,9 +3,7 @@ namespace VisualNovel {//https://itch.io/game-assets
     export import ƒS = FudgeStory;
 
     let invetoryOpen: boolean = false;
-    export let protagonistPositionVector: ƒ.Vector2 = new ƒ.Vector2(+400, -700);
-    export let otherPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(-400, -700);
-    
+    export type StoryText = { [textname: string]: { text: string, pose?: POSES } };
 
     export let dataForSave = {
         nameProtagonist: "Protagonist",
@@ -82,7 +80,7 @@ namespace VisualNovel {//https://itch.io/game-assets
                 break;
         }
     }
-   
+
 
 
     window.addEventListener("load", start);
@@ -102,6 +100,6 @@ namespace VisualNovel {//https://itch.io/game-assets
     }
 
 
-    
+
 
 }

@@ -4,8 +4,6 @@ var VisualNovel;
     VisualNovel.ƒ = FudgeCore;
     VisualNovel.ƒS = FudgeStory;
     let invetoryOpen = false;
-    VisualNovel.protagonistPositionVector = new VisualNovel.ƒ.Vector2(+400, -700);
-    VisualNovel.otherPersonsPositionVector = new VisualNovel.ƒ.Vector2(-400, -700);
     VisualNovel.dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
@@ -335,36 +333,36 @@ var VisualNovel;
 (function (VisualNovel) {
     async function childhood() {
         console.log("Scene:  childhood");
-        let storiesText = {
+        let storyTexts = {
             introduction: {
-                Narrator_001: "In dieser Welt am Rande eines Dorfes in der Man die Magie wenig verwendete, lebt Junge, mit Seinem Vater und Mutter.",
-                Narrator_002: "An einem Tag ging der Vater auf Reise in die Nächste Stadt, um seiner Arbeit nachzugehen."
+                Narrator_001: { text: "In dieser Welt am Rande eines Dorfes in der Man die Magie wenig verwendete, lebt Junge, mit Seinem Vater und Mutter." },
+                Narrator_002: { text: "An einem Tag ging der Vater auf Reise in die Nächste Stadt, um seiner Arbeit nachzugehen." }
             },
             childhoodStory_Part1: {
-                Protagonist_001: "Mama wann kommt Papa endlich nach Hause.",
-                Mother_002: "Er Kommt wird schon bald wieder Kommen.",
-                Mother_003: "Du bist doch gewohnt, dass Er länger nicht zuhause ist. Wenn er arbeiten ist.",
-                Protagonist_004: "Ich weiß Mama, aber ist schon ungewöhnlich lange weg, dafür das er nur in die Stadt gehen wollte und einen leichten Auftrag erfüllen."
+                Protagonist_001: { text: "Mama wann kommt Papa endlich nach Hause.", pose: VisualNovel.POSES.CHILD },
+                Mother_002: { text: "Er Kommt wird schon bald wieder Kommen.", pose: VisualNovel.POSES.HAPPY },
+                Mother_003: { text: "Du bist doch gewohnt, dass Er länger nicht zuhause ist. Wenn er arbeiten ist.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_004: { text: "Ich weiß Mama, aber ist schon ungewöhnlich lange weg, dafür das er nur in die Stadt gehen wollte und einen leichten Auftrag erfüllen.", pose: VisualNovel.POSES.CHILD }
             },
             childhoodStory_Part2: {
-                Narrator_001: "ein Bote Kamm vorbei und brachte der Familie einen Brief in dem Stand,",
-                Narrator_002: "dass Der Vater bei einem Auftrag einen Händler zu begleiten von <Monster> überfallen wurde und dabei stab.",
-                Narrator_003: "Der Junge fing auf diese Nachricht an zu weinen.",
-                Narrator_004: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden."
+                Narrator_001: { text: "ein Bote Kamm vorbei und brachte der Familie einen Brief in dem Stand," },
+                Narrator_002: { text: "dass Der Vater bei einem Auftrag einen Händler zu begleiten von <Monster> überfallen wurde und dabei stab." },
+                Narrator_003: { text: "Der Junge fing auf diese Nachricht an zu weinen." },
+                Narrator_004: { text: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden." }
             }
         };
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        await VisualNovel.ƒS.update(1);
-        await VisualNovel.playParagraph(storiesText.introduction);
+        await VisualNovel.ƒS.update();
+        await VisualNovel.playParagraph(storyTexts.introduction);
         // TODO: übergang einfügen
-        await VisualNovel.ƒS.Character.show(VisualNovel.characters.protagonist, VisualNovel.characters.protagonist.pose.sadChild, VisualNovel.protagonistPositionVector);
-        await VisualNovel.ƒS.Character.show(VisualNovel.characters.mother, VisualNovel.characters.mother.pose.happy, VisualNovel.otherPersonsPositionVector);
-        await VisualNovel.ƒS.update(1);
-        await VisualNovel.playParagraph(storiesText.childhoodStory_Part1);
-        VisualNovel.ƒS.Character.hideAll();
-        await VisualNovel.ƒS.update(1);
+        /* await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.child, protagonistPositionVector);
+        await ƒS.Character.show(characters.mother, characters.mother.pose.happy, otherPersonsPositionVector); */
+        /*  await ƒS.update(); */
+        await VisualNovel.playParagraph(storyTexts.childhoodStory_Part1);
+        /*  ƒS.Character.hideAll(); */
+        /*   await ƒS.update(); */
         // TODO: übergang einfügen
-        await VisualNovel.playParagraph(storiesText.childhoodStory_Part2);
+        await VisualNovel.playParagraph(storyTexts.childhoodStory_Part2);
     }
     VisualNovel.childhood = childhood;
 })(VisualNovel || (VisualNovel = {}));
@@ -372,87 +370,87 @@ var VisualNovel;
 (function (VisualNovel) {
     async function theCurse() {
         console.log("Scene:  the Curse");
-        let storiesText = {
+        let storyTexts = {
             introduction: {
-                Narrator_001: "Es gingen viele Jahre in die Lande.",
-                Narrator_002: "Seitdem Tod des Vaters, hatte die Familie es nicht  immer leicht, da sie nicht viel Geld hatten.",
-                Narrator_003: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. "
+                Narrator_001: { text: "Es gingen viele Jahre in die Lande." },
+                Narrator_002: { text: "Seitdem Tod des Vaters, hatte die Familie es nicht  immer leicht, da sie nicht viel Geld hatten." },
+                Narrator_003: { text: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. " }
             },
             before_the_accident: {
-                Mother_001: "steh auf " + `${VisualNovel.dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.",
-                Protagonist_002: "ich komme gleich ich esse Kutz noch ein Stück Brot.",
-                Mother_003: "ok ich gehe schon mal vor, komm dann nach.",
-                Narrator_004: "nach dem " + `${VisualNovel.dataForSave.nameProtagonist}` + " sein Brot gegessen hatte machte er sich auch auf dem Weg zum Feld.",
-                Mother_005: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen.",
-                Protagonist_006: "mutter schau mal das ist aber eine komische Karotte.",
-                Narrator_007: "der Junge fängt an der Pflanze zu ziehen.",
-                Protagonist_008: "die geht aber schwer raus.",
-                Narrator_009: "Erzähler: Mutter dreht sich.",
-                Mother_010: "Mutter HALTTTTTT, das ist eine ….",
-                Mother_011: "….",
-                Narrator_012: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovel.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu."
-                //U001: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
+                Mother_001: { text: "steh auf " + `${VisualNovel.dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_002: { text: "ich komme gleich ich esse Kutz noch ein Stück Brot.", pose: VisualNovel.POSES.HAPPY },
+                Mother_003: { text: "ok ich gehe schon mal vor, komm dann nach.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_004: { text: "nach dem " + `${VisualNovel.dataForSave.nameProtagonist}` + " sein Brot gegessen hatte machte er sich auch auf dem Weg zum Feld." },
+                Mother_005: { text: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_006: { text: "mutter schau mal das ist aber eine komische Karotte.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_007: { text: "der Junge fängt an der Pflanze zu ziehen." },
+                Protagonist_008: { text: "die geht aber schwer raus.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_009: { text: "Mutter dreht sich." },
+                Mother_010: { text: "Mutter HALTTTTTT, das ist eine ….", pose: VisualNovel.POSES.FRIGHTEND },
+                Mother_011: { text: "….", pose: VisualNovel.POSES.NEUTRAL },
+                Narrator_012: { text: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovel.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu." }
+                //U001:  { text: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
             },
             after_the_accident: {
-                Narrator_001: "es wurde still und der junge dreht sich zu seiner Mutter um sich zu.",
-                Mother_002: "ich liebe….",
-                Protagonist_003: "Mutter, mutter…MAMAAAAAAA.",
-                Protagonist_004: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.",
-                Narrator_005: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen."
+                Narrator_001: { text: "es wurde still und der junge dreht sich zu seiner Mutter um sich zu." },
+                Mother_002: { text: "ich liebe….", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_003: { text: "Mutter, mutter…MAMAAAAAAA.", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_004: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: VisualNovel.POSES.FRIGHTEND },
+                Narrator_005: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },
             get_help: {
-                Narrator_001: `${VisualNovel.dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation,",
-                Narrator_002: "Der Arzt namens Dr.Bader ging und " + `${VisualNovel.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück."
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation," },
+                Narrator_002: { text: "Der Arzt namens Dr.Bader ging und " + `${VisualNovel.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück." }
             },
             talk_with_the_doctor: {
-                Protagonist_001: "Helfen sie bitte meiner Mutter.",
-                Doctor_002: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.",
-                Doctor_003: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.",
-                Protagonist_005: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.",
-                Doctor_006: "bringen wir sie erstmals zurück ins Dorf."
+                Protagonist_001: { text: "Helfen sie bitte meiner Mutter.", pose: VisualNovel.POSES.SAD },
+                Doctor_002: { text: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.", pose: VisualNovel.POSES.SAD },
+                Doctor_003: { text: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.", pose: VisualNovel.POSES.SAD },
+                Protagonist_005: { text: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.", pose: VisualNovel.POSES.SAD },
+                Doctor_006: { text: "bringen wir sie erstmals zurück ins Dorf.", pose: VisualNovel.POSES.SAD }
             },
             transition_to_the_village: {
-                Narrator_001: "der Arzt und " + `${VisualNovel.dataForSave.nameProtagonist}` + " bringen die Mutter vorsichtig zurück ins Dorf."
+                Narrator_001: { text: "der Arzt und " + `${VisualNovel.dataForSave.nameProtagonist}` + " bringen die Mutter vorsichtig zurück ins Dorf." }
             },
             about_the_way: {
-                Protagonist_001: "Bitte Dr.Bader es muss doch irgendwas geben was man tun kann, ich flehe sie an ich würde alles tun.",
-                Doctor_002: "Wir brauchten jemand oder etwas was mächtig genug, ist, um diesen Zauber zu lösen und dies innerhalb der nächsten <b>7</b> Tage, danach, kann man nicht mehr für sie tun",
-                Doctor_003: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${VisualNovel.locations.forest.name}` + "  Zu finden ist.",
-                Doctor_004: "Es wir erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.",
-                Doctor_005: "Dieser ist aber ein 3 Tages marsch entfernt und der Weg ist sehr gefährlich.",
-                Protagonist_006: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.",
-                Doctor_007: "Du musst nach Norden zu den " + `${VisualNovel.locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.",
-                Doctor_008: "nach den Felder kommst du zu dem " + `${VisualNovel.locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.",
-                Doctor_009: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.",
-                Doctor_010: "er ist ziemlich sicher aber ist lange. ",
-                Doctor_011: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.",
-                Doctor_012: "Dahinter ist schon der " + `${VisualNovel.locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ",
-                Doctor_013: "Man sagt das in dem Wald ein endloses Labyrinth ist und schon Ewigkeiten Kamm keiner mehr aus dem Wald der Versucht hat die Blume zu pflücken.",
-                Protagonist_014: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>",
-                Protagonist_015: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>",
-                Protagonist_016: "<i>Alles ist meine Schuld.</i>",
-                Protagonist_017: "Ich werde die Blume Holen, ich bin daran schuld an allem.",
-                Narrator_018: `${VisualNovel.dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür.",
-                Doctor_019: "Warte!!",
-                Doctor_020: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.",
-                Doctor_021: "Ich hoffe du wirst ich nicht brauchen.",
-                Protagonist_022: "Danke. Passen sie auf meine Mutter auf.",
-                Narrator_023: "Und so machte sich " + `${VisualNovel.dataForSave.nameProtagonist}` + " auf ein Abenteuer."
+                Protagonist_001: { text: "Bitte Dr.Bader es muss doch irgendwas geben was man tun kann, ich flehe sie an ich würde alles tun.", pose: VisualNovel.POSES.SAD },
+                Doctor_002: { text: "Wir brauchten jemand oder etwas was mächtig genug, ist, um diesen Zauber zu lösen und dies innerhalb der nächsten <b>7</b> Tage, danach, kann man nicht mehr für sie tun", pose: VisualNovel.POSES.SAD },
+                Doctor_003: { text: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${VisualNovel.locations.forest.name}` + "  Zu finden ist.", pose: VisualNovel.POSES.SAD },
+                Doctor_004: { text: "Es wir erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.", pose: VisualNovel.POSES.SAD },
+                Doctor_005: { text: "Dieser ist aber ein 3 Tages marsch entfernt und der Weg ist sehr gefährlich.", pose: VisualNovel.POSES.SAD },
+                Protagonist_006: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: VisualNovel.POSES.SAD },
+                Doctor_007: { text: "Du musst nach Norden zu den " + `${VisualNovel.locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: VisualNovel.POSES.SAD },
+                Doctor_008: { text: "nach den Felder kommst du zu dem " + `${VisualNovel.locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: VisualNovel.POSES.SAD },
+                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch." },
+                Doctor_010: { text: "er ist ziemlich sicher aber ist lange. ", pose: VisualNovel.POSES.SAD },
+                Doctor_011: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: VisualNovel.POSES.SAD },
+                Doctor_012: { text: "Dahinter ist schon der " + `${VisualNovel.locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: VisualNovel.POSES.SAD },
+                Doctor_013: { text: "Man sagt das in dem Wald ein endloses Labyrinth ist und schon Ewigkeiten Kamm keiner mehr aus dem Wald der Versucht hat die Blume zu pflücken.", pose: VisualNovel.POSES.SAD },
+                Protagonist_014: { text: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_015: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_016: { text: "<i>Alles ist meine Schuld.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_017: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD },
+                Narrator_018: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
+                Doctor_019: { text: "Warte!!", pose: VisualNovel.POSES.SAD },
+                Doctor_020: { text: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: VisualNovel.POSES.SAD },
+                Doctor_021: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: VisualNovel.POSES.SAD },
+                Protagonist_022: { text: "Danke. Passen sie auf meine Mutter auf.", pose: VisualNovel.POSES.SAD },
+                Narrator_023: { text: "Und so machte sich " + `${VisualNovel.dataForSave.nameProtagonist}` + " auf ein Abenteuer." }
             }
         };
-        await VisualNovel.playParagraph(storiesText.introduction);
+        await VisualNovel.playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
-        await VisualNovel.playParagraph(storiesText.before_the_accident);
+        await VisualNovel.playParagraph(storyTexts.before_the_accident);
         //TODO:  übergang mit Schrein (sound),  Erzähler: …,
-        await VisualNovel.playParagraph(storiesText.after_the_accident);
+        await VisualNovel.playParagraph(storyTexts.after_the_accident);
         //TODO: Schawarzer hintergund
-        await VisualNovel.playParagraph(storiesText.get_help);
+        await VisualNovel.playParagraph(storyTexts.get_help);
         //TODO: zurück aufs Feld
-        await VisualNovel.playParagraph(storiesText.talk_with_the_doctor);
+        await VisualNovel.playParagraph(storyTexts.talk_with_the_doctor);
         //TODO: zurück uns dorf übergang
-        await VisualNovel.playParagraph(storiesText.transition_to_the_village);
+        await VisualNovel.playParagraph(storyTexts.transition_to_the_village);
         //TODO: Dorf sitchtabar machen
-        await VisualNovel.playParagraph(storiesText.about_the_way);
+        await VisualNovel.playParagraph(storyTexts.about_the_way);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.healing_potion);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.sword);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.water_bag);
@@ -464,30 +462,30 @@ var VisualNovel;
 (function (VisualNovel) {
     async function grassland() {
         console.log("Scene:  grassland");
-        let storiesText = {
+        let storyTexts = {
             before_the_fight: {
-                Narrator_001: "nach paar Stunden ist  " + `${VisualNovel.dataForSave.nameProtagonist}` + " schon mitten auf den " + `${VisualNovel.locations.grasslands.name}` + " unterwegs, es ist ruhig. ",
-                Narrator_002: `${VisualNovel.dataForSave.nameProtagonist}` + " ist seit der das Dorf verlassen hat auf niemanden mehr gestoßen.",
-                Protagonist_003: "<i>Dr.Bader hat gesagt hier wimmelt es von Schleimen ich sollte mich eher in Acht nehmen, zum Glück bin ich noch keinem begegnet.</i>",
-                Narrator_004: "nach einer Weile raschelt es in einem Busch neben ihn.",
-                Narrator_005: "es springen 3 Schleime vor um ihn herum und verspären in dem Weg",
-                Protagonist_006: "<i>ich muss mich beeilen.</i>",
-                Protagonist_007: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>",
-                Narrator_008: `${VisualNovel.dataForSave.nameProtagonist}` + "greifen zu seinem Schwert."
+                Narrator_001: { text: "nach paar Stunden ist  " + `${VisualNovel.dataForSave.nameProtagonist}` + " schon mitten auf den " + `${VisualNovel.locations.grasslands.name}` + " unterwegs, es ist ruhig. " },
+                Narrator_002: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist seit der das Dorf verlassen hat auf niemanden mehr gestoßen." },
+                Protagonist_003: { text: "<i>Dr.Bader hat gesagt hier wimmelt es von Schleimen ich sollte mich eher in Acht nehmen, zum Glück bin ich noch keinem begegnet.</i>" },
+                Narrator_004: { text: "nach einer Weile raschelt es in einem Busch neben ihn." },
+                Narrator_005: { text: "es springen 3 Schleime vor um ihn herum und verspären in dem Weg" },
+                Protagonist_006: { text: "<i>ich muss mich beeilen.</i>" },
+                Protagonist_007: { text: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>" },
+                Narrator_008: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "greifen zu seinem Schwert." }
             },
             after_the_fight: {
-                Narrator_009: "Die Restlichen schleime suchen das Weite.",
-                Protagonist_010: "<i>endlich ist es vorbei, ich muss schnell weiter und darf keine Zeit verlieren.</i>",
-                Narrator_011: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft den Weg weiter."
+                Narrator_009: { text: "Die Restlichen schleime suchen das Weite." },
+                Protagonist_010: { text: "<i>endlich ist es vorbei, ich muss schnell weiter und darf keine Zeit verlieren.</i>" },
+                Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft den Weg weiter." }
             }
         };
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
         await VisualNovel.ƒS.update(1);
-        await VisualNovel.playParagraph(storiesText.before_the_fight);
+        await VisualNovel.playParagraph(storyTexts.before_the_fight);
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
         //Dodo: add fight 
-        await VisualNovel.playParagraph(storiesText.after_the_fight);
+        await VisualNovel.playParagraph(storyTexts.after_the_fight);
     }
     VisualNovel.grassland = grassland;
 })(VisualNovel || (VisualNovel = {}));
@@ -495,21 +493,21 @@ var VisualNovel;
 (function (VisualNovel) {
     async function prehistory() {
         console.log("start Story", "Scene:  prehistory");
-        let storiesText = {
+        let storyTexts = {
             backstory: {
-                Narrator_001: "In einer fantastischen Welt, in der zu überall Magie finden war,",
-                Narrator_002: "egal ob im tiefsten Wald oder in den Städten.",
-                Narrator_003: "Über all konnte man ein Hauch von Magie vernehmen.",
-                Narrator_004: "Es gab magische Kreaturen, manche den Menschen gut gesinnt , aber viele auch waren grauenhafte Monster.",
-                Narrator_005: "Der Mensch studierte diese Kraft und lernte sie für sich zu nutzen.",
-                Narrator_006: "Zwar es konnten nur Wenige Menschen die Magie mit eigener Kraft beherrschen und jene die dies Konnten waren mächtig und hoch angesehen.",
-                Narrator_007: "Dennoch stellten die Menschen Werkzeuge her mit den Jeder teile der diese leicht beeinflussen Konten.",
-                Narrator_008: "Mit diesen konnte man schnell Verletzungen heilen, schwere Lasten tragen, das Dunkle erleuchten und vieles mehr.",
-                Narrator_009: " Die Magie war das Schönste was man sich vorstellen hat den Menschen ein einfaches Leben ermöglicht,",
-                Narrator_010: "aber so gut sie auch sein mag so viele gefahren war mit Ihr verbunden und war der Schlimmste Gabe."
+                Narrator_001: { text: "In einer fantastischen Welt, in der zu überall Magie finden war," },
+                Narrator_002: { text: "egal ob im tiefsten Wald oder in den Städten." },
+                Narrator_003: { text: "Über all konnte man ein Hauch von Magie vernehmen." },
+                Narrator_004: { text: "Es gab magische Kreaturen, manche den Menschen gut gesinnt , aber viele auch waren grauenhafte Monster." },
+                Narrator_005: { text: "Der Mensch studierte diese Kraft und lernte sie für sich zu nutzen." },
+                Narrator_006: { text: "Zwar es konnten nur Wenige Menschen die Magie mit eigener Kraft beherrschen und jene die dies Konnten waren mächtig und hoch angesehen." },
+                Narrator_007: { text: "Dennoch stellten die Menschen Werkzeuge her mit den Jeder teile der diese leicht beeinflussen Konten." },
+                Narrator_008: { text: "Mit diesen konnte man schnell Verletzungen heilen, schwere Lasten tragen, das Dunkle erleuchten und vieles mehr." },
+                Narrator_009: { text: " Die Magie war das Schönste was man sich vorstellen hat den Menschen ein einfaches Leben ermöglicht," },
+                Narrator_010: { text: "aber so gut sie auch sein mag so viele gefahren war mit Ihr verbunden und war der Schlimmste Gabe." }
             }
         };
-        await VisualNovel.playParagraph(storiesText.backstory);
+        await VisualNovel.playParagraph(storyTexts.backstory);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt");
         VisualNovel.dataForSave.nameProtagonist = await VisualNovel.ƒS.Speech.getInput();
         VisualNovel.characters.protagonist.name = VisualNovel.dataForSave.nameProtagonist;
@@ -520,42 +518,42 @@ var VisualNovel;
 (function (VisualNovel) {
     async function theStranger() {
         console.log("Scene:  The Stranger");
-        let storiesText = {
+        let storyTexts = {
             encounter_with_the_stranger: {
-                Narrator_001: `${VisualNovel.dataForSave.nameProtagonist}` + "ist fast bei den " + `${VisualNovel.locations.mountains.name}` + " angekommen, es wurde schon spät.",
-                Narrator_002: "Die Sonne geht hinter dem Berg geradeunter.",
-                Narrator_003: `${VisualNovel.dataForSave.nameProtagonist}` + " sieht eine Gestalt in der Ferne",
-                Protagonist_004: "da ist jemand",
-                Protagonist_005: "egal ich darf keine Zeit verlieren, ignorier ich einfach.",
-                Narrator_006: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet.",
-                Stranger_007: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten.",
-                Stranger_008: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten."
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "ist fast bei den " + `${VisualNovel.locations.mountains.name}` + " angekommen, es wurde schon spät." },
+                Narrator_002: { text: "Die Sonne geht hinter dem Berg geradeunter." },
+                Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " sieht eine Gestalt in der Ferne" },
+                Protagonist_004: { text: "da ist jemand" },
+                Protagonist_005: { text: "egal ich darf keine Zeit verlieren, ignorier ich einfach." },
+                Narrator_006: { text: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet." },
+                Stranger_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten." },
+                Stranger_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten." }
             },
             hand_over_the_bottle: {
-                Protagonist_001: "hier sie können Diese leere Flaschen eins Heils tranks haben.",
-                Stranger_002: "was für eine Wunderschönes Exemplar.Vielen Dank.",
-                Stranger_003: "wohin sind sie unterwegs ?",
-                Protagonist_004: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
-                Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche."
+                Protagonist_001: { text: "hier sie können Diese leere Flaschen eins Heils tranks haben." },
+                Stranger_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank." },
+                Stranger_003: { text: "wohin sind sie unterwegs ?" },
+                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
+                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche." }
             },
             give_nothing_to_the_stranger: {
-                Protagonist_001: "Ich kann ihnen leider nichts geben.",
-                Stranger_002: "sehr schade.",
-                Stranger_003: "wohin sind sie unterwegs?",
-                Protagonist_004: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.",
-                Stranger_005: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg."
+                Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
+                Stranger_002: { text: "sehr schade." },
+                Stranger_003: { text: "wohin sind sie unterwegs?" },
+                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
+                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg." }
             },
             ignore_the_stranger: {
-                Protagonist_001: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>"
+                Protagonist_001: { text: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>" }
             },
             after_the_stranger: {
-                Narrator_001: "<name>läuft in einem schnellen Schritt weiter.",
-                Protagonist_002: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>"
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft in einem schnellen Schritt weiter." },
+                Protagonist_002: { text: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>" }
             },
             back_to_the_way: {
-                Narrator_001: `${VisualNovel.dataForSave.nameProtagonist}` + " ist am Fuße der " + `${VisualNovel.locations.mountains.name}` + " Berge angekommen.",
-                Protagonist_002: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>",
-                Narrator_003: `${VisualNovel.dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin."
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist am Fuße der " + `${VisualNovel.locations.mountains.name}` + " Berge angekommen." },
+                Protagonist_002: { text: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>" },
+                Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin." }
             }
         };
         let answersForStranger = {
@@ -563,27 +561,27 @@ var VisualNovel;
             isIgnore: "Ignoriere den Fremden",
             isGiveNothing: "Dem Fremden nichts geben"
         };
-        await VisualNovel.playParagraph(storiesText.encounter_with_the_stranger);
+        await VisualNovel.playParagraph(storyTexts.encounter_with_the_stranger);
         let answerToTheStranger = await VisualNovel.ƒS.Menu.getInput(answersForStranger);
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:
                 if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items.empty_glass_bottle)) {
                     VisualNovel.items.empty_glass_bottle.static = false;
                     VisualNovel.ƒS.Inventory.open();
-                    await VisualNovel.playParagraph(storiesText.hand_over_the_bottle);
+                    await VisualNovel.playParagraph(storyTexts.hand_over_the_bottle);
                     break;
                 }
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
             case answersForStranger.isGiveNothing:
-                await VisualNovel.playParagraph(storiesText.give_nothing_to_the_stranger);
+                await VisualNovel.playParagraph(storyTexts.give_nothing_to_the_stranger);
                 break;
             case answersForStranger.isIgnore:
-                await VisualNovel.playParagraph(storiesText.ignore_the_stranger);
+                await VisualNovel.playParagraph(storyTexts.ignore_the_stranger);
                 break;
             default:
                 break;
         }
-        await VisualNovel.playParagraph(storiesText.back_to_the_way);
+        await VisualNovel.playParagraph(storyTexts.back_to_the_way);
     }
     VisualNovel.theStranger = theStranger;
 })(VisualNovel || (VisualNovel = {}));
@@ -680,33 +678,218 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    VisualNovel.protagonistPositionVector = new VisualNovel.ƒ.Vector2(+400, -700);
+    VisualNovel.otherPersonsPositionVector = new VisualNovel.ƒ.Vector2(-400, -700);
+    let lastSpeaker = undefined;
+    let lastPose = undefined;
+    //let charactersINParagraph: { char: string, pose: POSES }[] = [];
+    let charactersINParagraph = {};
     async function playParagraph(_text) {
-        for (const key in _text) {
-            switch (key.charAt(0)) {
-                case "N":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, _text[key]);
-                    break;
-                case "P":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.protagonist, _text[key]);
-                    break;
-                case "M":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.mother, _text[key]);
-                    break;
-                case "S":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.strange_man, _text[key]);
-                    break;
-                case "F":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.fairy, _text[key]);
-                    break;
-                case "D":
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.doctor, _text[key]);
-                    break;
-                default:
-                    break;
+        for (const text in _text) {
+            let isInPragraph = charactersINParagraph[text.substring(0, text.length - 4).toLowerCase()] ? true : false;
+            if (text.substring(0, text.length - 4) != "Narrator") {
+                if (false == isInPragraph) {
+                    //console.log("new Char");
+                    await showCharacter(text.substring(0, text.length - 4), _text[text].pose);
+                }
+                else if (charactersINParagraph[text.substring(0, text.length - 4).toLowerCase()] != _text[text].pose) {
+                    //console.log("new pose");
+                    await VisualNovel.ƒS.Character.hide(VisualNovel.characters[text.substring(0, text.length - 4).toLowerCase()]);
+                    await showCharacter(text.substring(0, text.length - 4), _text[text].pose);
+                }
+                if (lastSpeaker && lastSpeaker != text.substring(0, text.length - 4).toLowerCase()) {
+                    await endSpeakingAnimation(lastSpeaker, lastPose);
+                    delete charactersINParagraph[lastSpeaker];
+                    lastSpeaker = undefined;
+                    lastPose = undefined;
+                }
+                console.log(lastPose, _text[text].pose);
+                if (lastSpeaker != text.substring(0, text.length - 4).toLowerCase()) {
+                    //console.log("new Animations");
+                    await startSpeakingAnimation(text.substring(0, text.length - 4), _text[text].pose);
+                }
+                /* let charInParagraoh: boolean = charactersINParagraph.some((char) => { return char.char == text.substring(0, text.length - 4).toLowerCase(); })
+                console.log(text, charactersINParagraph);
+                if (charactersINParagraph.some((char) => { return (char.pose != _text[text].pose && char.char == text.substring(0, text.length - 4).toLowerCase()); })) {
+                    console.log("new pose");
+    
+                    await ƒS.Character.hide(characters[text.substring(0, text.length - 4).toLowerCase()]);
+                    await ƒS.update();
+                    charactersINParagraph.splice(charactersINParagraph.indexOf(charactersINParagraph.find((char) => { return (char.pose != _text[text].pose && char.char == text.substring(0, text.length - 4).toLowerCase()); })), 1);
+                
+    
+                }
+                if (false == charInParagraoh  && text.substring(0, text.length - 4) != "Narrator") {
+                    console.log("new Char");
+                    await showCharacter(text.substring(0, text.length - 4), _text[text].pose);
+                } */
+            }
+            await VisualNovel.ƒS.Speech.tell(VisualNovel.characters[text.toLowerCase().substring(0, text.length - 4)], _text[text].text);
+        }
+        VisualNovel.ƒS.Character.hideAll();
+        charactersINParagraph = {};
+        //charactersINParagraph = [];
+        lastSpeaker = undefined;
+        lastPose = undefined;
+        await VisualNovel.ƒS.update();
+    }
+    VisualNovel.playParagraph = playParagraph;
+    async function showCharacter(_character, _pose) {
+        for (const char in VisualNovel.characters) {
+            if (char == _character.toLowerCase()) {
+                for (const pose in VisualNovel.characters[char].pose) {
+                    if (pose == _pose) {
+                        await VisualNovel.ƒS.Character.show(VisualNovel.characters[char], VisualNovel.characters[char].pose[pose], char.charAt(0) == "p" ? VisualNovel.protagonistPositionVector : VisualNovel.otherPersonsPositionVector);
+                        //charactersINParagraph.push({ char: char, pose: _pose });
+                        charactersINParagraph[char] = _pose;
+                    }
+                }
+            }
+        }
+        await VisualNovel.ƒS.update();
+    }
+    VisualNovel.showCharacter = showCharacter;
+    async function endSpeakingAnimation(_character, _pose) {
+        for (const char in VisualNovel.characters) {
+            if (char == _character.toLowerCase()) {
+                for (const pose in VisualNovel.characters[char].pose) {
+                    if (pose == _pose) {
+                        await VisualNovel.ƒS.Character.animate(VisualNovel.characters[char], VisualNovel.characters[char].pose[pose], VisualNovel.animations.endSpeaking);
+                        lastSpeaker = undefined;
+                        lastPose = undefined;
+                    }
+                }
             }
         }
     }
-    VisualNovel.playParagraph = playParagraph;
+    VisualNovel.endSpeakingAnimation = endSpeakingAnimation;
+    async function startSpeakingAnimation(_character, _pose) {
+        for (const char in VisualNovel.characters) {
+            if (char == _character.toLowerCase()) {
+                for (const pose in VisualNovel.characters[char].pose) {
+                    if (pose == _pose) {
+                        await VisualNovel.ƒS.Character.animate(VisualNovel.characters[char], VisualNovel.characters[char].pose[pose], VisualNovel.animations.startSpeaking);
+                        lastSpeaker = char;
+                        lastPose = pose;
+                    }
+                }
+            }
+        }
+    }
+    VisualNovel.startSpeakingAnimation = startSpeakingAnimation;
+    /*  export async function endSpeakingAnimation(_charakter: string, _pose?: POSES): Promise<void> {
+         switch (_charakter) {
+             case "P":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.sad, animations.endSpeaking);
+                         break;
+                     case POSES.FRIGHTEND:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.frightend, animations.endSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.happy, animations.endSpeaking);
+                         break;
+                     case POSES.CHILD:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.child, animations.endSpeaking);
+                         break;
+ 
+                 }
+                 break;
+             case "M":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.endSpeaking);
+                         break;
+                     case POSES.FRIGHTEND:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.frightend, animations.endSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.happy, animations.endSpeaking);
+                         break;
+ 
+                 }
+ 
+                 break;
+             case "S":
+                 ƒS.Character.animate(characters.strange_man, characters.strange_man.pose.happy, animations.endSpeaking);
+                 break;
+             case "F":
+                 ƒS.Character.animate(characters.great_fairy, characters.great_fairy.pose.happy, animations.endSpeaking);
+ 
+                 break;
+             case "D":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.endSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.doctor, characters.doctor.pose.happy, animations.endSpeaking);
+                         break;
+ 
+ 
+                 }
+                 break;
+         }
+     }
+     export async function startSpeakingAnimation(_charakter: string, _pose?: POSES): Promise<void> {
+         if (lastSpeaker != "") {
+             endSpeakingAnimation(lastSpeaker, lastPose);
+         }
+         switch (_charakter) {
+             case "P":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.sad, animations.startSpeaking);
+                         break;
+                     case POSES.FRIGHTEND:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.frightend, animations.startSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.happy, animations.startSpeaking);
+                         break;
+                     case POSES.CHILD:
+                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.child, animations.startSpeaking);
+                         break;
+ 
+                 }
+                 break;
+             case "M":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.startSpeaking);
+                         break;
+                     case POSES.FRIGHTEND:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.frightend, animations.startSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.happy, animations.startSpeaking);
+                         break;
+ 
+                 }
+ 
+                 break;
+             case "S":
+                 ƒS.Character.animate(characters.strange_man, characters.strange_man.pose.happy, animations.startSpeaking);
+                 break;
+             case "F":
+                 ƒS.Character.animate(characters.great_fairy, characters.great_fairy.pose.happy, animations.startSpeaking);
+ 
+                 break;
+             case "D":
+                 switch (_pose) {
+                     case POSES.SAD:
+                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.startSpeaking);
+                         break;
+                     case POSES.HAPPY:
+                         ƒS.Character.animate(characters.doctor, characters.doctor.pose.happy, animations.startSpeaking);
+                         break;
+ 
+ 
+                 }
+                 break;
+         }
+     } */
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -716,7 +899,7 @@ var VisualNovel;
                 scaling: new VisualNovel.ƒS.Position(1, 1)
             },
             end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2) },
-            duration: 1,
+            duration: 0.1,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         },
         endSpeaking: {
@@ -724,13 +907,21 @@ var VisualNovel;
                 scaling: new VisualNovel.ƒS.Position(1.2, 1.2)
             },
             end: { scaling: new VisualNovel.ƒS.Position(1, 1) },
-            duration: 1,
+            duration: 0.1,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         }
     };
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    let POSES;
+    (function (POSES) {
+        POSES["SAD"] = "sad";
+        POSES["FRIGHTEND"] = "frightend";
+        POSES["HAPPY"] = "happy";
+        POSES["NEUTRAL"] = "neutral";
+        POSES["CHILD"] = "child";
+    })(POSES = VisualNovel.POSES || (VisualNovel.POSES = {}));
     VisualNovel.characters = {
         narrator: {
             name: undefined,
@@ -744,7 +935,7 @@ var VisualNovel;
                 happy: "./Images/Characters/Protagonist/protagonist_happy.png",
                 sad: "./Images/Characters/Protagonist/protagonist_sad.png",
                 frightend: "./Images/Characters/Protagonist/protagonist_frightend.png",
-                sadChild: "./Images/Characters/Protagonist/protagonist_sad.png"
+                child: "./Images/Characters/Protagonist/protagonist_sad.png"
             }
         },
         mother: {
@@ -752,7 +943,7 @@ var VisualNovel;
             origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 happy: "./Images/Characters/Mother/mother_happy.png",
-                sad: "./Images/Characters/Mother/mother_sad.png",
+                neutral: "./Images/Characters/Mother/mother_neutral.png",
                 frightend: "./Images/Characters/Mother/mother_frightend.png"
             }
         },
@@ -771,7 +962,7 @@ var VisualNovel;
                 happy: "./Images/Characters/Strange_man/strange_man_happy.png"
             }
         },
-        great_fairy: {
+        fairy: {
             name: "große Fee des Waldes",
             origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
