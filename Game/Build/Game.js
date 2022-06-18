@@ -466,16 +466,16 @@ var VisualNovel;
             before_the_fight: {
                 Narrator_001: { text: "nach paar Stunden ist  " + `${VisualNovel.dataForSave.nameProtagonist}` + " schon mitten auf den " + `${VisualNovel.locations.grasslands.name}` + " unterwegs, es ist ruhig. " },
                 Narrator_002: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist seit der das Dorf verlassen hat auf niemanden mehr gestoßen." },
-                Protagonist_003: { text: "<i>Dr.Bader hat gesagt hier wimmelt es von Schleimen ich sollte mich eher in Acht nehmen, zum Glück bin ich noch keinem begegnet.</i>" },
+                Protagonist_003: { text: "<i>Dr.Bader hat gesagt hier wimmelt es von Schleimen ich sollte mich eher in Acht nehmen, zum Glück bin ich noch keinem begegnet.</i>", pose: VisualNovel.POSES.HAPPY },
                 Narrator_004: { text: "nach einer Weile raschelt es in einem Busch neben ihn." },
                 Narrator_005: { text: "es springen 3 Schleime vor um ihn herum und verspären in dem Weg" },
-                Protagonist_006: { text: "<i>ich muss mich beeilen.</i>" },
-                Protagonist_007: { text: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>" },
+                Protagonist_006: { text: "<i>ich muss mich beeilen.</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_007: { text: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>", pose: VisualNovel.POSES.FRIGHTEND },
                 Narrator_008: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "greifen zu seinem Schwert." }
             },
             after_the_fight: {
                 Narrator_009: { text: "Die Restlichen schleime suchen das Weite." },
-                Protagonist_010: { text: "<i>endlich ist es vorbei, ich muss schnell weiter und darf keine Zeit verlieren.</i>" },
+                Protagonist_010: { text: "<i>endlich ist es vorbei, ich muss schnell weiter und darf keine Zeit verlieren.</i>", pose: VisualNovel.POSES.SAD },
                 Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft den Weg weiter." }
             }
         };
@@ -523,36 +523,36 @@ var VisualNovel;
                 Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "ist fast bei den " + `${VisualNovel.locations.mountains.name}` + " angekommen, es wurde schon spät." },
                 Narrator_002: { text: "Die Sonne geht hinter dem Berg geradeunter." },
                 Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " sieht eine Gestalt in der Ferne" },
-                Protagonist_004: { text: "da ist jemand" },
-                Protagonist_005: { text: "egal ich darf keine Zeit verlieren, ignorier ich einfach." },
+                Protagonist_004: { text: "da ist jemand", pose: VisualNovel.POSES.SAD },
+                Protagonist_005: { text: "egal ich darf keine Zeit verlieren, ignorier ich einfach.", pose: VisualNovel.POSES.SAD },
                 Narrator_006: { text: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet." },
-                Stranger_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten." },
-                Stranger_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten." }
+                Stranger_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten.", pose: VisualNovel.POSES.HAPPY },
+                Stranger_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten.", pose: VisualNovel.POSES.HAPPY }
             },
             hand_over_the_bottle: {
-                Protagonist_001: { text: "hier sie können Diese leere Flaschen eins Heils tranks haben." },
-                Stranger_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank." },
-                Stranger_003: { text: "wohin sind sie unterwegs ?" },
-                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche." }
+                Protagonist_001: { text: "hier sie können Diese leere Flaschen eins Heils tranks haben.", pose: VisualNovel.POSES.SAD },
+                Stranger_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank.", pose: VisualNovel.POSES.HAPPY },
+                Stranger_003: { text: "wohin sind sie unterwegs ?", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.", pose: VisualNovel.POSES.SAD },
+                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: VisualNovel.POSES.HAPPY }
             },
             give_nothing_to_the_stranger: {
                 Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
-                Stranger_002: { text: "sehr schade." },
-                Stranger_003: { text: "wohin sind sie unterwegs?" },
+                Stranger_002: { text: "sehr schade.", pose: VisualNovel.POSES.HAPPY },
+                Stranger_003: { text: "wohin sind sie unterwegs?", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg." }
+                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.", pose: VisualNovel.POSES.HAPPY }
             },
             ignore_the_stranger: {
-                Protagonist_001: { text: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>" }
+                Protagonist_001: { text: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>", pose: VisualNovel.POSES.SAD }
             },
             after_the_stranger: {
                 Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft in einem schnellen Schritt weiter." },
-                Protagonist_002: { text: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>" }
+                Protagonist_002: { text: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>", pose: VisualNovel.POSES.SAD }
             },
             back_to_the_way: {
                 Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist am Fuße der " + `${VisualNovel.locations.mountains.name}` + " Berge angekommen." },
-                Protagonist_002: { text: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>" },
+                Protagonist_002: { text: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>", pose: VisualNovel.POSES.SAD },
                 Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin." }
             }
         };
@@ -703,26 +703,11 @@ var VisualNovel;
                     lastSpeaker = undefined;
                     lastPose = undefined;
                 }
-                console.log(lastPose, _text[text].pose);
+                //console.log(lastPose, _text[text].pose);
                 if (lastSpeaker != text.substring(0, text.length - 4).toLowerCase()) {
                     //console.log("new Animations");
                     await startSpeakingAnimation(text.substring(0, text.length - 4), _text[text].pose);
                 }
-                /* let charInParagraoh: boolean = charactersINParagraph.some((char) => { return char.char == text.substring(0, text.length - 4).toLowerCase(); })
-                console.log(text, charactersINParagraph);
-                if (charactersINParagraph.some((char) => { return (char.pose != _text[text].pose && char.char == text.substring(0, text.length - 4).toLowerCase()); })) {
-                    console.log("new pose");
-    
-                    await ƒS.Character.hide(characters[text.substring(0, text.length - 4).toLowerCase()]);
-                    await ƒS.update();
-                    charactersINParagraph.splice(charactersINParagraph.indexOf(charactersINParagraph.find((char) => { return (char.pose != _text[text].pose && char.char == text.substring(0, text.length - 4).toLowerCase()); })), 1);
-                
-    
-                }
-                if (false == charInParagraoh  && text.substring(0, text.length - 4) != "Narrator") {
-                    console.log("new Char");
-                    await showCharacter(text.substring(0, text.length - 4), _text[text].pose);
-                } */
             }
             await VisualNovel.ƒS.Speech.tell(VisualNovel.characters[text.toLowerCase().substring(0, text.length - 4)], _text[text].text);
         }
@@ -777,119 +762,6 @@ var VisualNovel;
         }
     }
     VisualNovel.startSpeakingAnimation = startSpeakingAnimation;
-    /*  export async function endSpeakingAnimation(_charakter: string, _pose?: POSES): Promise<void> {
-         switch (_charakter) {
-             case "P":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.sad, animations.endSpeaking);
-                         break;
-                     case POSES.FRIGHTEND:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.frightend, animations.endSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.happy, animations.endSpeaking);
-                         break;
-                     case POSES.CHILD:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.child, animations.endSpeaking);
-                         break;
- 
-                 }
-                 break;
-             case "M":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.endSpeaking);
-                         break;
-                     case POSES.FRIGHTEND:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.frightend, animations.endSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.happy, animations.endSpeaking);
-                         break;
- 
-                 }
- 
-                 break;
-             case "S":
-                 ƒS.Character.animate(characters.strange_man, characters.strange_man.pose.happy, animations.endSpeaking);
-                 break;
-             case "F":
-                 ƒS.Character.animate(characters.great_fairy, characters.great_fairy.pose.happy, animations.endSpeaking);
- 
-                 break;
-             case "D":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.endSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.doctor, characters.doctor.pose.happy, animations.endSpeaking);
-                         break;
- 
- 
-                 }
-                 break;
-         }
-     }
-     export async function startSpeakingAnimation(_charakter: string, _pose?: POSES): Promise<void> {
-         if (lastSpeaker != "") {
-             endSpeakingAnimation(lastSpeaker, lastPose);
-         }
-         switch (_charakter) {
-             case "P":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.sad, animations.startSpeaking);
-                         break;
-                     case POSES.FRIGHTEND:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.frightend, animations.startSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.happy, animations.startSpeaking);
-                         break;
-                     case POSES.CHILD:
-                         ƒS.Character.animate(characters.protagonist, characters.protagonist.pose.child, animations.startSpeaking);
-                         break;
- 
-                 }
-                 break;
-             case "M":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.startSpeaking);
-                         break;
-                     case POSES.FRIGHTEND:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.frightend, animations.startSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.happy, animations.startSpeaking);
-                         break;
- 
-                 }
- 
-                 break;
-             case "S":
-                 ƒS.Character.animate(characters.strange_man, characters.strange_man.pose.happy, animations.startSpeaking);
-                 break;
-             case "F":
-                 ƒS.Character.animate(characters.great_fairy, characters.great_fairy.pose.happy, animations.startSpeaking);
- 
-                 break;
-             case "D":
-                 switch (_pose) {
-                     case POSES.SAD:
-                         ƒS.Character.animate(characters.mother, characters.mother.pose.sad, animations.startSpeaking);
-                         break;
-                     case POSES.HAPPY:
-                         ƒS.Character.animate(characters.doctor, characters.doctor.pose.happy, animations.startSpeaking);
-                         break;
- 
- 
-                 }
-                 break;
-         }
-     } */
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
