@@ -10,22 +10,22 @@ namespace VisualNovel {
                 Protagonist_004: { text: "da ist jemand" , pose: POSES.SAD},
                 Protagonist_005: { text: "egal ich darf keine Zeit verlieren, ignorier ich einfach." , pose: POSES.SAD},
                 Narrator_006: { text: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet." },
-                Stranger_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten." , pose: POSES.HAPPY},
-                Stranger_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten." , pose: POSES.HAPPY}
+                Strange_man_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten." , pose: POSES.HAPPY},
+                Strange_man_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten." , pose: POSES.HAPPY}
             },
             hand_over_the_bottle: {
                 Protagonist_001: { text: "hier sie können Diese leere Flaschen eins Heils tranks haben." , pose: POSES.SAD},
-                Stranger_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank." , pose: POSES.HAPPY},
-                Stranger_003: { text: "wohin sind sie unterwegs ?" , pose: POSES.HAPPY},
+                Strange_man_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank." , pose: POSES.HAPPY},
+                Strange_man_003: { text: "wohin sind sie unterwegs ?" , pose: POSES.HAPPY},
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." , pose: POSES.SAD},
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche." , pose: POSES.HAPPY}
+                Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche." , pose: POSES.HAPPY}
             },
             give_nothing_to_the_stranger: {
                 Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
-                Stranger_002: { text: "sehr schade." , pose: POSES.HAPPY},
-                Stranger_003: { text: "wohin sind sie unterwegs?" , pose: POSES.HAPPY},
+                Strange_man_002: { text: "sehr schade." , pose: POSES.HAPPY},
+                Strange_man_003: { text: "wohin sind sie unterwegs?" , pose: POSES.HAPPY},
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg." , pose: POSES.HAPPY}
+                Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg." , pose: POSES.HAPPY}
             },
             ignore_the_stranger: {
                 Protagonist_001: { text: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>" , pose: POSES.SAD}

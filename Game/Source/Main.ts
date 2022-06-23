@@ -22,8 +22,7 @@ namespace VisualNovel {//https://itch.io/game-assets
         save: "Save",
         load: "Load",
         close: "Close",
-        creadits: "Credits",
-
+        creadits: "Credits"
     };
 
     let gameMenu: ƒS.Menu;

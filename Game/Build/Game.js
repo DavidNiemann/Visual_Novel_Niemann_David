@@ -20,7 +20,7 @@ var VisualNovel;
         save: "Save",
         load: "Load",
         close: "Close",
-        creadits: "Credits",
+        creadits: "Credits"
     };
     let gameMenu;
     //true = open; false = close
@@ -338,122 +338,80 @@ switch (firstDialogueElement) {
 /*   }
 
 } */ 
-/*
-Übergang zu Die Große Fee
-Die Große Fee
-Erzähler: als <name> die Höhle  betritt hört er ein leises Singen
-Protagonist: „was ist das, singt Hier eine Frau?“
-Protagonist: “vielleicht hat sich hier noch andere Menschen Verlaufen“
-Erzähler: <name>  geht tiefer in die Höhle.
-Erzähler: nach einer Weile tauchte eine Quelle vor ihm auf.
-Protagonist: Eine Quelle?!
-Protagonist: aber es scheint niemand hier zu sein, das Singen ist auch verstummt.
-Erzähler: <name> schreitet and die Quelle Heran
-Erzähler: plötzlich taucht eine junge Frau von Geisterhand über der Quelle auf.
-Große Fee: hehehe ich bin die Große Fee diese Quelle
-Große Fee: mich hat seinen Jahrhunderten niemand mehr besucht
-Große Fee: Was für dich zu mir?
-Protagonist: ich haben mich im Wald verlaufen.
-Protagonist: ich war auf der such nach den <Blumenbamen>?
-Große Fee: hehehe so ist, dass, warum bist du suchst du diese, du musst, ein langer Weg hinter dir haben,
-Übergang mit Schrift: „Erzählt seine Geschichte“
-Große Fee: ich sehen du versuchst deine Mutter zu retten, wie Helden Haft  hehehe.
-Protagonist: ich bin kein Held, durch meine Unwissenheit, Kamm es erst zu dieser Situation.
-Protagonist: und die Blumen habe ich auch noch nicht gefunden.
-Große Fee: du bist doch schon so nah an denen Ziel, du wirst doch nicht aufgeben.
-Protagonist: ich werde nicht auf Geben, aber ich habe keine Zeit, ich muss die Blumen finden und sie in mein Dorf bringen, bevor es zu spät ist.
-Große Fee: hehehe
-Protagonist: kannst du mir nicht den Weg zu den Blumen zeigen.
-Große Fee: das könnte ich, aber tue ich nicht hehehe.
-Protagonist: warum nicht? Dann werde ich sie selbst suchen
-Große Fee: Du hast eine reines herz und starken willen.
-Große Fee: hehehe
-Große Fee: Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben, das sollte das sollte deiner Mutter Rettern Können. Die Blumen haben auch nur diese Kraft, weil sie Wasser aus dieser Quelle beziehen. Dass Das Wasser sogar größer Erfolgschance hat,  hehehe.
-Protagonist:  vielen Dank
-Große Fee: es war schön mit dir zu reden hehehe.
-Erzähler: Füllte einen Wasser Tasche voll mit dem Quellwasser.
-Protagonist: „Warum wird mir wird schwindelig “
-Erzähler: <name> wird schwarz vor Augen
-Übergang
-
-Nächster morgen
-Erzähler: <name> wacht am nächsten morgen am Eingang des Waldes wieder auf
-Protagonist:  „was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee“
-Erzähler: er schaut in seine Tasche
-Protagonist: „zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen “
- Protagonist dann mache ich mich wohl auf den Heimweg:
-Übergang zu Zeitung ins Dorf
- */
 var VisualNovel;
-/*
-Übergang zu Die Große Fee
-Die Große Fee
-Erzähler: als <name> die Höhle  betritt hört er ein leises Singen
-Protagonist: „was ist das, singt Hier eine Frau?“
-Protagonist: “vielleicht hat sich hier noch andere Menschen Verlaufen“
-Erzähler: <name>  geht tiefer in die Höhle.
-Erzähler: nach einer Weile tauchte eine Quelle vor ihm auf.
-Protagonist: Eine Quelle?!
-Protagonist: aber es scheint niemand hier zu sein, das Singen ist auch verstummt.
-Erzähler: <name> schreitet and die Quelle Heran
-Erzähler: plötzlich taucht eine junge Frau von Geisterhand über der Quelle auf.
-Große Fee: hehehe ich bin die Große Fee diese Quelle
-Große Fee: mich hat seinen Jahrhunderten niemand mehr besucht
-Große Fee: Was für dich zu mir?
-Protagonist: ich haben mich im Wald verlaufen.
-Protagonist: ich war auf der such nach den <Blumenbamen>?
-Große Fee: hehehe so ist, dass, warum bist du suchst du diese, du musst, ein langer Weg hinter dir haben,
-Übergang mit Schrift: „Erzählt seine Geschichte“
-Große Fee: ich sehen du versuchst deine Mutter zu retten, wie Helden Haft  hehehe.
-Protagonist: ich bin kein Held, durch meine Unwissenheit, Kamm es erst zu dieser Situation.
-Protagonist: und die Blumen habe ich auch noch nicht gefunden.
-Große Fee: du bist doch schon so nah an denen Ziel, du wirst doch nicht aufgeben.
-Protagonist: ich werde nicht auf Geben, aber ich habe keine Zeit, ich muss die Blumen finden und sie in mein Dorf bringen, bevor es zu spät ist.
-Große Fee: hehehe
-Protagonist: kannst du mir nicht den Weg zu den Blumen zeigen.
-Große Fee: das könnte ich, aber tue ich nicht hehehe.
-Protagonist: warum nicht? Dann werde ich sie selbst suchen
-Große Fee: Du hast eine reines herz und starken willen.
-Große Fee: hehehe
-Große Fee: Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben, das sollte das sollte deiner Mutter Rettern Können. Die Blumen haben auch nur diese Kraft, weil sie Wasser aus dieser Quelle beziehen. Dass Das Wasser sogar größer Erfolgschance hat,  hehehe.
-Protagonist:  vielen Dank
-Große Fee: es war schön mit dir zu reden hehehe.
-Erzähler: Füllte einen Wasser Tasche voll mit dem Quellwasser.
-Protagonist: „Warum wird mir wird schwindelig “
-Erzähler: <name> wird schwarz vor Augen
-Übergang
-
-Nächster morgen
-Erzähler: <name> wacht am nächsten morgen am Eingang des Waldes wieder auf
-Protagonist:  „was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee“
-Erzähler: er schaut in seine Tasche
-Protagonist: „zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen “
- Protagonist dann mache ich mich wohl auf den Heimweg:
-Übergang zu Zeitung ins Dorf
- */
 (function (VisualNovel) {
     async function cave() {
         console.log("Scene: the cave");
         let storyTexts = {
             the_cave: {
                 Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " quälte sich durch enges getrübt bis vor einer Höhle vor ihm erscheint." },
-                Protagonist_02: { text: "<i> Eine Höhle?!, ich bin hier will falsch.</i>", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_03: { text: "<i> Es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.</i>", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_04: { text: "<i> Ich muss aufpassen das kein Monster darin wohnt.</i>", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_05: { text: "<i> Bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.</i>", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_06: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_002: { text: "<i> Eine Höhle?!, ich bin hier will falsch.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_003: { text: "<i> Es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_004: { text: "<i> Ich muss aufpassen das kein Monster darin wohnt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_005: { text: "<i> Bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_006: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: VisualNovel.POSES.SAD },
+            },
+            the_fairy: {
+                Narrator_007: { text: "Als" + `${VisualNovel.dataForSave.nameProtagonist}` + " die Höhle  betritt hört er ein leises Singen." },
+                Protagonist_008: { text: "<i>Was ist das, singt Hier eine Frau? </i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_009: { text: "<i>Vielleicht hat sich hier noch andere Menschen Verlaufen</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Narrator_0010: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " geht tiefer in die Höhle." },
+                Narrator_0011: { text: "Nach einer Weile tauchte eine Quelle vor ihm auf." },
+                Protagonist_012: { text: "<i>Eine Quelle?!</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_013: { text: "<i>aber es scheint niemand hier zu sein, das Singen ist auch verstummt.</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Narrator_014: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schreitet and die Quelle Heran, " },
+                Narrator_015: { text: "plötzlich taucht eine junge Frau von Geisterhand über der Quelle auf." },
+                Fairy_016: { text: "hehehe ich bin die Große Fee diese Quelle.", pose: VisualNovel.POSES.HAPPY },
+                Fairy_017: { text: "Ich hat seinen Jahrhunderten niemand mehr besucht", pose: VisualNovel.POSES.HAPPY },
+                Fairy_018: { text: "Was für dich zu mir?", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_019: { text: "Ich haben mich im Wald verlaufen. ", pose: VisualNovel.POSES.SAD },
+                Protagonist_020: { text: "ich war auf der such nach den " + `${VisualNovel.items.flower.name}` + ".", pose: VisualNovel.POSES.SAD },
+                Fairy_021: { text: "hehehe so ist, dass, warum bist du suchst du diese, du musst, ein langer Weg hinter dir haben.", pose: VisualNovel.POSES.HAPPY }
+            },
+            spring_water: {
+                Fairy_022: { text: "ich sehen du versuchst deine Mutter zu retten, wie Helden Haft hehehe.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_023: { text: "Ich bin kein Held, durch meine Unwissenheit, Kamm es erst zu dieser Situation.", pose: VisualNovel.POSES.SAD },
+                Protagonist_024: { text: "und die Blumen habe ich auch noch nicht gefunden.", pose: VisualNovel.POSES.SAD },
+                Fairy_025: { text: "du bist doch schon so nah an denen Ziel, du wirst doch nicht aufgeben.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_026: { text: "ich werde nicht auf Geben, aber ich habe keine Zeit, ich muss die Blumen finden und sie in mein Dorf bringen, bevor es zu spät ist.", pose: VisualNovel.POSES.SAD },
+                Fairy_027: { text: "hehehe", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_028: { text: "kannst du mir nicht den Weg zu den Blumen zeigen.", pose: VisualNovel.POSES.SAD },
+                Fairy_029: { text: "Das könnte ich, aber tue ich nicht hehehe.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_030: { text: "Warum nicht? Dann werde ich sie selbst suche.", pose: VisualNovel.POSES.SAD },
+                Fairy_031: { text: "Du hast eine reines herz und ein starken Willen.", pose: VisualNovel.POSES.HAPPY },
+                Fairy_032: { text: "hehehe", pose: VisualNovel.POSES.HAPPY },
+                Fairy_033: { text: "Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben,", pose: VisualNovel.POSES.HAPPY },
+                Fairy_034: { text: "das sollte das sollte deiner Mutter Rettern Können.", pose: VisualNovel.POSES.HAPPY },
+                Fairy_035: { text: "Die Blumen haben auch nur diese Kraft, weil sie Wasser aus dieser Quelle beziehen.", pose: VisualNovel.POSES.HAPPY },
+                Fairy_036: { text: "Dass Das Wasser sogar größer Erfolgschance hat,  hehehe.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_037: { text: " vielen Dank.", pose: VisualNovel.POSES.HAPPY },
+                Fairy_038: { text: "Es war schön mit dir zu reden hehehe.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_039: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " füllte einen Wasser Tasche voll mit dem Quellwasser." },
+                Protagonist_040: { text: "<i>Warum wird mir wird schwindelig.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_0041: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " wird schwarz vor Augen." }
+            },
+            next_morning: {
+                Narrator_0042: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " wacht am nächsten morgen am Eingang des Waldes wieder auf." },
+                Protagonist_043: { text: "<i>was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Narrator_0044: { text: "Er schaut in seine Tasche." },
+                Protagonist_045: { text: "<i>zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_046: { text: "<i>dann mache ich mich wohl auf den Heimweg.</i>", pose: VisualNovel.POSES.HAPPY }
             }
         };
         await VisualNovel.playParagraph(storyTexts.the_cave);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.cave);
+        await VisualNovel.ƒS.update(1);
+        await VisualNovel.playParagraph(storyTexts.the_fairy);
+        //TODO: Übergang mit Schrift: „Erzählt seine Geschichte“ 
+        await VisualNovel.playParagraph(storyTexts.spring_water);
+        VisualNovel.ƒS.Inventory.add(VisualNovel.items.magic_water);
+        VisualNovel.dataForSave.dayCounter += 1;
+        //TODO: übergang mogen
+        await VisualNovel.playParagraph(storyTexts.next_morning);
+        //TODO: übergang 
     }
     VisualNovel.cave = cave;
 })(VisualNovel || (VisualNovel = {}));
-/* Erzähler: <name> quälte sich durch enges getrübt bis vor einer Höhle vor ihm erscheint.
-Protagonist: „eine Höhle?!, ich bin hier will falsch“
-Protagonist: es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.
-Protagonist: ich muss aufpassen das kein Monster darin wohnt.
-Protagonist: bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.
-Protagonist: ich muss wohl bis zum morgen Schutz in der Höhle suchen. */ 
 /// <reference path= "../main.ts"/>
 var VisualNovel;
 /// <reference path= "../main.ts"/>
@@ -937,22 +895,22 @@ var VisualNovel;
                 Protagonist_004: { text: "da ist jemand", pose: VisualNovel.POSES.SAD },
                 Protagonist_005: { text: "egal ich darf keine Zeit verlieren, ignorier ich einfach.", pose: VisualNovel.POSES.SAD },
                 Narrator_006: { text: "der Mann sieht verwahrlost  aus und ist in zerrissenen Lumpen gekleidet." },
-                Stranger_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten.", pose: VisualNovel.POSES.HAPPY },
-                Stranger_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten.", pose: VisualNovel.POSES.HAPPY }
+                Strange_man_007: { text: "Junger Mann, ich habe nicht viel und will auch nicht um viel bitten.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_008: { text: "Aber ich sammle leere Flaschen, haben sie eine die sie mir überlassen könnten.", pose: VisualNovel.POSES.HAPPY }
             },
             hand_over_the_bottle: {
                 Protagonist_001: { text: "hier sie können Diese leere Flaschen eins Heils tranks haben.", pose: VisualNovel.POSES.SAD },
-                Stranger_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank.", pose: VisualNovel.POSES.HAPPY },
-                Stranger_003: { text: "wohin sind sie unterwegs ?", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_002: { text: "was für eine Wunderschönes Exemplar.Vielen Dank.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_003: { text: "wohin sind sie unterwegs ?", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.", pose: VisualNovel.POSES.SAD },
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: VisualNovel.POSES.HAPPY }
+                Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: VisualNovel.POSES.HAPPY }
             },
             give_nothing_to_the_stranger: {
                 Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
-                Stranger_002: { text: "sehr schade.", pose: VisualNovel.POSES.HAPPY },
-                Stranger_003: { text: "wohin sind sie unterwegs?", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_002: { text: "sehr schade.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_003: { text: "wohin sind sie unterwegs?", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
-                Stranger_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.", pose: VisualNovel.POSES.HAPPY }
+                Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.", pose: VisualNovel.POSES.HAPPY }
             },
             ignore_the_stranger: {
                 Protagonist_001: { text: "<i>ignorier ihn einfach ich habe keine Zeit mit ihm zu reden</i>", pose: VisualNovel.POSES.SAD }
