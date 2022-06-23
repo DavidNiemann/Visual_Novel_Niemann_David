@@ -21,13 +21,28 @@ declare namespace VisualNovel {
     function theCurse(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
+    function dangerousWay(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
     function grassland(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function longWay(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function lostAgastTheBasilik(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function theMountain(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function prehistory(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function theStranger(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function winAgastTheBasilik(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     type Enemy = {

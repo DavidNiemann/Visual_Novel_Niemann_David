@@ -81,11 +81,16 @@ var VisualNovel;
         gameMenu = VisualNovel.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            { id: "1", scene: VisualNovel.prehistory, name: "Prehistory", next: "2" },
-            { id: "2", scene: VisualNovel.childhood, name: "childhood", next: "3" },
-            { id: "3", scene: VisualNovel.theCurse, name: "the curse", next: "4" },
-            { id: "4", scene: VisualNovel.grassland, name: "the grassland", next: "5" },
-            { id: "5", scene: VisualNovel.theStranger, name: "the Stranger" }
+            { id: "1", scene: VisualNovel.prehistory, name: "Einführung", next: "2" },
+            { id: "2", scene: VisualNovel.childhood, name: "Kindheit ", next: "3" },
+            { id: "3", scene: VisualNovel.theCurse, name: "Der Fluch", next: "4" },
+            { id: "4", scene: VisualNovel.grassland, name: "Die weite Wiesen", next: "5" },
+            { id: "5", scene: VisualNovel.theStranger, name: "Der Fremde", next: "6" },
+            { id: "6", scene: VisualNovel.theMountain, name: "Die Berge" },
+            { id: "7", scene: VisualNovel.dangerousWay, name: "Der gefährliche Weg" },
+            { id: "8", scene: VisualNovel.lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
+            { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "sieg über den Basilik", next: "11" },
+            { id: "10", scene: VisualNovel.longWay, name: "Der Lange Weg", next: "11" },
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -460,6 +465,53 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    async function dangerousWay() {
+        console.log("Scene: dangerous way");
+        let storyTexts = {
+            the_decision: {
+                Protagonist_001: { text: "<i>ich nehme den kurzen Weg. Ich muss mich beeilen </i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_002: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " begibt sich auf den Pfad an der Klippe, er strauchelt ein bisschen mit dem Wind aber bleibt ehrgeizig auf dem Weg." }
+            },
+            doubting: {
+                Narrator_003: { text: "Es sind Stunden vergangen und der Pfad scheint noch enger zu werden." },
+                Narrator_004: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " bleibt stehen, er hat muss ich gegen die Bergwand drücken, um noch an dem Pfad zu passen." },
+                Protagonist_005: { text: "<i>Ich Kann nicht weiter ich fliege noch runter.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_006: { text: "<i>Nein ich kann jetzt nicht aufgeben, Meine Mutter hat mich gerettet und ich bin an allem schuld.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_007: { text: "<i>Mein Vater hätte es niemals gezögert.<i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_008: { text: "<i>Ich darf nicht zu viel Zeit verlieren.<i>", pose: VisualNovel.POSES.SAD },
+                Narrator_009: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " nimmt seinen ganzen Mut zusammen und schreitet mit wackligem schritt langsam voran." }
+            },
+            the_end_of_the_cliff: {
+                Narrator_010: { text: "Der Pfad scheint wieder breiter zu werden." },
+                Protagonist_011: { text: "<i>Zum Glück bin nicht auf ein Monster gestoßen.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_012: { text: "<i>Ich muss mich kurz hinsetzen.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_013: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " setzt sich an Die Felswand, der Pfad ist breit genug, dass er sein beine ganz ausstrecken kann." },
+                Narrator_014: { text: " Es ist ein lautes Schreien zu hören." },
+                Narrator_015: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schreckt sofort auf und greift an zu seinem Schwert." },
+                Protagonist_016: { text: "<i>Ich hätte mich nicht zu früh freuen sollen.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_017: { text: "Ein kleiner Basilisk landet vor ihm" },
+                Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versiuchen", pose: VisualNovel.POSES.SAD }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.theDecision);
+        //TODO: übergang
+        await VisualNovel.playParagraph(storyTexts.doubting);
+        //TODO: übergang
+        await VisualNovel.playParagraph(storyTexts.the_end_of_the_cliff);
+        //TODO: übergang
+        let success = await VisualNovel.fight(VisualNovel.enemys.basilisk);
+        console.log(success);
+        if (success) {
+            return "9";
+        }
+        else {
+            return "8";
+        }
+    }
+    VisualNovel.dangerousWay = dangerousWay;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     async function grassland() {
         console.log("Scene:  grassland");
         let storyTexts = {
@@ -484,10 +536,102 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
-        //Dodo: add fight 
         await VisualNovel.playParagraph(storyTexts.after_the_fight);
     }
     VisualNovel.grassland = grassland;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function longWay() {
+        console.log("Scene: long way");
+        let storyTexts = {
+            the_decision: {
+                Protagonist_001: { text: "<i>ich nehme den kurzen Weg. Das wichtige ist, das ich auch ankomme. </i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_002: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " macht ging den langen Weg entlang." }
+            },
+            end_of_the_mountains: {
+                Narrator_003: { text: "Nach 2 Tagen Kamm " + `${VisualNovel.dataForSave.nameProtagonist}` + " am Ende des Gebirges an.Die Sonne ist am schon untergehen." },
+                Protagonist_004: { text: "<i>Endlich bin ich dich Gebirge gekommen.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_005: { text: "<i>Der Weg war länger als erwartet, ich hoffe es war kein Fehler den lagen weg zu nehme.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_006: { text: "<i>Da vorne  ist ein Wald, das muss er sein, der Ort, an dem die Blume wachst.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_007: { text: "<i>Es bringt jetzt nichts mehr Weitere zugehen, wenn ich im Dunkeln in den Wald gehe, verlaufe ich mich erstrecht.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_008: { text: "<i>Es sieht hier sicher aus ich sollte mich, ich denke ich kann hier ein Lager aufschlagen.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_009: { text: "Schlägt seien Lager auf und legt sich direkt hin." }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.the_decision);
+        // TODO: übergag +2 Tage
+        await VisualNovel.playParagraph(storyTexts.end_of_the_mountains);
+    }
+    VisualNovel.longWay = longWay;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function lostAgastTheBasilik() {
+        console.log("Scene: lost agast the Basilik");
+        let storyTexts = {
+            fail: {
+                Narrator_001: { text: "Der Basilisk hat < namen > eine Schwerte Wunde am Arm verpasst.Er Kanna um noch seine Waffe halten." },
+                Protagonist_002: { text: "<i>Das wars Wohl mit mir!</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_003: { text: "Der Basilisk macht sich bereit auf < namen > den letzten schlag zu verpassen." },
+                Protagonist_004: { text: "<i>Ich habe keine Kraft mehr, ich muss ausweichen.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " versucht mit letzter kraft noch aus dem Weg zu springen." },
+                Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " Schaft es dem direkten Treffer auszuweichen," },
+                Narrator_007: { text: "aber kommt Kamm zu nah and die Klippe, " },
+                Narrator_008: { text: "der Boden bricht unter ihm zusammen." },
+                Narrator_009: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " hat sich mit letzter kraft an einer Wurzel festgehalten." },
+                Protagonist_010: { text: "<i>Es tut mir leid Mutter ich habe versagt.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "'s kraft reicht nicht mehr aus der Wunde an seinem arm ist zu tief." },
+                Narrator_012: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " kann sich nicht mehr halten und stürzt in den Abrunde." },
+                Protagonist_013: { text: "<i>...</i>", pose: VisualNovel.POSES.SAD }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.fail);
+    }
+    VisualNovel.lostAgastTheBasilik = lostAgastTheBasilik;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function theMountain() {
+        console.log("Scene:  theMountain");
+        let storyTexts = {
+            morning: {
+                Narrator_001: { text: "es ist früh am Morgen, die Sonne ist noch nicht aufgegangen." },
+                Protagonist_002: { text: "ZZzzzz…Aaaa, <i>wie lange habe ich geschlafen? </i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_003: { text: "<i>Es ist noch dunkel, egal ich habe genug geschlafen ich muss mich beeilen</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_004: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " steht auf und packt sein Lager zusammen." },
+                Narrator_005: { text: "als er alles aufgeräumt hat, nahm er noch ein schluck aus seinem Wasser Beutel und isst ein kleines Stück von seinem Brot.Und machte sich auf den Weg in das Gebirge." }
+            },
+            the_Paths: {
+                Protagonist_006: { text: "<i>Der Dr.hat gesagt das hier eine Abzweigung kommen sollte.Ich sollte meine augenaufhalten</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_007: { text: "<i>da vorne ist ein enger Pfad das muss er sein</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_008: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "Kamm an einer Klippe an.Dort ist ein Enger Pfad hindurch der Wind  pfeif und ein Warn Schild befestigt ist.Nebendran ist ein gut ausgearbeiteter breiter Pfad der Am auch für Kutschen geeignet aussieht." },
+                Protagonist_009: { text: "<i>der Pfad soll mir einen Ganzen Tagesmarsch ersparen, aber es geht sehr tief runter, wenn.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_010: { text: "<i>Wenn mich ein Windstoß Erwischt ist das mein ende.</i>" },
+                Protagonist_011: { text: "<i>Zudem hat der " + `${VisualNovel.characters.doctor.name}` + " erwähnt, dass dort Monster sein könnten.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_012: { text: "<i>Wo soll ich lange gehen, den  langen Weg der sicher ist oder den kurzen der Gefährlich scheint ?</i>.", pose: VisualNovel.POSES.HAPPY }
+            }
+        };
+        let differentWays = {
+            shortWay: "den kurzen Weg",
+            longWay: "den Langen Weg"
+        };
+        VisualNovel.dataForSave.dayCounter += 1;
+        //TODO: zeitsprung zum nächsen Morgen
+        await VisualNovel.playParagraph(storyTexts.morning);
+        //TODO: übergang in auf den Berg
+        await VisualNovel.playParagraph(storyTexts.thePaths);
+        let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays);
+        switch (chosenWay) {
+            case differentWays.shortWay:
+                return "7";
+            case differentWays.longWay:
+                return "8";
+            default:
+                break;
+        }
+    }
+    VisualNovel.theMountain = theMountain;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -508,7 +652,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.backstory);
-        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt");
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt ");
         VisualNovel.dataForSave.nameProtagonist = await VisualNovel.ƒS.Speech.getInput();
         VisualNovel.characters.protagonist.name = VisualNovel.dataForSave.nameProtagonist;
     }
@@ -584,6 +728,33 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.back_to_the_way);
     }
     VisualNovel.theStranger = theStranger;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function winAgastTheBasilik() {
+        console.log("Scene: win agast the Basilik");
+        let storyTexts = {
+            success: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " hat mit einem guten schlag  der Basilisk schwer zu verwunden." },
+                Narrator_002: { text: "Der Basilisk hat noch genug Kraft, um zu fliehen." },
+                Protagonist_003: { text: "<i>Der hat mir wirklich zugesetzt.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_004: { text: "<i>Ich sollte die Zeit nutzen, um hier weg zu kommen bevor noch einer auftaucht.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "verschwendet seine Zeit  und läuft schnell in den pfade weiter." }
+            },
+            end_of_the_mountain: {
+                Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " kommt am Ende des Gebirges an.Die Sonne ist am schon untergehen" },
+                Protagonist_007: { text: "<i>Endlich dort weck.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_008: { text: "<i>Da vorne  ist ein Wald, das muss er sein, der Ort, an dem die Blume wachst.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_009: { text: "<i>Ich brauche jetzt erst mal eine Pause, bevor ich weitergehe.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_010: { text: "<i>Es sieht hier sicher aus ich sollte mich, ich denke ich kann hier ein Lager aufschlagen.</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schlägt seien Lager auf und legt sich direkt hin." }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.success);
+        //TODO: übergang
+        await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
+    }
+    VisualNovel.winAgastTheBasilik = winAgastTheBasilik;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {

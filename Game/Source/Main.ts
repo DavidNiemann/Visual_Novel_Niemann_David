@@ -88,11 +88,16 @@ namespace VisualNovel {//https://itch.io/game-assets
         gameMenu = ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes: ƒS.Scenes = [
-            { id: "1", scene: prehistory, name: "Prehistory", next: "2" },
-            { id: "2", scene: childhood, name: "childhood", next: "3" },
-            { id: "3", scene: theCurse, name: "the curse", next: "4" },
-            { id: "4", scene: grassland, name: "the grassland", next: "5" },
-            { id: "5", scene: theStranger, name: "the Stranger" }
+            { id: "1", scene: prehistory, name: "Einführung", next: "2" },
+            { id: "2", scene: childhood, name: "Kindheit ", next: "3" },
+            { id: "3", scene: theCurse, name: "Der Fluch", next: "4" },
+            { id: "4", scene: grassland, name: "Die weite Wiesen", next: "5" },
+            { id: "5", scene: theStranger, name: "Der Fremde", next: "6" },
+            { id: "6", scene: theMountain, name: "Die Berge" },
+            { id: "7", scene: dangerousWay, name: "Der gefährliche Weg" },
+            { id: "8", scene: lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
+            { id: "9", scene: winAgastTheBasilik, name: "sieg über den Basilik", next: "11"},
+            { id: "10", scene: longWay, name: "Der Lange Weg", next: "11" },
         ];
 
         // start the sequence
