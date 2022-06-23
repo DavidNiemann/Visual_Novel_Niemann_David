@@ -8,7 +8,8 @@ var VisualNovel;
         nameProtagonist: "Protagonist",
         dayCounter: 0,
         bottleWasGiven: false,
-        forestCounter: 0
+        forestCounter: 0,
+        dangerousPathChosen: false
     };
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("Credits");
@@ -82,21 +83,23 @@ var VisualNovel;
         gameMenu = VisualNovel.ƒS.Menu.create(inGameMenuButtens, buttonFunktionAlitiles, "gameMenu");
         buttonFunktionAlitiles("Close");
         let scenes = [
-            { id: "1", scene: VisualNovel.prehistory, name: "Einführung", next: "2" },
-            { id: "2", scene: VisualNovel.childhood, name: "Kindheit ", next: "3" },
-            { id: "3", scene: VisualNovel.theCurse, name: "Der Fluch", next: "4" },
-            { id: "4", scene: VisualNovel.grassland, name: "Die weite Wiesen", next: "5" },
-            { id: "5", scene: VisualNovel.theStranger, name: "Der Fremde", next: "6" },
+            { id: "1", scene: VisualNovel.prehistory, name: "Einführung" },
+            { id: "2", scene: VisualNovel.childhood, name: "Kindheit " },
+            { id: "3", scene: VisualNovel.theCurse, name: "Der Fluch" },
+            { id: "4", scene: VisualNovel.grassland, name: "Die weite Wiesen" },
+            { id: "5", scene: VisualNovel.theStranger, name: "Der Fremde" },
             { id: "6", scene: VisualNovel.theMountain, name: "Die Berge" },
             { id: "7", scene: VisualNovel.dangerousWay, name: "Der gefährliche Weg" },
             { id: "8", scene: VisualNovel.lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
-            { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "Sieg über den Basilik", next: "11" },
-            { id: "10", scene: VisualNovel.longWay, name: "Der Lange Weg", next: "11" },
+            { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "Sieg über den Basilik" },
+            { id: "10", scene: VisualNovel.longWay, name: "Der Lange Weg" },
             { id: "11", scene: VisualNovel.forest, name: "Der Wald" },
-            { id: "12", scene: VisualNovel.wrongWay, name: "Falscher Weg", next: "11" },
+            { id: "12", scene: VisualNovel.wrongWay, name: "Falscher Weg" },
             { id: "13", scene: VisualNovel.lostinTheWoods, name: "verloren im Wald" },
-            { id: "14", scene: VisualNovel.flower, name: "das Blumen Feld", next: "16" },
-            { id: "15", scene: VisualNovel.cave, name: "die Höhle", next: "16" }
+            { id: "14", scene: VisualNovel.flower, name: "das Blumen Feld" },
+            { id: "15", scene: VisualNovel.cave, name: "die Höhle" },
+            { id: "16", scene: VisualNovel.warkBack, name: "der Fuß weg ins Dorf" },
+            { id: "17", scene: VisualNovel.unexpectedEncounter, name: "eine unerwartede Begengnung" }
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -349,7 +352,7 @@ var VisualNovel;
                 Protagonist_003: { text: "<i> Es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.</i>", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_004: { text: "<i> Ich muss aufpassen das kein Monster darin wohnt.</i>", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_005: { text: "<i> Bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.</i>", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_006: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_006: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: VisualNovel.POSES.SAD }
             },
             the_fairy: {
                 Narrator_007: { text: "Als" + `${VisualNovel.dataForSave.nameProtagonist}` + " die Höhle  betritt hört er ein leises Singen." },
@@ -409,6 +412,12 @@ var VisualNovel;
         //TODO: übergang mogen
         await VisualNovel.playParagraph(storyTexts.next_morning);
         //TODO: übergang 
+        if (VisualNovel.dataForSave.bottleWasGiven) {
+            return "17";
+        }
+        else {
+            return "16";
+        }
     }
     VisualNovel.cave = cave;
 })(VisualNovel || (VisualNovel = {}));
@@ -620,6 +629,12 @@ var VisualNovel;
         VisualNovel.dataForSave.dayCounter += 1;
         //TODO: übergang Nechster Tag
         await VisualNovel.playParagraph(storyTexts.next_morning);
+        if (VisualNovel.dataForSave.bottleWasGiven) {
+            return "17";
+        }
+        else {
+            return "16";
+        }
     }
     VisualNovel.flower = flower;
 })(VisualNovel || (VisualNovel = {}));
@@ -851,6 +866,7 @@ var VisualNovel;
             case differentWays.shortWay:
                 return "7";
             case differentWays.longWay:
+                VisualNovel.dataForSave.dangerousPathChosen = true;
                 return "8";
             default:
                 break;
@@ -956,6 +972,73 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    async function unexpectedEncounter() {
+        console.log("Scene: a unexpected Encounter");
+        let storyTexts = {
+            the_stranger_shows_up_again: {
+                Narrator_001: { text: "bevor " + `${VisualNovel.dataForSave.nameProtagonist}` + "  wieder ins Gebirge ging." },
+                Protagonist_002: { text: "<i>ist das Eine Kutsche da vorne?</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Strange_man_003: { text: "Auf dich habe ich gewartet.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_004: { text: "<i>kennen wir uns, warum ?</i>", pose: VisualNovel.POSES.FRIGHTEND },
+                Strange_man_005: { text: "Ich bin der dem du deine Flasche überlassen hast.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_006: { text: "Ich wollte mich bedanken und habe meine Kutsche mitgebracht.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_007: { text: "Mit der Kusche schaffen wir es bis heute Abend wieder im Dorf zu sein.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_008: { text: "<i>wirklich, ich danke dir, dann werde ich es auf jeden Fall rechtzeitig schaffen</i>", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_009: { text: "Nichts zu danken Sie haben mir dieses Wunder schöne Exemplar eine Flasche übergeben.", pose: VisualNovel.POSES.HAPPY },
+                Strange_man_010: { text: "Spring auf, wir fahren direkt los.", pose: VisualNovel.POSES.HAPPY }
+            },
+            back_to_the_village: {
+                Narrator_011: { text: `${VisualNovel.characters.strange_man.name}` + " und " + `${VisualNovel.dataForSave.nameProtagonist}` + "machten sich auf den Weg in dorf." },
+                Narrator_012: { text: "Es wurde Abend und Die Kutsche Kamm im Dorf an." },
+                Protagonist_013: { text: "vielen Dank, ohne ihre Hilfe, hätte ich es vielleicht rechtzeitig Geschäft", pose: VisualNovel.POSES.HAPPY },
+                Narrator_014: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo der Dr.schon auf ihn wartete." }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.the_stranger_shows_up_again);
+        //TODO: übergang
+        await VisualNovel.playParagraph(storyTexts.back_to_the_village);
+        //TODO: übergang
+    }
+    VisualNovel.unexpectedEncounter = unexpectedEncounter;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function warkBack() {
+        console.log("Scene: the walk to the village");
+        let storyTexts = {
+            back_to_the_mountain: {
+                Narrator_001: { text: " <name> machte sich auf den auf den Berg." }
+            },
+            chosen_long_way: {
+                Protagonist_002: { text: "<i>Ich kann jetzt nicht noch was passieren lassen ich nehmen lieber wieder den sicheren Weg.</i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            chosen_dangerus_way: {
+                Protagonist_003: { text: "<i>Ich würde das nicht nochmal überleben an dieser Klippe entlangzugehen, geschweige wenn der Basilisk zurückkommt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_004: { text: "<i>ich gehe diesmal den sicheren weg.</i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            rest_of_the_way: {
+                Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " nahm den sicheren Weg" },
+                Narrator_006: { text: "Nach 2 Tagen ohne Zwischenfälle waren das Gebirge überwunden." },
+                Narrator_007: { text: "Nach einem weiteren Tag Kamm" + `${VisualNovel.dataForSave.nameProtagonist}` + " wieder in seinem Heimatdorf an." },
+                Protagonist_008: { text: "<i>Endlich angekommen ich muss schnell zu meiner Mutter.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_009: { text: "<name> rennt die Letzen Meter zu sich nach Hause." }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.back_to_the_mountain);
+        if (VisualNovel.dataForSave.dangerousPathChosen) {
+            await VisualNovel.playParagraph(storyTexts.chosen_dangerus_way);
+        }
+        else {
+            await VisualNovel.playParagraph(storyTexts.chosen_long_way);
+        }
+        await VisualNovel.playParagraph(storyTexts.rest_of_the_way);
+        VisualNovel.dataForSave.dayCounter += 3;
+        //TODO übergang
+    }
+    VisualNovel.warkBack = warkBack;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     async function winAgastTheBasilik() {
         console.log("Scene: win agast the Basilik");
         let storyTexts = {
@@ -1010,6 +1093,7 @@ var VisualNovel;
         VisualNovel.dataForSave.dayCounter += 1;
         await VisualNovel.playParagraph(storyTexts.the_next_morning);
         //TODO: übergang
+        return "11";
     }
     VisualNovel.wrongWay = wrongWay;
 })(VisualNovel || (VisualNovel = {}));

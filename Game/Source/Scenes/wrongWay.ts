@@ -30,6 +30,7 @@ namespace VisualNovel {
         dataForSave.dayCounter += 1;
         await playParagraph(storyTexts.the_next_morning);
         //TODO: übergang
+        return "11";
     }
 
 

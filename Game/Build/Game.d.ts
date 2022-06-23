@@ -12,6 +12,7 @@ declare namespace VisualNovel {
         dayCounter: number;
         bottleWasGiven: boolean;
         forestCounter: number;
+        dangerousPathChosen: boolean;
     };
     function showCredits(): void;
 }
@@ -53,6 +54,12 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     function theStranger(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function unexpectedEncounter(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function warkBack(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function winAgastTheBasilik(): ƒS.SceneReturn;

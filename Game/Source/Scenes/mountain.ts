@@ -12,13 +12,13 @@ namespace VisualNovel {
                 Narrator_005: { text: "als er alles aufgeräumt hat, nahm er noch ein schluck aus seinem Wasser Beutel und isst ein kleines Stück von seinem Brot.Und machte sich auf den Weg in das Gebirge." }
             },
             the_Paths: {
-                Protagonist_006: { text: "<i>Der Dr.hat gesagt das hier eine Abzweigung kommen sollte.Ich sollte meine augenaufhalten</i>", pose: POSES.HAPPY  },
-                Protagonist_007: { text: "<i>da vorne ist ein enger Pfad das muss er sein</i>", pose: POSES.HAPPY  },
+                Protagonist_006: { text: "<i>Der Dr.hat gesagt das hier eine Abzweigung kommen sollte.Ich sollte meine augenaufhalten</i>", pose: POSES.HAPPY },
+                Protagonist_007: { text: "<i>da vorne ist ein enger Pfad das muss er sein</i>", pose: POSES.HAPPY },
                 Narrator_008: { text: `${dataForSave.nameProtagonist}` + "Kamm an einer Klippe an.Dort ist ein Enger Pfad hindurch der Wind  pfeif und ein Warn Schild befestigt ist.Nebendran ist ein gut ausgearbeiteter breiter Pfad der Am auch für Kutschen geeignet aussieht." },
-                Protagonist_009: { text: "<i>der Pfad soll mir einen Ganzen Tagesmarsch ersparen, aber es geht sehr tief runter, wenn.</i>", pose: POSES.HAPPY  },
+                Protagonist_009: { text: "<i>der Pfad soll mir einen Ganzen Tagesmarsch ersparen, aber es geht sehr tief runter, wenn.</i>", pose: POSES.HAPPY },
                 Protagonist_010: { text: "<i>Wenn mich ein Windstoß Erwischt ist das mein ende.</i>" },
-                Protagonist_011: { text: "<i>Zudem hat der " + `${characters.doctor.name}` + " erwähnt, dass dort Monster sein könnten.</i>", pose: POSES.HAPPY  },
-                Protagonist_012: { text: "<i>Wo soll ich lange gehen, den  langen Weg der sicher ist oder den kurzen der Gefährlich scheint ?</i>.",  pose: POSES.HAPPY  }
+                Protagonist_011: { text: "<i>Zudem hat der " + `${characters.doctor.name}` + " erwähnt, dass dort Monster sein könnten.</i>", pose: POSES.HAPPY },
+                Protagonist_012: { text: "<i>Wo soll ich lange gehen, den  langen Weg der sicher ist oder den kurzen der Gefährlich scheint ?</i>.", pose: POSES.HAPPY }
             }
 
         };
@@ -46,6 +46,7 @@ namespace VisualNovel {
                 return "7";
 
             case differentWays.longWay:
+                dataForSave.dangerousPathChosen = true;
                 return "8";
             default:
                 break;

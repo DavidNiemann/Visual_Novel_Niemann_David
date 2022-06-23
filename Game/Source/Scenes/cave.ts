@@ -9,7 +9,7 @@ namespace VisualNovel {
                 Protagonist_003: { text: "<i> Es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.</i>", pose: POSES.HAPPY },
                 Protagonist_004: { text: "<i> Ich muss aufpassen das kein Monster darin wohnt.</i>", pose: POSES.HAPPY },
                 Protagonist_005: { text: "<i> Bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.</i>", pose: POSES.HAPPY },
-                Protagonist_006: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: POSES.SAD },
+                Protagonist_006: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: POSES.SAD }
             },
             the_fairy: {
                 Narrator_007: { text: "Als" + `${dataForSave.nameProtagonist}` + " die Höhle  betritt hört er ein leises Singen." },
@@ -49,7 +49,7 @@ namespace VisualNovel {
                 Narrator_039: { text: `${dataForSave.nameProtagonist}` + " füllte einen Wasser Tasche voll mit dem Quellwasser." },
                 Protagonist_040: { text: "<i>Warum wird mir wird schwindelig.</i>", pose: POSES.HAPPY },
                 Narrator_0041: { text: `${dataForSave.nameProtagonist}` + " wird schwarz vor Augen." }
-            }, 
+            },
             next_morning: {
                 Narrator_0042: { text: `${dataForSave.nameProtagonist}` + " wacht am nächsten morgen am Eingang des Waldes wieder auf." },
                 Protagonist_043: { text: "<i>was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee</i>", pose: POSES.FRIGHTEND },
@@ -71,7 +71,11 @@ namespace VisualNovel {
         //TODO: übergang mogen
         await playParagraph(storyTexts.next_morning);
         //TODO: übergang 
-
+        if (dataForSave.bottleWasGiven) {
+            return "17";        
+        } else {
+            return "16";
+        }
     }
 
 

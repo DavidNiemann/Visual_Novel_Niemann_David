@@ -33,7 +33,11 @@ namespace VisualNovel {
         dataForSave.dayCounter += 1;
         //TODO: übergang Nechster Tag
         await playParagraph(storyTexts.next_morning);
-       
+        if (dataForSave.bottleWasGiven) {
+            return "17";
+        } else {
+            return "16";
+        }
     }
 
 
