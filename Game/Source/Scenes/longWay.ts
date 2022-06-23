@@ -21,7 +21,7 @@ namespace VisualNovel {
         await playParagraph(storyTexts.the_decision);
         // TODO: übergag +2 Tage
         await playParagraph(storyTexts.end_of_the_mountains);
-
+        dataForSave.dayCounter += 2;
     }
 
 

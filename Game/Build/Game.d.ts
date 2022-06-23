@@ -11,8 +11,12 @@ declare namespace VisualNovel {
         nameProtagonist: string;
         dayCounter: number;
         bottleWasGiven: boolean;
+        forestCounter: number;
     };
     function showCredits(): void;
+}
+declare namespace VisualNovel {
+    function cave(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function childhood(): ƒS.SceneReturn;
@@ -24,6 +28,12 @@ declare namespace VisualNovel {
     function dangerousWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
+    function flower(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function forest(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
     function grassland(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
@@ -31,6 +41,9 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     function lostAgastTheBasilik(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function lostinTheWoods(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function theMountain(): ƒS.SceneReturn;
@@ -43,6 +56,9 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     function winAgastTheBasilik(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function wrongWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     type Enemy = {

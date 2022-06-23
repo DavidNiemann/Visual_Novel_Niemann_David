@@ -23,7 +23,7 @@ namespace VisualNovel {
         await playParagraph(storyTexts.success);
         //TODO: übergang
         await playParagraph(storyTexts.end_of_the_mountain);
-        
+        dataForSave.dayCounter += 1;
 
     }
 }

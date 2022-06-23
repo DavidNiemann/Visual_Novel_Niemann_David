@@ -34,6 +34,8 @@ namespace VisualNovel {
         //TODO: zeitsprung zum nächsen Morgen
         await playParagraph(storyTexts.morning);
         //TODO: übergang in auf den Berg
+        await ƒS.Location.show(locations.mountains);
+        await ƒS.update(1);
         await playParagraph(storyTexts.thePaths);
 
 

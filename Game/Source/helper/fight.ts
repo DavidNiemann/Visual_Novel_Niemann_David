@@ -1,8 +1,8 @@
 namespace VisualNovel {
     let health: number = 100;
     let damage: number = 10;
-    let parryChance: number = 0.25;
-    let dodgeChance: number = 0.5;
+    let parryChance: number = 0.50;
+    let dodgeChance: number = 0.75;
     type Enemy = { name: string, health: number, damage: number };
 
     export let enemys: { [id: string]: Enemy } = {
@@ -14,7 +14,7 @@ namespace VisualNovel {
         basilisk: {
             name: "Basilisk",
             health: 50,
-            damage: 25
+            damage: 20
         }
 
     };

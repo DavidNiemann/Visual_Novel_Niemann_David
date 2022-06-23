@@ -7,7 +7,8 @@ var VisualNovel;
     VisualNovel.dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
-        bottleWasGiven: false
+        bottleWasGiven: false,
+        forestCounter: 0
     };
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("Credits");
@@ -19,7 +20,7 @@ var VisualNovel;
         save: "Save",
         load: "Load",
         close: "Close",
-        creadits: "Credits"
+        creadits: "Credits",
     };
     let gameMenu;
     //true = open; false = close
@@ -89,8 +90,13 @@ var VisualNovel;
             { id: "6", scene: VisualNovel.theMountain, name: "Die Berge" },
             { id: "7", scene: VisualNovel.dangerousWay, name: "Der gefährliche Weg" },
             { id: "8", scene: VisualNovel.lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
-            { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "sieg über den Basilik", next: "11" },
+            { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "Sieg über den Basilik", next: "11" },
             { id: "10", scene: VisualNovel.longWay, name: "Der Lange Weg", next: "11" },
+            { id: "11", scene: VisualNovel.forest, name: "Der Wald" },
+            { id: "12", scene: VisualNovel.wrongWay, name: "Falscher Weg", next: "11" },
+            { id: "13", scene: VisualNovel.lostinTheWoods, name: "verloren im Wald" },
+            { id: "14", scene: VisualNovel.flower, name: "das Blumen Feld", next: "16" },
+            { id: "15", scene: VisualNovel.cave, name: "die Höhle", next: "16" }
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -332,6 +338,122 @@ switch (firstDialogueElement) {
 /*   }
 
 } */ 
+/*
+Übergang zu Die Große Fee
+Die Große Fee
+Erzähler: als <name> die Höhle  betritt hört er ein leises Singen
+Protagonist: „was ist das, singt Hier eine Frau?“
+Protagonist: “vielleicht hat sich hier noch andere Menschen Verlaufen“
+Erzähler: <name>  geht tiefer in die Höhle.
+Erzähler: nach einer Weile tauchte eine Quelle vor ihm auf.
+Protagonist: Eine Quelle?!
+Protagonist: aber es scheint niemand hier zu sein, das Singen ist auch verstummt.
+Erzähler: <name> schreitet and die Quelle Heran
+Erzähler: plötzlich taucht eine junge Frau von Geisterhand über der Quelle auf.
+Große Fee: hehehe ich bin die Große Fee diese Quelle
+Große Fee: mich hat seinen Jahrhunderten niemand mehr besucht
+Große Fee: Was für dich zu mir?
+Protagonist: ich haben mich im Wald verlaufen.
+Protagonist: ich war auf der such nach den <Blumenbamen>?
+Große Fee: hehehe so ist, dass, warum bist du suchst du diese, du musst, ein langer Weg hinter dir haben,
+Übergang mit Schrift: „Erzählt seine Geschichte“
+Große Fee: ich sehen du versuchst deine Mutter zu retten, wie Helden Haft  hehehe.
+Protagonist: ich bin kein Held, durch meine Unwissenheit, Kamm es erst zu dieser Situation.
+Protagonist: und die Blumen habe ich auch noch nicht gefunden.
+Große Fee: du bist doch schon so nah an denen Ziel, du wirst doch nicht aufgeben.
+Protagonist: ich werde nicht auf Geben, aber ich habe keine Zeit, ich muss die Blumen finden und sie in mein Dorf bringen, bevor es zu spät ist.
+Große Fee: hehehe
+Protagonist: kannst du mir nicht den Weg zu den Blumen zeigen.
+Große Fee: das könnte ich, aber tue ich nicht hehehe.
+Protagonist: warum nicht? Dann werde ich sie selbst suchen
+Große Fee: Du hast eine reines herz und starken willen.
+Große Fee: hehehe
+Große Fee: Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben, das sollte das sollte deiner Mutter Rettern Können. Die Blumen haben auch nur diese Kraft, weil sie Wasser aus dieser Quelle beziehen. Dass Das Wasser sogar größer Erfolgschance hat,  hehehe.
+Protagonist:  vielen Dank
+Große Fee: es war schön mit dir zu reden hehehe.
+Erzähler: Füllte einen Wasser Tasche voll mit dem Quellwasser.
+Protagonist: „Warum wird mir wird schwindelig “
+Erzähler: <name> wird schwarz vor Augen
+Übergang
+
+Nächster morgen
+Erzähler: <name> wacht am nächsten morgen am Eingang des Waldes wieder auf
+Protagonist:  „was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee“
+Erzähler: er schaut in seine Tasche
+Protagonist: „zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen “
+ Protagonist dann mache ich mich wohl auf den Heimweg:
+Übergang zu Zeitung ins Dorf
+ */
+var VisualNovel;
+/*
+Übergang zu Die Große Fee
+Die Große Fee
+Erzähler: als <name> die Höhle  betritt hört er ein leises Singen
+Protagonist: „was ist das, singt Hier eine Frau?“
+Protagonist: “vielleicht hat sich hier noch andere Menschen Verlaufen“
+Erzähler: <name>  geht tiefer in die Höhle.
+Erzähler: nach einer Weile tauchte eine Quelle vor ihm auf.
+Protagonist: Eine Quelle?!
+Protagonist: aber es scheint niemand hier zu sein, das Singen ist auch verstummt.
+Erzähler: <name> schreitet and die Quelle Heran
+Erzähler: plötzlich taucht eine junge Frau von Geisterhand über der Quelle auf.
+Große Fee: hehehe ich bin die Große Fee diese Quelle
+Große Fee: mich hat seinen Jahrhunderten niemand mehr besucht
+Große Fee: Was für dich zu mir?
+Protagonist: ich haben mich im Wald verlaufen.
+Protagonist: ich war auf der such nach den <Blumenbamen>?
+Große Fee: hehehe so ist, dass, warum bist du suchst du diese, du musst, ein langer Weg hinter dir haben,
+Übergang mit Schrift: „Erzählt seine Geschichte“
+Große Fee: ich sehen du versuchst deine Mutter zu retten, wie Helden Haft  hehehe.
+Protagonist: ich bin kein Held, durch meine Unwissenheit, Kamm es erst zu dieser Situation.
+Protagonist: und die Blumen habe ich auch noch nicht gefunden.
+Große Fee: du bist doch schon so nah an denen Ziel, du wirst doch nicht aufgeben.
+Protagonist: ich werde nicht auf Geben, aber ich habe keine Zeit, ich muss die Blumen finden und sie in mein Dorf bringen, bevor es zu spät ist.
+Große Fee: hehehe
+Protagonist: kannst du mir nicht den Weg zu den Blumen zeigen.
+Große Fee: das könnte ich, aber tue ich nicht hehehe.
+Protagonist: warum nicht? Dann werde ich sie selbst suchen
+Große Fee: Du hast eine reines herz und starken willen.
+Große Fee: hehehe
+Große Fee: Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben, das sollte das sollte deiner Mutter Rettern Können. Die Blumen haben auch nur diese Kraft, weil sie Wasser aus dieser Quelle beziehen. Dass Das Wasser sogar größer Erfolgschance hat,  hehehe.
+Protagonist:  vielen Dank
+Große Fee: es war schön mit dir zu reden hehehe.
+Erzähler: Füllte einen Wasser Tasche voll mit dem Quellwasser.
+Protagonist: „Warum wird mir wird schwindelig “
+Erzähler: <name> wird schwarz vor Augen
+Übergang
+
+Nächster morgen
+Erzähler: <name> wacht am nächsten morgen am Eingang des Waldes wieder auf
+Protagonist:  „was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee“
+Erzähler: er schaut in seine Tasche
+Protagonist: „zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen “
+ Protagonist dann mache ich mich wohl auf den Heimweg:
+Übergang zu Zeitung ins Dorf
+ */
+(function (VisualNovel) {
+    async function cave() {
+        console.log("Scene: the cave");
+        let storyTexts = {
+            the_cave: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " quälte sich durch enges getrübt bis vor einer Höhle vor ihm erscheint." },
+                Protagonist_02: { text: "<i> Eine Höhle?!, ich bin hier will falsch.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_03: { text: "<i> Es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_04: { text: "<i> Ich muss aufpassen das kein Monster darin wohnt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_05: { text: "<i> Bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_06: { text: "<i> Ich muss wohl bis zum morgen Schutz in der Höhle suchen.</i>", pose: VisualNovel.POSES.SAD },
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.the_cave);
+    }
+    VisualNovel.cave = cave;
+})(VisualNovel || (VisualNovel = {}));
+/* Erzähler: <name> quälte sich durch enges getrübt bis vor einer Höhle vor ihm erscheint.
+Protagonist: „eine Höhle?!, ich bin hier will falsch“
+Protagonist: es wird schon wieder Dunkel, ich muss den ganze tag in dem Wald umhergeirrt sein.
+Protagonist: ich muss aufpassen das kein Monster darin wohnt.
+Protagonist: bis jetzt war der Wald sehr ruhig, ich denke nicht, dass hier ein Monster lebt.
+Protagonist: ich muss wohl bis zum morgen Schutz in der Höhle suchen. */ 
 /// <reference path= "../main.ts"/>
 var VisualNovel;
 /// <reference path= "../main.ts"/>
@@ -512,6 +634,128 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    async function flower() {
+        console.log("Scene:  flower");
+        let storyTexts = {
+            flower_field: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Ende des Waldes erreicht." },
+                Narrator_002: { text: "Als er Das Sonnen licht betritt öffnet sich vor ihm eine kleine Wise voller weisen Kleinen Blumen." },
+                Narrator_003: { text: "Die Blüten reflektieren das Licht, und funkeln wie eine Sternen Himmel neben dem Schatten der Bäume." },
+                Protagonist_004: { text: "<i>Es ist wunder Schön.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_005: { text: "<i>Ich habe es Geschäft.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_006: { text: "<i>ich muss schell die Blumen Holen, und so schnell wie möglich wieder auf den Heimweg machen.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_007: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " nimmt sich einen Straus der Blume mit uns steckt sie in das Restwasser in seinem Beutel, dass sie nicht verrocken, und machst sich wieder auf den Weg aus dem Wald." },
+                Protagonist_008: { text: "<i>Zum Glück habe ich mir den Weg gemerkt.</i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            way_back: {
+                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es <name > aus dem Wald heraus." },
+                Protagonist_010: { text: "<i>ich habe es geschafft. Ich bin aus dem Wald draußen, bevor die Sonne untergegangen ist, </i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_011: { text: "<i>Morgenfrühe mache ich mich direkt auf den Weg zurück ins Dorf.</i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            next_morning: {
+                Protagonist_012: { text: "<i> ich habe nicht mehr viel Zeit. Auf ins Dorf. </i>", pose: VisualNovel.POSES.HAPPY }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.flower_field);
+        //TODO: übergang 
+        await VisualNovel.playParagraph(storyTexts.way_back);
+        VisualNovel.dataForSave.dayCounter += 1;
+        //TODO: übergang Nechster Tag
+        await VisualNovel.playParagraph(storyTexts.next_morning);
+    }
+    VisualNovel.flower = flower;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function forest() {
+        console.log("Scene:  forest");
+        let storyTexts = {
+            first_encounter: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist wach und wartet bis die Hellgenug ist, um in den Wald zu gehen." },
+                Protagonist_002: { text: "<i>Es sollte jetzt hell genug sein ich haben nur noch" + `${VisualNovel.dataForSave.dayCounter}` + " bis  es zu spät ist.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " betritt den Wald." },
+            },
+            in_the_forest: {
+                Protagonist_004: { text: "<i>Es sieht aus als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_005: { text: "<i>wenn ich war los im Wald rumlaufe finde ich nicht mehr zurück.</i>", pose: VisualNovel.POSES.HAPPY },
+                Narrator_006: { text: "Nach einer Weile teilte der weg sich in drei Weitere Wege auf." },
+                Protagonist_007: { text: "<i>Das hat mir gerade noch gefehlt.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_008: { text: "<i>Welchen Weg soll ich nur gehen.</i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            first_crossing: {
+                Protagonist_009: { text: "<i>Am Ende des rechten Weges scheint etwas zu leuchten.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_010: { text: "<i>Links ist der Weg fast komplett zugewachsen, sodass der weg fast nicht mehr zu erkennen ist.</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_011: { text: "<i>Nach vorne bleibt der weg normal weiterzugehen </i>", pose: VisualNovel.POSES.HAPPY }
+            },
+            on_the_way: {
+                Narrator_006: { text: "Nach einer Weile teilte der weg sich in drei weitere Wege auf." },
+                Protagonist_012: { text: "<i>Schon wieder Eine Kreuzzug,</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_013: { text: "<i>jetzt verstehe ich was der " + `${VisualNovel.characters.doctor.name}` + " damit gemeint hat das sich die Leute hier verirrt haben.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_014: { text: "<i>Welchen weg soll ich jetzt gehen?</i>", pose: VisualNovel.POSES.SAD }
+            },
+            second_crossing: {
+                Protagonist_015: { text: "<i>Rechts scheint es dunkler zu werden.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_016: { text: "<i>Der Linke weg sieht normal aus.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_017: { text: "<i>Von gerade aus scheint Licht zu kommen.</i>", pose: VisualNovel.POSES.SAD }
+            },
+            further_along_the_way: {
+                Narrator_018: { text: "Nach einer Weile teilte der weg sich in drei weitere Wege auf." },
+                Protagonist_019: { text: "<i>Das war ja klar.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_020: { text: "<i>Welchen weg soll ich jetzt gehen?</i>", pose: VisualNovel.POSES.SAD }
+            },
+            third_crossing: {
+                Protagonist_021: { text: "<i>Der Rechte weg scheint aufzuhören, aber ich kann mich durch das Dickicht zwängen.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_022: { text: "<i>Links scheint der Weg noch eine Weile zu gehen.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_023: { text: "<i>Gerade aus ist Licht, es scheint aus dem Wald zu führen.</i>", pose: VisualNovel.POSES.SAD }
+            }
+        };
+        let crossingPaths = {
+            right: "Nach rechts",
+            straight: "Gerade Aus",
+            left: "Nach links"
+        };
+        if (VisualNovel.dataForSave.forestCounter == 0) {
+            //TODO: übergang nächster Tag
+            await VisualNovel.playParagraph(storyTexts.first_encounter);
+            await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
+            await VisualNovel.ƒS.update(1);
+            await VisualNovel.playParagraph(storyTexts.in_the_forest);
+        }
+        await VisualNovel.playParagraph(storyTexts.first_crossing);
+        let firstDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        //TODO: übergang
+        if (VisualNovel.dataForSave.forestCounter == 0) {
+            await VisualNovel.playParagraph(storyTexts.on_the_way);
+        }
+        await VisualNovel.playParagraph(storyTexts.second_crossing);
+        let secondDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        //TODO: übergang
+        if (VisualNovel.dataForSave.forestCounter == 0) {
+            await VisualNovel.playParagraph(storyTexts.further_along_the_way);
+        }
+        await VisualNovel.playParagraph(storyTexts.third_crossing);
+        let thirdDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        //TODO: übergang
+        if (firstDirection == crossingPaths.right && secondDirection == crossingPaths.straight && thirdDirection == crossingPaths.straight) {
+            return "14";
+        }
+        else if (firstDirection == crossingPaths.left && secondDirection == crossingPaths.right && thirdDirection == crossingPaths.right) {
+            return "15";
+        }
+        else {
+            if (VisualNovel.dataForSave.forestCounter >= 1) {
+                return "13";
+            }
+            else {
+                VisualNovel.dataForSave.forestCounter += 1;
+                return "12";
+            }
+        }
+    }
+    VisualNovel.forest = forest;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     async function grassland() {
         console.log("Scene:  grassland");
         let storyTexts = {
@@ -562,6 +806,7 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.the_decision);
         // TODO: übergag +2 Tage
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountains);
+        VisualNovel.dataForSave.dayCounter += 2;
     }
     VisualNovel.longWay = longWay;
 })(VisualNovel || (VisualNovel = {}));
@@ -571,14 +816,14 @@ var VisualNovel;
         console.log("Scene: lost agast the Basilik");
         let storyTexts = {
             fail: {
-                Narrator_001: { text: "Der Basilisk hat < namen > eine Schwerte Wunde am Arm verpasst.Er Kanna um noch seine Waffe halten." },
+                Narrator_001: { text: "Der Basilisk hat " + `${VisualNovel.dataForSave.nameProtagonist}` + " eine Schwerte Wunde am Arm verpasst.Er Kanna um noch seine Waffe halten." },
                 Protagonist_002: { text: "<i>Das wars Wohl mit mir!</i>", pose: VisualNovel.POSES.SAD },
-                Narrator_003: { text: "Der Basilisk macht sich bereit auf < namen > den letzten schlag zu verpassen." },
+                Narrator_003: { text: " Der Basilisk macht sich bereit auf  " + `${VisualNovel.dataForSave.nameProtagonist}` + " den letzten schlag zu verpassen." },
                 Protagonist_004: { text: "<i>Ich habe keine Kraft mehr, ich muss ausweichen.</i>", pose: VisualNovel.POSES.SAD },
                 Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " versucht mit letzter kraft noch aus dem Weg zu springen." },
                 Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " Schaft es dem direkten Treffer auszuweichen," },
-                Narrator_007: { text: "aber kommt Kamm zu nah and die Klippe, " },
-                Narrator_008: { text: "der Boden bricht unter ihm zusammen." },
+                Narrator_007: { text: " aber kommt Kamm zu nah and die Klippe, " },
+                Narrator_008: { text: " der Boden bricht unter ihm zusammen." },
                 Narrator_009: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " hat sich mit letzter kraft an einer Wurzel festgehalten." },
                 Protagonist_010: { text: "<i>Es tut mir leid Mutter ich habe versagt.</i>", pose: VisualNovel.POSES.SAD },
                 Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "'s kraft reicht nicht mehr aus der Wunde an seinem arm ist zu tief." },
@@ -587,8 +832,28 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.fail);
+        return; // Bad Ending 
     }
     VisualNovel.lostAgastTheBasilik = lostAgastTheBasilik;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function lostinTheWoods() {
+        console.log("Scene:  lost in The Woods");
+        let storyTexts = {
+            lost_in_The_Woods: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist mitten im Wald gelandet und keine Blumen oder Ausgang in Sicht in Sicht." },
+                Protagonist_002: { text: "<i> wo lange bin ich schon hier. Ich finde Garnichts. </i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_003: { text: "<i> alle sieht hier gleich aus.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_004: { text: "<i> ich bin schon viel zu lange hier und Ein Ausweg finde ich auch nicht mehr. </i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_005: { text: "<i> Es ist hoffnungslos ich sollte nur noch einen Ausgang suchen. </i>", pose: VisualNovel.POSES.SAD },
+                Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " wurde nicht mehr in seinem Heimat Dorf gesehen." }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.lost_in_The_Woods);
+        return; // Bad Ending 
+    }
+    VisualNovel.lostinTheWoods = lostinTheWoods;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -620,6 +885,8 @@ var VisualNovel;
         //TODO: zeitsprung zum nächsen Morgen
         await VisualNovel.playParagraph(storyTexts.morning);
         //TODO: übergang in auf den Berg
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
+        await VisualNovel.ƒS.update(1);
         await VisualNovel.playParagraph(storyTexts.thePaths);
         let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays);
         switch (chosenWay) {
@@ -753,15 +1020,47 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.success);
         //TODO: übergang
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
+        VisualNovel.dataForSave.dayCounter += 1;
     }
     VisualNovel.winAgastTheBasilik = winAgastTheBasilik;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    async function wrongWay() {
+        console.log("Scene:  wrong Way");
+        let storyTexts = {
+            out_of_the_woods: {
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Ende des Waldes erreicht, aber es schein nicht als wäre er auf dem gewünschten Ort angekommen." },
+                Protagonist_002: { text: "<i>Wo bin ich hier.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_003: { text: "<i>ich bin hier falsch, ich muss vorbeigelaufen sein</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_004: { text: "<i>Warte vor mir ist das Gebirge, ich bin im Kreis gesoffe,</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_005: { text: "<i>und jetzt geht auch schon wieder die Sonne unter </i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_006: { text: "<i>Ich muss wieder auf den nächsten Morgen warten</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_007: { text: "<i>Ich muss die Blume morgen finden sonst komme ich nicht mehr rechtzeitig zurück ins Dorf</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_008: { text: "<i>Ich werde jetzt erstmal schlafen, morgen muss ich direkt bei Sonnenaufgang wieder los.</i>", pose: VisualNovel.POSES.SAD },
+            },
+            the_next_morning: {
+                Narrator_009: { text: "Der nächste Morgen ist angebrochen." },
+                Protagonist_010: { text: "<i>Heute muss ich die Bluem finden, ich habe keine Zeit.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_011: { text: "<i>Der " + `${VisualNovel.characters.doctor.name}` + " hat gesagt das Die Blumen im Wald auf einer Wiese wachsen.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_012: { text: "<i>Die Blumen sollen Leuchten.vielleicht sollte ich mehr darauf achten</i>", pose: VisualNovel.POSES.SAD },
+                Narrator_013: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " macht sich auf in den Wald" }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.out_of_the_woods);
+        //TODO: übergang Nächster morgen
+        VisualNovel.dataForSave.dayCounter += 1;
+        await VisualNovel.playParagraph(storyTexts.the_next_morning);
+        //TODO: übergang
+    }
+    VisualNovel.wrongWay = wrongWay;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     let health = 100;
     let damage = 10;
-    let parryChance = 0.25;
-    let dodgeChance = 0.5;
+    let parryChance = 0.50;
+    let dodgeChance = 0.75;
     VisualNovel.enemys = {
         slime: {
             name: "kleiner Schleim",
@@ -771,7 +1070,7 @@ var VisualNovel;
         basilisk: {
             name: "Basilisk",
             health: 50,
-            damage: 25
+            damage: 20
         }
     };
     let actions = {

@@ -8,7 +8,8 @@ namespace VisualNovel {//https://itch.io/game-assets
     export let dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
-        bottleWasGiven: false
+        bottleWasGiven: false,
+        forestCounter: 0
     };
 
     export function showCredits(): void {
@@ -21,7 +22,8 @@ namespace VisualNovel {//https://itch.io/game-assets
         save: "Save",
         load: "Load",
         close: "Close",
-        creadits: "Credits"
+        creadits: "Credits",
+
     };
 
     let gameMenu: ƒS.Menu;
@@ -96,8 +98,14 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "6", scene: theMountain, name: "Die Berge" },
             { id: "7", scene: dangerousWay, name: "Der gefährliche Weg" },
             { id: "8", scene: lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
-            { id: "9", scene: winAgastTheBasilik, name: "sieg über den Basilik", next: "11"},
+            { id: "9", scene: winAgastTheBasilik, name: "Sieg über den Basilik", next: "11" },
             { id: "10", scene: longWay, name: "Der Lange Weg", next: "11" },
+            { id: "11", scene: forest, name: "Der Wald" },
+            { id: "12", scene: wrongWay, name: "Falscher Weg", next: "11" },
+            { id: "13", scene: lostinTheWoods, name: "verloren im Wald" },
+            { id: "14", scene: flower, name: "das Blumen Feld", next: "16" },
+            { id: "15", scene: cave, name: "die Höhle", next: "16" }
+
         ];
 
         // start the sequence
