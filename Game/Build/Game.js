@@ -1015,10 +1015,12 @@ var VisualNovel;
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:
                 if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items.empty_glass_bottle)) {
-                    VisualNovel.items.empty_glass_bottle.static = false;
-                    VisualNovel.ƒS.Inventory.open();
-                    await VisualNovel.playParagraph(storyTexts.hand_over_the_bottle);
-                    break;
+                    let used = await VisualNovel.activateItem(VisualNovel.items.empty_glass_bottle);
+                    if (used) {
+                        await VisualNovel.playParagraph(storyTexts.hand_over_the_bottle);
+                        VisualNovel.dataForSave.bottleWasGiven = true;
+                        break;
+                    }
                 }
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
             case answersForStranger.isGiveNothing:
@@ -1207,6 +1209,55 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    VisualNovel.items = {
+        flower: {
+            name: "magische Blume",
+            description: "Eine magische Blume mit, die über die Fähigkeiten besitzt, alle Krankheiten zu heilen",
+            image: "./Images/Items/flower.png",
+            static: true
+        },
+        sword: {
+            name: "Schwert",
+            description: "Ein Schwert für ein Kind bei einem Erwachsenen wirkt es mehr wie ein Dolch",
+            image: "./Images/Items/sword.png",
+            static: true
+        },
+        water_bag: {
+            name: "wasser beutel",
+            description: "Beutel voll mit Wasser zum Trinken",
+            image: "./Images/Items/water_bag.png",
+            static: true
+        },
+        healing_potion: {
+            name: "Heiltrank",
+            description: "Ein schwacher Heiltrank, welche schwache Wunden heilen kann",
+            image: "./Images/Items/healing_potion.png",
+            static: true
+        },
+        empty_glass_bottle: {
+            name: "leere Glassflasche ",
+            description: "Eine einfache leere Glasflasche, es ist hochwertig angefertigt",
+            image: "./Images/Items/bottle.png",
+            static: true
+        },
+        loaf_of_bread: {
+            name: "Ein Laib Brot",
+            description: "Ein frisch gebackenes Brot",
+            image: "./Images/Items/bread.png",
+            static: true
+        },
+        magic_water: {
+            name: "Magisches Wasser",
+            description: "Wasser aus der Quelle der Großen Fee des Waldes",
+            image: "./Images/Items/magic_water.png",
+            static: true
+        }
+    };
+})(VisualNovel || (VisualNovel = {}));
+/// <reference path = "../objectes/items.ts"/>
+var VisualNovel;
+/// <reference path = "../objectes/items.ts"/>
+(function (VisualNovel) {
     let health = 100;
     let damage = 10;
     let parryChance = 0.50;
@@ -1221,6 +1272,20 @@ var VisualNovel;
             name: "Basilisk",
             health: 50,
             damage: 20
+        }
+    };
+    let fightItems = {
+        healing_potion: {
+            name: "Heiltrank",
+            healing: 50
+        },
+        loaf_of_bread: {
+            name: "Ein Laib Brot",
+            healing: 25
+        },
+        water_bag: {
+            name: "wasser beutel",
+            healing: 5
         }
     };
     let actions = {
@@ -1243,7 +1308,8 @@ var VisualNovel;
             dodgeSuccessful: `${VisualNovel.dataForSave.nameProtagonist}` + " ist ervolgreich dem Angriff ausgewichen",
             dodgeFailed: `${VisualNovel.dataForSave.nameProtagonist}` + " hat dem Angriff nicht auszuweichen und hat " + `${_enemy.damage}` + " schaden erhalten",
             fightWon: `${VisualNovel.dataForSave.nameProtagonist}` + " hat den Kampf gewonnen",
-            fightLost: `${_enemy.name}` + " hat den Kampf gewonnen"
+            fightLost: `${_enemy.name}` + " hat den Kampf gewonnen",
+            noItems: `${VisualNovel.dataForSave.nameProtagonist}` + " hat keine nützlichen Items bei sich."
         };
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.fightStart);
         while (protagonistCurrentHealth > 0 && enemyCurrentHealth > 0) {
@@ -1277,9 +1343,19 @@ var VisualNovel;
                     }
                     break;
                 case actions.useItems:
-                    // TODO: add item logik
-                    protagonistCurrentHealth -= _enemy.damage;
-                    await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.beHit);
+                    let usebleItems = await lookForFightItems();
+                    if (usebleItems.length > 0) {
+                        //let item = await activateItem(items.healing_potion);
+                        let item = await VisualNovel.activateItems(usebleItems);
+                        if (item) {
+                            await useFightItem(item);
+                            protagonistCurrentHealth -= _enemy.damage;
+                            await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.beHit);
+                        }
+                    }
+                    else {
+                        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.noItems);
+                    }
                     break;
                 default:
                     break;
@@ -1295,6 +1371,103 @@ var VisualNovel;
         }
     }
     VisualNovel.fight = fight;
+    async function lookForFightItems() {
+        let possibleFightItems = [];
+        for (const idItem in VisualNovel.items) {
+            for (const idFight in fightItems) {
+                if (idItem == idFight) {
+                    if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items[idItem]) > 0) {
+                        possibleFightItems.push(VisualNovel.items[idItem]);
+                    }
+                }
+            }
+        }
+        return possibleFightItems;
+    }
+    async function useFightItem(_item) {
+        let fightItem = null;
+        for (const id in VisualNovel.items) {
+            if (VisualNovel.items[id] == _item) {
+                fightItem = fightItems[id];
+            }
+        }
+        if (fightItem) {
+            health += fightItem.healing;
+            if (health > 100) {
+                health = 100;
+            }
+            await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${fightItem.name}` + " genutzt und " + `${fightItem.healing}` + " leben geheilt");
+            if (_item == VisualNovel.items.healing_potion) {
+                console.log("pog");
+                VisualNovel.ƒS.Inventory.add(VisualNovel.items.empty_glass_bottle);
+                await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${VisualNovel.items.empty_glass_bottle.name}` + " erhalten");
+            }
+        }
+    }
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    function useItem(_item) {
+        let dialog = document.querySelector("dialog[type=inventory]");
+        let itemId = _item.replaceAll(" ", "_");
+        let itemElement = dialog.querySelector(`[id=${itemId}]`);
+        if (itemElement) {
+            let amount = itemElement.querySelector("amount");
+            amount.innerHTML = (parseInt(amount.innerHTML) - 1).toString();
+            if (parseInt(amount.innerHTML) == 0) {
+                itemElement.remove();
+            }
+        }
+    }
+    VisualNovel.useItem = useItem;
+    async function activateItems(_item) {
+        let dialog = document.querySelector("dialog[type=inventory]");
+        return await new Promise((_resolve) => {
+            for (let index = 0; index < _item.length; index++) {
+                let itemId = _item[index].name.replaceAll(" ", "_");
+                let itemElement = dialog.querySelector(`[id=${itemId}]`);
+                itemElement.addEventListener("pointerdown", hndUse);
+            }
+            //@ts-ignore
+            dialog.showModal();
+            function hndUse(_event) {
+                let choosenItem = null;
+                for (let index = 0; index < _item.length; index++) {
+                    let itemId = _item[index].name.replaceAll(" ", "_");
+                    let itemElement = dialog.querySelector(`[id=${itemId}]`);
+                    itemElement.removeEventListener("pointerdown", hndUse);
+                    if (itemId == _event.currentTarget.id) {
+                        choosenItem = _item[index];
+                    }
+                }
+                console.log();
+                //@ts-ignore
+                dialog.close();
+                useItem(choosenItem.name);
+                _resolve(choosenItem);
+            }
+        });
+    }
+    VisualNovel.activateItems = activateItems;
+    async function activateItem(_item) {
+        let dialog = document.querySelector("dialog[type=inventory]");
+        let itemId = _item.name.replaceAll(" ", "_");
+        let itemElement = dialog.querySelector(`[id=${itemId}]`);
+        return await new Promise((_resolve) => {
+            function hndUse(_event) {
+                itemElement.removeEventListener("pointerdown", hndUse);
+                console.log(_event.currentTarget.id);
+                //@ts-ignore
+                dialog.close();
+                useItem(_item.name);
+                _resolve(_item);
+            }
+            //@ts-ignore
+            dialog.showModal();
+            itemElement.addEventListener("pointerdown", hndUse);
+        });
+    }
+    VisualNovel.activateItem = activateItem;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -1460,53 +1633,6 @@ var VisualNovel;
             pose: {
                 happy: "./Images/Characters/Fairy/fairy_happy.png"
             }
-        }
-    };
-})(VisualNovel || (VisualNovel = {}));
-var VisualNovel;
-(function (VisualNovel) {
-    VisualNovel.items = {
-        flower: {
-            name: "magische Blume",
-            description: "Eine magische Blume mit, die über die Fähigkeiten besitzt, alle Krankheiten zu heilen",
-            image: "./Images/Items/flower.png",
-            static: true
-        },
-        sword: {
-            name: "Schwert",
-            description: "Ein Schwert für ein Kind bei einem Erwachsenen wirkt es mehr wie ein Dolch",
-            image: "./Images/Items/sword.png",
-            static: true
-        },
-        water_bag: {
-            name: "wasser beutel",
-            description: "Beutel voll mit Wasser zum Trinken",
-            image: "./Images/Items/water_bag.png",
-            static: true
-        },
-        healing_potion: {
-            name: "Heiltrank",
-            description: "Ein schwacher Heiltrank, welche schwache Wunden heilen kann",
-            image: "./Images/Items/healing_potion.png",
-            static: true
-        },
-        empty_glass_bottle: {
-            name: "leere Glassflasche ",
-            description: "Eine einfache leere Glasflasche, es ist hochwertig angefertigt",
-            image: "./Images/Items/bottle.png",
-            static: true
-        },
-        loaf_of_bread: {
-            name: "Ein Laib Brot",
-            description: "Ein frisch gebackenes Brot",
-            image: "./Images/Items/bread.png",
-            static: true
-        },
-        magic_water: {
-            name: "Magisches Wasser",
-            description: "Wasser aus der Quelle der Großen Fee des Waldes",
-            image: "./Images/Items/magic_water.png",
-            static: true
         }
     };
 })(VisualNovel || (VisualNovel = {}));

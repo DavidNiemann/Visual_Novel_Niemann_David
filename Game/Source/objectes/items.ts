@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export let items = {
+    export let items: { [itemName: string]: ƒS.ItemDefinition } = {
         flower: {
             name: "magische Blume",
             description: "Eine magische Blume mit, die über die Fähigkeiten besitzt, alle Krankheiten zu heilen",
