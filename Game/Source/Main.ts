@@ -93,21 +93,26 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "1", scene: prehistory, name: "Einführung" },
             { id: "2", scene: childhood, name: "Kindheit " },
             { id: "3", scene: theCurse, name: "Der Fluch" },
-            { id: "4", scene: grassland, name: "Die weite Wiesen"},
-            { id: "5", scene: theStranger, name: "Der Fremde"},
+            { id: "4", scene: theGrassland, name: "Die weite Wiesen" },
+            { id: "5", scene: theStranger, name: "Der Fremde" },
             { id: "6", scene: theMountain, name: "Die Berge" },
             { id: "7", scene: dangerousWay, name: "Der gefährliche Weg" },
             { id: "8", scene: lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
             { id: "9", scene: winAgastTheBasilik, name: "Sieg über den Basilik" },
             { id: "10", scene: longWay, name: "Der Lange Weg" },
-            { id: "11", scene: forest, name: "Der Wald" },
-            { id: "12", scene: wrongWay, name: "Falscher Weg"},
+            { id: "11", scene: theForest, name: "Der Wald" },
+            { id: "12", scene: wrongWay, name: "Falscher Weg" },
             { id: "13", scene: lostinTheWoods, name: "verloren im Wald" },
             { id: "14", scene: flower, name: "das Blumen Feld" },
             { id: "15", scene: cave, name: "die Höhle" },
             { id: "16", scene: warkBack, name: "der Fuß weg ins Dorf" },
-            { id: "17", scene: unexpectedEncounter, name: "eine unerwartede Begengnung" }
+            { id: "17", scene: unexpectedEncounter, name: "eine unerwartede Begengnung" },
+            { id: "18", scene: saveMother, name: "Rettung der Mutter" },
+            
 
+
+
+            { id: "99", scene: gameOver, name: "Spiel zu Ende" }
         ];
 
         // start the sequence

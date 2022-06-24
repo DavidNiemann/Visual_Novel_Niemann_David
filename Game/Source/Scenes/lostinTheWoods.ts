@@ -17,7 +17,7 @@ namespace VisualNovel {
         };
 
         await playParagraph(storyTexts.lost_in_The_Woods);
-        return;// Bad Ending 
+        return "99"; // Bad Ending 
        
     }
 

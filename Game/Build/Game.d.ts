@@ -32,10 +32,13 @@ declare namespace VisualNovel {
     function flower(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function forest(): ƒS.SceneReturn;
+    function theForest(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function grassland(): ƒS.SceneReturn;
+    function gameOver(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function theGrassland(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function longWay(): ƒS.SceneReturn;
@@ -51,6 +54,9 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     function prehistory(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function saveMother(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function theStranger(): ƒS.SceneReturn;

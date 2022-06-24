@@ -23,7 +23,7 @@ namespace VisualNovel {
         };
 
         await playParagraph(storyTexts.fail);
-        return; // Bad Ending 
+        return "99"; // Bad Ending 
     }
 }
 

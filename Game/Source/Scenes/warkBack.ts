@@ -34,6 +34,7 @@ namespace VisualNovel {
         await playParagraph(storyTexts.rest_of_the_way);
         dataForSave.dayCounter +=  3;
         //TODO übergang
+        return "18";
     }
 
 }

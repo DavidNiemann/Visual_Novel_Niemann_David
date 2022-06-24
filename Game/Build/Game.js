@@ -86,20 +86,22 @@ var VisualNovel;
             { id: "1", scene: VisualNovel.prehistory, name: "Einführung" },
             { id: "2", scene: VisualNovel.childhood, name: "Kindheit " },
             { id: "3", scene: VisualNovel.theCurse, name: "Der Fluch" },
-            { id: "4", scene: VisualNovel.grassland, name: "Die weite Wiesen" },
+            { id: "4", scene: VisualNovel.theGrassland, name: "Die weite Wiesen" },
             { id: "5", scene: VisualNovel.theStranger, name: "Der Fremde" },
             { id: "6", scene: VisualNovel.theMountain, name: "Die Berge" },
             { id: "7", scene: VisualNovel.dangerousWay, name: "Der gefährliche Weg" },
             { id: "8", scene: VisualNovel.lostAgastTheBasilik, name: "Niederlage gegen den Basilik" },
             { id: "9", scene: VisualNovel.winAgastTheBasilik, name: "Sieg über den Basilik" },
             { id: "10", scene: VisualNovel.longWay, name: "Der Lange Weg" },
-            { id: "11", scene: VisualNovel.forest, name: "Der Wald" },
+            { id: "11", scene: VisualNovel.theForest, name: "Der Wald" },
             { id: "12", scene: VisualNovel.wrongWay, name: "Falscher Weg" },
             { id: "13", scene: VisualNovel.lostinTheWoods, name: "verloren im Wald" },
             { id: "14", scene: VisualNovel.flower, name: "das Blumen Feld" },
             { id: "15", scene: VisualNovel.cave, name: "die Höhle" },
             { id: "16", scene: VisualNovel.warkBack, name: "der Fuß weg ins Dorf" },
-            { id: "17", scene: VisualNovel.unexpectedEncounter, name: "eine unerwartede Begengnung" }
+            { id: "17", scene: VisualNovel.unexpectedEncounter, name: "eine unerwartede Begengnung" },
+            { id: "18", scene: VisualNovel.saveMother, name: "Rettung der Mutter" },
+            { id: "99", scene: VisualNovel.gameOver, name: "Spiel zu Ende" }
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -625,6 +627,7 @@ var VisualNovel;
         };
         await VisualNovel.playParagraph(storyTexts.flower_field);
         //TODO: übergang 
+        VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.playParagraph(storyTexts.way_back);
         VisualNovel.dataForSave.dayCounter += 1;
         //TODO: übergang Nechster Tag
@@ -640,7 +643,7 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
-    async function forest() {
+    async function theForest() {
         console.log("Scene:  forest");
         let storyTexts = {
             first_encounter: {
@@ -725,11 +728,19 @@ var VisualNovel;
             }
         }
     }
-    VisualNovel.forest = forest;
+    VisualNovel.theForest = theForest;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
-    async function grassland() {
+    async function gameOver() {
+        VisualNovel.ƒS.Character.hideAll();
+        //TODO: endscreen  einblenden und Credits
+    }
+    VisualNovel.gameOver = gameOver;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function theGrassland() {
         console.log("Scene:  grassland");
         let storyTexts = {
             before_the_fight: {
@@ -755,7 +766,7 @@ var VisualNovel;
         console.log(success);
         await VisualNovel.playParagraph(storyTexts.after_the_fight);
     }
-    VisualNovel.grassland = grassland;
+    VisualNovel.theGrassland = theGrassland;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -805,7 +816,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.fail);
-        return; // Bad Ending 
+        return "99"; // Bad Ending 
     }
     VisualNovel.lostAgastTheBasilik = lostAgastTheBasilik;
 })(VisualNovel || (VisualNovel = {}));
@@ -824,7 +835,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.lost_in_The_Woods);
-        return; // Bad Ending 
+        return "99"; // Bad Ending 
     }
     VisualNovel.lostinTheWoods = lostinTheWoods;
 })(VisualNovel || (VisualNovel = {}));
@@ -898,6 +909,59 @@ var VisualNovel;
         VisualNovel.characters.protagonist.name = VisualNovel.dataForSave.nameProtagonist;
     }
     VisualNovel.prehistory = prehistory;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function saveMother() {
+        console.log("Scene: seve Mother");
+        let storyTexts = {
+            save_mother_with_flower: {
+                Protagonist_001: { text: `${VisualNovel.characters.doctor.name}` + " ich bin endlich zurück,</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_002: { text: "ich habe die Blume gefunden und dabei.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_003: { text: "Endlich bist du zurück, ich habe mir schon sorgen gemacht.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_004: { text: "Gib mir die Blume.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "  übergibt die Blume " + `${VisualNovel.characters.doctor.name}` },
+                Narrator_006: { text: `${VisualNovel.characters.doctor.name}` + " verarbeite die Blume zu Medizin und schüttet die die Flüssichkeit über die Regungslose Mutter." },
+                Mother_007: { text: "...", pose: VisualNovel.POSES.NEUTRAL },
+                Protagonist_008: { text: "Du lebst...", pose: VisualNovel.POSES.HAPPY },
+                Mother_009: { text: "was ist passiert das Letzte was ich mich erinnern ist das wir auf dem Feld waren.", pose: VisualNovel.POSES.NEUTRAL },
+                Doctor_010: { text: "du wurdest von dem Zauber einer Alraune versteinert, " + `${VisualNovel.dataForSave.nameProtagonist}` + " hat eine Heil Mittel aus dem " + `${VisualNovel.locations.forest.name}` + " geholt.", pose: VisualNovel.POSES.HAPPY },
+                Mother_011: { text: "Ich erinnere mich, vielen Dank mein Sohn, der Wald ist doch min weit, wie lange war ich versteinert.", pose: VisualNovel.POSES.NEUTRAL },
+                Doctor_012: { text: "Sie waren " + `${VisualNovel.dataForSave.dayCounter}` + " weg, wenn es noch länger und wir hätten dich nicht zurückholen können", pose: VisualNovel.POSES.HAPPY },
+                Mother_013: { text: "Vielen danke euch.", pose: VisualNovel.POSES.NEUTRAL },
+                Protagonist_014: { text: "Dank mir nicht, ich war an der ganzen Situation auch schuld.", pose: VisualNovel.POSES.HAPPY },
+                Mother_015: { text: "ich danke dir. Nicht jeder hätte es Geschäft die Blume rechtzeitig besorgen", pose: VisualNovel.POSES.NEUTRAL },
+                Mother_016: { text: "Das erinnert mich an deinen Vater.", pose: VisualNovel.POSES.NEUTRAL },
+            },
+            save_mother_with_wather: {
+                Protagonist_017: { text: `${VisualNovel.characters.doctor.name}` + " ich bin endlich zurück,</i>", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_018: { text: "Ich habe zwar nicht die Blume dabei, aber ich habe die Fee gefunden.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_019: { text: "Sie hat mir magisches Wasser übergebe mit de wir meine Mutter auch retten können.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_020: { text: "Endlich bist du zurück, ich habe mir schon sorgen gemacht.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_021: { text: "also waren die Geschichten wahr, aber gib mir zuerst Wasser, die Geschichte kannst du mir später erzählen", pose: VisualNovel.POSES.HAPPY },
+                Narrator_022: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " übergibt das quell Wesser " + `${VisualNovel.characters.doctor.name}` },
+                Narrator_023: { text: `${VisualNovel.characters.doctor.name}` + " schüttet die wasser über die Regungslose Mutter." },
+                Mother_024: { text: "...", pose: VisualNovel.POSES.NEUTRAL },
+                Protagonist_025: { text: "Du lebst...", pose: VisualNovel.POSES.HAPPY },
+                Mother_026: { text: "was ist passiert das Letzte was ich mich erinnern ist das wir auf dem Feld waren.", pose: VisualNovel.POSES.NEUTRAL },
+                Doctor_027: { text: "du wurdest von dem Zauber einer Alraune versteinert, " + `${VisualNovel.dataForSave.nameProtagonist}` + " hat Quell Wasser von der Fee geholt" + `${VisualNovel.locations.forest.name}` + " geholt.", pose: VisualNovel.POSES.HAPPY },
+                Mother_028: { text: "Ich erinnere mich, vielen Dank mein Sohn, der Wald ist doch min weit, wie lange war ich versteinert.", pose: VisualNovel.POSES.NEUTRAL },
+                Doctor_029: { text: "Sie waren " + `${VisualNovel.dataForSave.dayCounter}` + " weg, wenn es noch länger und wir hätten dich nicht zurückholen können", pose: VisualNovel.POSES.HAPPY },
+                Mother_030: { text: "Vielen danke euch.", pose: VisualNovel.POSES.NEUTRAL },
+                Protagonist_031: { text: "Dank mir nicht, ich war an der ganzen Situation auch schuld.", pose: VisualNovel.POSES.HAPPY },
+                Mother_032: { text: "ich danke dir. Nicht jeder hätte es Geschäft die Gunst einer Fee zu bekommen und ihr Quellwasser zu bekommen rechtzeitig besorgen", pose: VisualNovel.POSES.NEUTRAL },
+                Mother_033: { text: "Das erinnert mich an deinen Vater.", pose: VisualNovel.POSES.NEUTRAL }
+            }
+        };
+        if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items.magic_water) > 0) {
+            await VisualNovel.playParagraph(storyTexts.save_mother_with_wather);
+        }
+        else {
+            await VisualNovel.playParagraph(storyTexts.save_mother_with_flower);
+        }
+        return "99";
+    }
+    VisualNovel.saveMother = saveMother;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -998,6 +1062,7 @@ var VisualNovel;
         //TODO: übergang
         await VisualNovel.playParagraph(storyTexts.back_to_the_village);
         //TODO: übergang
+        return "18";
     }
     VisualNovel.unexpectedEncounter = unexpectedEncounter;
 })(VisualNovel || (VisualNovel = {}));
@@ -1034,6 +1099,7 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.rest_of_the_way);
         VisualNovel.dataForSave.dayCounter += 3;
         //TODO übergang
+        return "18";
     }
     VisualNovel.warkBack = warkBack;
 })(VisualNovel || (VisualNovel = {}));

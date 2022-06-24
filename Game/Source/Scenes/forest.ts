@@ -1,6 +1,6 @@
 namespace VisualNovel {
 
-    export async function forest(): ƒS.SceneReturn {
+    export async function theForest(): ƒS.SceneReturn {
         console.log("Scene:  forest");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

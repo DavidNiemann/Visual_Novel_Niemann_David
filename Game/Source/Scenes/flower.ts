@@ -28,6 +28,7 @@ namespace VisualNovel {
 
         await playParagraph(storyTexts.flower_field);
         //TODO: übergang 
+        ƒS.Inventory.add(items.flower);
         await playParagraph(storyTexts.way_back);
 
         dataForSave.dayCounter += 1;

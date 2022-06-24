@@ -28,6 +28,7 @@ namespace VisualNovel {
         //TODO: übergang
         await playParagraph(storyTexts.back_to_the_village);
         //TODO: übergang
+        return "18";
     }
 }
 

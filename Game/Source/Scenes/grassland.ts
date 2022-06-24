@@ -1,6 +1,6 @@
 namespace VisualNovel {
 
-    export async function grassland(): ƒS.SceneReturn {
+    export async function theGrassland(): ƒS.SceneReturn {
         console.log("Scene:  grassland");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
