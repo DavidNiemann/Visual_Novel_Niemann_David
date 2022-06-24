@@ -20,7 +20,7 @@ namespace VisualNovel {
                 Mother_013: { text: "Vielen danke euch.", pose: POSES.NEUTRAL },
                 Protagonist_014: { text: "Dank mir nicht, ich war an der ganzen Situation auch schuld.", pose: POSES.HAPPY },
                 Mother_015: { text: "ich danke dir. Nicht jeder hätte es Geschäft die Blume rechtzeitig besorgen", pose: POSES.NEUTRAL },
-                Mother_016: { text: "Das erinnert mich an deinen Vater.", pose: POSES.NEUTRAL },
+                Mother_016: { text: "Das erinnert mich an deinen Vater.", pose: POSES.NEUTRAL }
 
             },
             save_mother_with_wather: {

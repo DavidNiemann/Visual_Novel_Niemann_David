@@ -931,7 +931,7 @@ var VisualNovel;
                 Mother_013: { text: "Vielen danke euch.", pose: VisualNovel.POSES.NEUTRAL },
                 Protagonist_014: { text: "Dank mir nicht, ich war an der ganzen Situation auch schuld.", pose: VisualNovel.POSES.HAPPY },
                 Mother_015: { text: "ich danke dir. Nicht jeder hätte es Geschäft die Blume rechtzeitig besorgen", pose: VisualNovel.POSES.NEUTRAL },
-                Mother_016: { text: "Das erinnert mich an deinen Vater.", pose: VisualNovel.POSES.NEUTRAL },
+                Mother_016: { text: "Das erinnert mich an deinen Vater.", pose: VisualNovel.POSES.NEUTRAL }
             },
             save_mother_with_wather: {
                 Protagonist_017: { text: `${VisualNovel.characters.doctor.name}` + " ich bin endlich zurück,</i>", pose: VisualNovel.POSES.HAPPY },
@@ -1033,6 +1033,48 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.back_to_the_way);
     }
     VisualNovel.theStranger = theStranger;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function tooLate() {
+        console.log("Scene: too late");
+        let storyTexts = {
+            tooLate: {
+                Protagonist_001: { text: `${VisualNovel.characters.doctor.name}` + "  ich bin endlich zurück, ich hoffe ich bin noch rechtzeitig gekommen</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_002: { text: "ich habe die Blume gefunden und dabei.", pose: VisualNovel.POSES.SAD },
+                Doctor_003: { text: "Endlich bist du zurück, ich habe mir schon sorgen gemacht.", pose: VisualNovel.POSES.SAD },
+                Doctor_004: { text: "gib mir die Blume, wir müssen uns Beilen die " + `${VisualNovel.dataForSave.dayCounter}` + " tage sind schon rum .", pose: VisualNovel.POSES.SAD },
+                Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "  übergibt die Blume " + `${VisualNovel.characters.doctor.name}` },
+                Narrator_006: { text: `${VisualNovel.characters.doctor.name}` + " verarbeite die Blume zu Medizin und schüttet die die Flüssichkeit über die Regungslose Mutter." },
+                Narrator_007: { text: "..." }
+            },
+            cant_save_mother: {
+                Doctor_010: { text: "Wir waren wohl zu spät.", pose: VisualNovel.POSES.SAD },
+                Protagonist_011: { text: "…", pose: VisualNovel.POSES.SAD },
+                Protagonist_012: { text: "ich bin an allem schuld, ich bin zu nichts zu gebrauchen.", pose: VisualNovel.POSES.SAD },
+                Doctor_013: { text: "Mache dir keine Vorwürfe, nicht jeder währe mit der Blume zurückgekommen", pose: VisualNovel.POSES.SAD },
+                Protagonist_014: { text: "Ich war zu spät.", pose: VisualNovel.POSES.SAD },
+                Doctor_015: { text: "Was dankest du wenn eine Person stirbt ?", pose: VisualNovel.POSES.HAPPY },
+                Doctor_016: { text: "Wenn sie von einem Pfeil ins Herz getroffen wird", pose: VisualNovel.POSES.HAPPY },
+                Doctor_017: { text: "Nein… ", pose: VisualNovel.POSES.HAPPY },
+                Doctor_018: { text: "Wenn sie von einer unheilbaren Krankheit befallen wird.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_019: { text: "Nein… ", pose: VisualNovel.POSES.HAPPY },
+                Doctor_020: { text: "Wenn sie von dem Zauber einer Alraune getroffen wird,", pose: VisualNovel.POSES.HAPPY },
+                Doctor_021: { text: "Nein… ", pose: VisualNovel.POSES.HAPPY },
+                Doctor_022: { text: "Eine Peron stirbt wenn man sie vergisst.", pose: VisualNovel.POSES.HAPPY },
+                Doctor_023: { text: "Also lass das nicht umsonst wesen sein.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_024: { text: "Du hast recht ich werde Trainieren, und Lernen, dass ich keine Beglast für die Menschen bin.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_025: { text: "Ich werde in dazu in die Welt hinausziehen, nichts hält mich mehr in diesem Dorf.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_026: { text: "vielen Dank für alles.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_027: { text: "Und so verlies" + `${VisualNovel.characters.doctor.name}` + " das Dorf begab sich auf seine ganz eigenen Abenteuer. " }
+            }
+        };
+        await VisualNovel.playParagraph(storyTexts.tooLate);
+        //TODO: übergang
+        await VisualNovel.playParagraph(storyTexts.cant_save_mother);
+        return "99";
+    }
+    VisualNovel.tooLate = tooLate;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {

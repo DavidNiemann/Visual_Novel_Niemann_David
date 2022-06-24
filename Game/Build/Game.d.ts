@@ -62,6 +62,9 @@ declare namespace VisualNovel {
     function theStranger(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
+    function tooLate(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
     function unexpectedEncounter(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
