@@ -26,8 +26,10 @@ namespace VisualNovel {
         await ƒS.Location.show(locations.grasslands);
         await ƒS.update(1);
         await playParagraph(storyTexts.before_the_fight);
+        await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         let success = await fight(enemys.slime);
         console.log(success);
+        await ƒS.Sound.fade(sounds.adventureMusic, 0.5, 1, true);
         await playParagraph(storyTexts.after_the_fight);
         return "5";
     }

@@ -26,6 +26,7 @@ namespace VisualNovel {
 
         await playParagraph(storyTexts.the_stranger_shows_up_again);
         //TODO: übergang
+        await ƒS.Location.show(locations.village);
         await playParagraph(storyTexts.back_to_the_village);
         //TODO: übergang
         return "18";

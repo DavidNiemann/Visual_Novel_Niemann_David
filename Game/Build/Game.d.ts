@@ -150,10 +150,9 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     let sounds: {
-        villageBackgroundMusic: string;
-        grasslandsBackgroundMusic: string;
-        forestBackgroundMusic: string;
-        caveBackgroundMusic: string;
+        fightMusic: string;
+        adventureMusic: string;
+        mysteriousMusic: string;
     };
 }
 declare namespace VisualNovel {

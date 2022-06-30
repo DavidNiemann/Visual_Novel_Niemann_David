@@ -18,13 +18,12 @@ namespace VisualNovel {
             }
 
         };
-
+        await ƒS.Sound.fade(sounds.adventureMusic, 0.5, 1, true);
         await playParagraph(storyTexts.backstory);
 
         await ƒS.Speech.tell(characters.narrator, "Dieser Junge heißt ");
         dataForSave.nameProtagonist = await ƒS.Speech.getInput();
         characters.protagonist.name = dataForSave.nameProtagonist;
-
         return "2";
     }
   

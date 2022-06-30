@@ -1,8 +1,8 @@
 namespace VisualNovel {
     export let sounds = {
-        villageBackgroundMusic: "./Audio/villageBackgroundMusic.ogg",
-        grasslandsBackgroundMusic: "./Audio/grasslandsBackgroundMusic.ogg",
-        forestBackgroundMusic: "./Audio/forestBackgroundMusic.ogg",
-        caveBackgroundMusic: "./Audio/caveBackgroundMusic.ogg"
+        fightMusic: "./Audio/fightMusic.mp3",
+        adventureMusic: "./Audio/adventureMusic.mp3",
+        mysteriousMusic: "./Audio/mysteriousMusic.mp3",
+        
     };
 }

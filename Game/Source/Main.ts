@@ -108,6 +108,7 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "16", scene: warkBack, name: "der Fuß weg ins Dorf" },
             { id: "17", scene: unexpectedEncounter, name: "eine unerwartede Begengnung" },
             { id: "18", scene: saveMother, name: "Rettung der Mutter" },
+            { id: "19", scene: tooLate, name: "zu Spät" },
             
 
 

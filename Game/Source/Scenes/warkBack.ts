@@ -19,7 +19,7 @@ namespace VisualNovel {
                 Narrator_006: { text: "Nach 2 Tagen ohne Zwischenfälle waren das Gebirge überwunden." },
                 Narrator_007: { text: "Nach einem weiteren Tag Kamm" + `${dataForSave.nameProtagonist}` + " wieder in seinem Heimatdorf an." },
                 Protagonist_008: { text: "<i>Endlich angekommen ich muss schnell zu meiner Mutter.</i>", pose: POSES.HAPPY },
-                Narrator_009: { text: "<name> rennt die Letzen Meter zu sich nach Hause." }
+                Narrator_009: { text: `${dataForSave.nameProtagonist}` + " rennt die Letzen Meter zu sich nach Hause." }
             }
 
 
@@ -32,9 +32,16 @@ namespace VisualNovel {
             await playParagraph(storyTexts.chosen_long_way);
         }
         await playParagraph(storyTexts.rest_of_the_way);
-        dataForSave.dayCounter +=  3;
+        dataForSave.dayCounter += 3;
+        await ƒS.Location.show(locations.village);
         //TODO übergang
-        return "18";
+        console.log("days: " + dataForSave.dayCounter);
+        if (dataForSave.dayCounter > 7) {
+            return "19";
+        } else {
+            return "18";
+        }
+
     }
 
 }

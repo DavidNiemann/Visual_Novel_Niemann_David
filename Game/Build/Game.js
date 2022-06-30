@@ -101,6 +101,7 @@ var VisualNovel;
             { id: "16", scene: VisualNovel.warkBack, name: "der Fuß weg ins Dorf" },
             { id: "17", scene: VisualNovel.unexpectedEncounter, name: "eine unerwartede Begengnung" },
             { id: "18", scene: VisualNovel.saveMother, name: "Rettung der Mutter" },
+            { id: "19", scene: VisualNovel.tooLate, name: "zu Spät" },
             { id: "99", scene: VisualNovel.gameOver, name: "Spiel zu Ende" }
         ];
         // start the sequence
@@ -406,12 +407,16 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.the_cave);
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.cave);
         await VisualNovel.ƒS.update(1);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.the_fairy);
         //TODO: Übergang mit Schrift: „Erzählt seine Geschichte“ 
         await VisualNovel.playParagraph(storyTexts.spring_water);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.magic_water);
         VisualNovel.dataForSave.dayCounter += 1;
         //TODO: übergang mogen
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.next_morning);
         //TODO: übergang 
         if (VisualNovel.dataForSave.bottleWasGiven) {
@@ -619,7 +624,7 @@ var VisualNovel;
                 Protagonist_008: { text: "<i>Zum Glück habe ich mir den Weg gemerkt.</i>", pose: VisualNovel.POSES.HAPPY }
             },
             way_back: {
-                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es <name > aus dem Wald heraus." },
+                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es " + `${VisualNovel.dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
                 Protagonist_010: { text: "<i>ich habe es geschafft. Ich bin aus dem Wald draußen, bevor die Sonne untergegangen ist, </i>", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_011: { text: "<i>Morgenfrühe mache ich mich direkt auf den Weg zurück ins Dorf.</i>", pose: VisualNovel.POSES.HAPPY }
             },
@@ -627,13 +632,18 @@ var VisualNovel;
                 Protagonist_012: { text: "<i> ich habe nicht mehr viel Zeit. Auf ins Dorf. </i>", pose: VisualNovel.POSES.HAPPY }
             }
         };
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.2, 1, true);
         await VisualNovel.playParagraph(storyTexts.flower_field);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         //TODO: übergang 
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.playParagraph(storyTexts.way_back);
         VisualNovel.dataForSave.dayCounter += 1;
         //TODO: übergang Nechster Tag
         await VisualNovel.playParagraph(storyTexts.next_morning);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
+        await VisualNovel.ƒS.update(1);
         if (VisualNovel.dataForSave.bottleWasGiven) {
             return "17";
         }
@@ -735,6 +745,7 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     async function gameOver() {
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         VisualNovel.ƒS.Character.hideAll();
         //TODO: endscreen  einblenden und Credits
     }
@@ -764,8 +775,10 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
         await VisualNovel.ƒS.update(1);
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.5, 1, true);
         await VisualNovel.playParagraph(storyTexts.after_the_fight);
         return "5";
     }
@@ -906,6 +919,7 @@ var VisualNovel;
                 Narrator_010: { text: "aber so gut sie auch sein mag so viele gefahren war mit Ihr verbunden und war der Schlimmste Gabe." }
             }
         };
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.5, 1, true);
         await VisualNovel.playParagraph(storyTexts.backstory);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt ");
         VisualNovel.dataForSave.nameProtagonist = await VisualNovel.ƒS.Speech.getInput();
@@ -1109,6 +1123,7 @@ var VisualNovel;
         };
         await VisualNovel.playParagraph(storyTexts.the_stranger_shows_up_again);
         //TODO: übergang
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.playParagraph(storyTexts.back_to_the_village);
         //TODO: übergang
         return "18";
@@ -1135,7 +1150,7 @@ var VisualNovel;
                 Narrator_006: { text: "Nach 2 Tagen ohne Zwischenfälle waren das Gebirge überwunden." },
                 Narrator_007: { text: "Nach einem weiteren Tag Kamm" + `${VisualNovel.dataForSave.nameProtagonist}` + " wieder in seinem Heimatdorf an." },
                 Protagonist_008: { text: "<i>Endlich angekommen ich muss schnell zu meiner Mutter.</i>", pose: VisualNovel.POSES.HAPPY },
-                Narrator_009: { text: "<name> rennt die Letzen Meter zu sich nach Hause." }
+                Narrator_009: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " rennt die Letzen Meter zu sich nach Hause." }
             }
         };
         await VisualNovel.playParagraph(storyTexts.back_to_the_mountain);
@@ -1147,8 +1162,15 @@ var VisualNovel;
         }
         await VisualNovel.playParagraph(storyTexts.rest_of_the_way);
         VisualNovel.dataForSave.dayCounter += 3;
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         //TODO übergang
-        return "18";
+        console.log("days: " + VisualNovel.dataForSave.dayCounter);
+        if (VisualNovel.dataForSave.dayCounter > 7) {
+            return "19";
+        }
+        else {
+            return "18";
+        }
     }
     VisualNovel.warkBack = warkBack;
 })(VisualNovel || (VisualNovel = {}));
@@ -1316,6 +1338,7 @@ var VisualNovel;
             fightLost: `${_enemy.name}` + " hat den Kampf gewonnen",
             noItems: `${VisualNovel.dataForSave.nameProtagonist}` + " hat keine nützlichen Items bei sich."
         };
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.fightMusic, 0.2, 1, true);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.fightStart);
         while (protagonistCurrentHealth > 0 && enemyCurrentHealth > 0) {
             let chosenAction = await VisualNovel.ƒS.Menu.getInput(actions, "fightOptions");
@@ -1366,6 +1389,7 @@ var VisualNovel;
                     break;
             }
         }
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.fightMusic, 0, 1, false);
         if (protagonistCurrentHealth <= 0) {
             await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.fightLost);
             return false;
@@ -1481,7 +1505,6 @@ var VisualNovel;
     VisualNovel.thirdPersonsPositionVector = new VisualNovel.ƒ.Vector2(0, -700);
     let lastSpeaker = undefined;
     let lastPose = undefined;
-    //let charactersINParagraph: { char: string, pose: POSES }[] = [];
     let charactersINParagraph = {};
     async function playParagraph(_text) {
         for (const text in _text) {
@@ -1512,7 +1535,6 @@ var VisualNovel;
         }
         VisualNovel.ƒS.Character.hideAll();
         charactersINParagraph = {};
-        //charactersINParagraph = [];
         lastSpeaker = undefined;
         lastPose = undefined;
         await VisualNovel.ƒS.update();
@@ -1670,10 +1692,9 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     VisualNovel.sounds = {
-        villageBackgroundMusic: "./Audio/villageBackgroundMusic.ogg",
-        grasslandsBackgroundMusic: "./Audio/grasslandsBackgroundMusic.ogg",
-        forestBackgroundMusic: "./Audio/forestBackgroundMusic.ogg",
-        caveBackgroundMusic: "./Audio/caveBackgroundMusic.ogg"
+        fightMusic: "./Audio/fightMusic.mp3",
+        adventureMusic: "./Audio/adventureMusic.mp3",
+        mysteriousMusic: "./Audio/mysteriousMusic.mp3",
     };
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;

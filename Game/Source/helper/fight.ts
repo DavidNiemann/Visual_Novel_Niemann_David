@@ -49,6 +49,7 @@ namespace VisualNovel {
 
 
     export async function fight(_enemy: Enemy): Promise<boolean> {
+       
         let protagonistCurrentHealth: number = health;
         let enemyCurrentHealth: number = _enemy.health;
 
@@ -68,7 +69,7 @@ namespace VisualNovel {
 
         };
 
-
+        await ƒS.Sound.fade(sounds.fightMusic, 0.2, 1, true);
         await ƒS.Speech.tell(characters.narrator, fightText.fightStart);
 
         while (protagonistCurrentHealth > 0 && enemyCurrentHealth > 0) {
@@ -123,7 +124,7 @@ namespace VisualNovel {
             }
 
         }
-
+        await ƒS.Sound.fade(sounds.fightMusic, 0, 1, false);
         if (protagonistCurrentHealth <= 0) {
             await ƒS.Speech.tell(characters.narrator, fightText.fightLost);
             return false;
@@ -131,7 +132,7 @@ namespace VisualNovel {
             await ƒS.Speech.tell(characters.narrator, fightText.fightWon);
             return true;
         }
-
+       
     }
     async function lookForFightItems(): Promise<ƒS.ItemDefinition[]> {
         let possibleFightItems: ƒS.ItemDefinition[] = [];

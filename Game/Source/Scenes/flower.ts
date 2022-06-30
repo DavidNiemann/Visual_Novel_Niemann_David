@@ -14,7 +14,7 @@ namespace VisualNovel {
                 Protagonist_008: { text: "<i>Zum Glück habe ich mir den Weg gemerkt.</i>", pose: POSES.HAPPY }
             },
             way_back: {
-                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es <name > aus dem Wald heraus." },
+                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es " + `${dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
                 Protagonist_010: { text: "<i>ich habe es geschafft. Ich bin aus dem Wald draußen, bevor die Sonne untergegangen ist, </i>", pose: POSES.HAPPY },
                 Protagonist_011: { text: "<i>Morgenfrühe mache ich mich direkt auf den Weg zurück ins Dorf.</i>", pose: POSES.HAPPY }
 
@@ -25,8 +25,10 @@ namespace VisualNovel {
             }
 
         };
-
+        await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
+        await ƒS.Sound.fade(sounds.mysteriousMusic, 0.2, 1, true);
         await playParagraph(storyTexts.flower_field);
+        await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         //TODO: übergang 
         ƒS.Inventory.add(items.flower);
         await playParagraph(storyTexts.way_back);
@@ -34,6 +36,8 @@ namespace VisualNovel {
         dataForSave.dayCounter += 1;
         //TODO: übergang Nechster Tag
         await playParagraph(storyTexts.next_morning);
+        await ƒS.Location.show(locations.mountains);
+        await ƒS.update(1);
         if (dataForSave.bottleWasGiven) {
             return "17";
         } else {

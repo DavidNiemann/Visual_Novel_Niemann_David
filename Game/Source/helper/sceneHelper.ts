@@ -6,7 +6,6 @@ namespace VisualNovel {
     export let thirdPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(0, -700);
     let lastSpeaker: string = undefined;
     let lastPose: POSES = undefined;
-    //let charactersINParagraph: { char: string, pose: POSES }[] = [];
     let charactersINParagraph: { [char: string]: POSES } = {};
     export async function playParagraph(_text: StoryText): Promise<void> {
         for (const text in _text) {
@@ -42,11 +41,11 @@ namespace VisualNovel {
         }
         ƒS.Character.hideAll();
         charactersINParagraph = {};
-        //charactersINParagraph = [];
         lastSpeaker = undefined;
         lastPose = undefined;
         await ƒS.update();
     }
+    
     export async function showCharacter(_character: string, _pose?: POSES): Promise<void> {
         for (const char in characters) {
             if (char == _character.toLowerCase()) {
