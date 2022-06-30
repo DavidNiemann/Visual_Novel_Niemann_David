@@ -50,7 +50,7 @@ namespace VisualNovel {
 
         };
         await playParagraph(storyTexts.encounter_with_the_stranger);
-        let answerToTheStranger = await ƒS.Menu.getInput(answersForStranger);
+        let answerToTheStranger = await ƒS.Menu.getInput(answersForStranger, "dialog_choices");
 
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:

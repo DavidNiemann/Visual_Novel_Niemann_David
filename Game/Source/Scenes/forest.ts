@@ -9,7 +9,7 @@ namespace VisualNovel {
                 Protagonist_002: { text: "<i>Es sollte jetzt hell genug sein ich haben nur noch" + `${dataForSave.dayCounter}` + " bis  es zu spät ist.</i>", pose: POSES.HAPPY },
                 Narrator_003: { text: `${dataForSave.nameProtagonist}` + " betritt den Wald." },
             },
-            in_the_forest:{
+            in_the_forest: {
                 Protagonist_004: { text: "<i>Es sieht aus als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: POSES.HAPPY },
                 Protagonist_005: { text: "<i>wenn ich war los im Wald rumlaufe finde ich nicht mehr zurück.</i>", pose: POSES.HAPPY },
                 Narrator_006: { text: "Nach einer Weile teilte der weg sich in drei Weitere Wege auf." },
@@ -42,7 +42,7 @@ namespace VisualNovel {
                 Protagonist_022: { text: "<i>Links scheint der Weg noch eine Weile zu gehen.</i>", pose: POSES.SAD },
                 Protagonist_023: { text: "<i>Gerade aus ist Licht, es scheint aus dem Wald zu führen.</i>", pose: POSES.SAD }
             }
-            
+
         };
         let crossingPaths = {
             right: "Nach rechts",
@@ -59,19 +59,19 @@ namespace VisualNovel {
             await playParagraph(storyTexts.in_the_forest);
         }
         await playParagraph(storyTexts.first_crossing);
-        let firstDirection = await ƒS.Menu.getInput(crossingPaths);
+        let firstDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.on_the_way);
         }
         await playParagraph(storyTexts.second_crossing);
-        let secondDirection = await ƒS.Menu.getInput(crossingPaths);
+        let secondDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.further_along_the_way);
         }
         await playParagraph(storyTexts.third_crossing);
-        let thirdDirection = await ƒS.Menu.getInput(crossingPaths);
+        let thirdDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
 
 

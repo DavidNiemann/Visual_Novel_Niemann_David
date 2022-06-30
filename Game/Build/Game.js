@@ -474,19 +474,19 @@ var VisualNovel;
             await VisualNovel.playParagraph(storyTexts.in_the_forest);
         }
         await VisualNovel.playParagraph(storyTexts.first_crossing);
-        let firstDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        let firstDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.on_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.second_crossing);
-        let secondDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        let secondDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.further_along_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.third_crossing);
-        let thirdDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths);
+        let thirdDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
         //TODO: übergang
         if (firstDirection == crossingPaths.right && secondDirection == crossingPaths.straight && thirdDirection == crossingPaths.straight) {
             return "14";
@@ -652,7 +652,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
         await VisualNovel.ƒS.update(1);
         await VisualNovel.playParagraph(storyTexts.thePaths);
-        let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays);
+        let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays, "dialog_choices");
         switch (chosenWay) {
             case differentWays.shortWay:
                 return "7";
@@ -793,7 +793,7 @@ var VisualNovel;
             isGiveNothing: "Dem Fremden nichts geben"
         };
         await VisualNovel.playParagraph(storyTexts.encounter_with_the_stranger);
-        let answerToTheStranger = await VisualNovel.ƒS.Menu.getInput(answersForStranger);
+        let answerToTheStranger = await VisualNovel.ƒS.Menu.getInput(answersForStranger, "dialog_choices");
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:
                 if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items.empty_glass_bottle)) {

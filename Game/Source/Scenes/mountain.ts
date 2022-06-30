@@ -39,7 +39,7 @@ namespace VisualNovel {
         await playParagraph(storyTexts.thePaths);
 
 
-        let chosenWay = await ƒS.Menu.getInput(differentWays);
+        let chosenWay = await ƒS.Menu.getInput(differentWays, "dialog_choices");
 
         switch (chosenWay) {
             case differentWays.shortWay:

@@ -1,12 +1,28 @@
 scene {
-  width: 1280px;
-  height: 720px;
+  width: 1280px !important;
+  height: 720px !important;
   display: inline-block;
+}
+
+splash {
+  background-color: aliceblue;
 }
 
 canvas {
   height: 100%;
   width: 100%;
+
+}
+
+name {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+speech {
+  display: flex;
 }
 
 dialog[type=splash] {
@@ -28,9 +44,15 @@ dialog[type=splash]>img#FudgeStoryLogo {
 body {
   height: 100%;
   width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
 }
 
 dialog[type="inventory"] {
+  width: 400px;
   background-color: rgb(233, 233, 233);
   color: black;
   border: 6px;
@@ -41,34 +63,39 @@ dialog[type="inventory"] {
 dialog[type="inventory"]>ul {
   list-style: none;
   display: flex;
-  padding-left: 0px;
   flex-direction: column;
 }
 
 dialog[type="inventory"]>ul>li {
   list-style: none;
-  /* margin-bottom: 20px; */
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
 }
 
-dialog[type="inventory"] button {
+ul li {
+  float: left;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  display: flexbox;
+}
+
+
+dialog[type="inventory"] img {
+  position: relative;
+  right: 0px;
+  height: 50px;
+  width: 50px;
+}
+
+/* dialog[type="inventory"] button {} */
+
+dialog[type="inventory"]>ul>li>description {
   display: none;
 }
 
-dialog[type="inventory"] img {
-  height: 50px;
-  width: 50px;
-  position: absolute;
-  right: 0px;
-}
-
-dialog[type="inventory"]>ul>li>description {
-  
-}
-
-dialog[type="inventory"]>ul>li>name {
-  
-}
+/* dialog[type="inventory"]>ul>li>name {} */
 
 dialog[type="inventory"]>ul>li>amount {
- 
+  display: none;
 }
