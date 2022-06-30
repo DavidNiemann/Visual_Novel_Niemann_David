@@ -459,6 +459,7 @@ var VisualNovel;
         /*   await ƒS.update(); */
         // TODO: übergang einfügen
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part2);
+        return "3";
     }
     VisualNovel.childhood = childhood;
 })(VisualNovel || (VisualNovel = {}));
@@ -551,6 +552,7 @@ var VisualNovel;
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.sword);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.water_bag);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.loaf_of_bread);
+        return "4";
     }
     VisualNovel.theCurse = theCurse;
 })(VisualNovel || (VisualNovel = {}));
@@ -765,6 +767,7 @@ var VisualNovel;
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
         await VisualNovel.playParagraph(storyTexts.after_the_fight);
+        return "5";
     }
     VisualNovel.theGrassland = theGrassland;
 })(VisualNovel || (VisualNovel = {}));
@@ -878,7 +881,7 @@ var VisualNovel;
                 return "7";
             case differentWays.longWay:
                 VisualNovel.dataForSave.dangerousPathChosen = true;
-                return "8";
+                return "10";
             default:
                 break;
         }
@@ -907,6 +910,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt ");
         VisualNovel.dataForSave.nameProtagonist = await VisualNovel.ƒS.Speech.getInput();
         VisualNovel.characters.protagonist.name = VisualNovel.dataForSave.nameProtagonist;
+        return "2";
     }
     VisualNovel.prehistory = prehistory;
 })(VisualNovel || (VisualNovel = {}));
@@ -1033,6 +1037,7 @@ var VisualNovel;
                 break;
         }
         await VisualNovel.playParagraph(storyTexts.back_to_the_way);
+        return "6";
     }
     VisualNovel.theStranger = theStranger;
 })(VisualNovel || (VisualNovel = {}));

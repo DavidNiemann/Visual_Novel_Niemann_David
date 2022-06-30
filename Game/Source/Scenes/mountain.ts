@@ -47,7 +47,7 @@ namespace VisualNovel {
 
             case differentWays.longWay:
                 dataForSave.dangerousPathChosen = true;
-                return "8";
+                return "10";
             default:
                 break;
         }

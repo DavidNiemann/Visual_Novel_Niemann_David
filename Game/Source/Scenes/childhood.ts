@@ -36,5 +36,7 @@ namespace VisualNovel {
         /*   await ƒS.update(); */
         // TODO: übergang einfügen
         await playParagraph(storyTexts.childhoodStory_Part2);
+
+        return "3";
     }
 }  

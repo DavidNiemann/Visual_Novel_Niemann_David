@@ -91,6 +91,6 @@ namespace VisualNovel {
         ƒS.Inventory.add(items.sword);
         ƒS.Inventory.add(items.water_bag);
         ƒS.Inventory.add(items.loaf_of_bread);
-
+        return "4";
     }
 }  

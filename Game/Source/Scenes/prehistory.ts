@@ -24,5 +24,8 @@ namespace VisualNovel {
         await ƒS.Speech.tell(characters.narrator, "Dieser Junge heißt ");
         dataForSave.nameProtagonist = await ƒS.Speech.getInput();
         characters.protagonist.name = dataForSave.nameProtagonist;
+
+        return "2";
     }
+  
 }  

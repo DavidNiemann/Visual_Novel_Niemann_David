@@ -29,6 +29,7 @@ namespace VisualNovel {
         let success = await fight(enemys.slime);
         console.log(success);
         await playParagraph(storyTexts.after_the_fight);
+        return "5";
     }
 }
 

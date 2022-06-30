@@ -78,6 +78,8 @@ namespace VisualNovel {
         }
         await playParagraph(storyTexts.back_to_the_way);
 
+        return "6";
+
     }
 }
 
