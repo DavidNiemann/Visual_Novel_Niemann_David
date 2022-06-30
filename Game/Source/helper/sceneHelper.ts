@@ -19,6 +19,7 @@ namespace VisualNovel {
                 } else if (charactersINParagraph[text.substring(0, text.length - 4).toLowerCase()] != _text[text].pose) {
                     //console.log("new pose");
                     await ƒS.Character.hide(characters[text.substring(0, text.length - 4).toLowerCase()]);
+                    delete charactersINParagraph[text.substring(0, text.length - 4).toLocaleLowerCase()];
                     await showCharacter(text.substring(0, text.length - 4), _text[text].pose);
 
                 }
