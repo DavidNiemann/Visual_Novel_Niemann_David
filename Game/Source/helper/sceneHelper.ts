@@ -2,7 +2,8 @@ namespace VisualNovel {
 
 
     export let protagonistPositionVector: ƒ.Vector2 = new ƒ.Vector2(+400, -700);
-    export let otherPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(-400, -700);
+    export let secondPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(-400, -700);
+    export let thirdPersonsPositionVector: ƒ.Vector2 = new ƒ.Vector2(0, -700);
     let lastSpeaker: string = undefined;
     let lastPose: POSES = undefined;
     //let charactersINParagraph: { char: string, pose: POSES }[] = [];
@@ -51,7 +52,7 @@ namespace VisualNovel {
             if (char == _character.toLowerCase()) {
                 for (const pose in characters[char].pose) {
                     if (pose == _pose) {
-                        await ƒS.Character.show(characters[char], characters[char].pose[pose], char.charAt(0) == "p" ? protagonistPositionVector : otherPersonsPositionVector);
+                        await ƒS.Character.show(characters[char], characters[char].pose[pose], char.charAt(0) == "p" ? protagonistPositionVector : Object.entries(charactersINParagraph).length < 2 ? secondPersonsPositionVector : thirdPersonsPositionVector);
                         //charactersINParagraph.push({ char: char, pose: _pose });
                         charactersINParagraph[char] = _pose;
                     }
@@ -88,5 +89,5 @@ namespace VisualNovel {
             }
         }
     }
-  
+
 }

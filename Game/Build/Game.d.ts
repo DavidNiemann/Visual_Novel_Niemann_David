@@ -100,7 +100,8 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     let protagonistPositionVector: ƒ.Vector2;
-    let otherPersonsPositionVector: ƒ.Vector2;
+    let secondPersonsPositionVector: ƒ.Vector2;
+    let thirdPersonsPositionVector: ƒ.Vector2;
     function playParagraph(_text: StoryText): Promise<void>;
     function showCharacter(_character: string, _pose?: POSES): Promise<void>;
     function endSpeakingAnimation(_character: string, _pose?: POSES): Promise<void>;

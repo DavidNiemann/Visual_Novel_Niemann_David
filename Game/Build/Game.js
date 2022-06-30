@@ -1477,7 +1477,8 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     VisualNovel.protagonistPositionVector = new VisualNovel.ƒ.Vector2(+400, -700);
-    VisualNovel.otherPersonsPositionVector = new VisualNovel.ƒ.Vector2(-400, -700);
+    VisualNovel.secondPersonsPositionVector = new VisualNovel.ƒ.Vector2(-400, -700);
+    VisualNovel.thirdPersonsPositionVector = new VisualNovel.ƒ.Vector2(0, -700);
     let lastSpeaker = undefined;
     let lastPose = undefined;
     //let charactersINParagraph: { char: string, pose: POSES }[] = [];
@@ -1522,7 +1523,7 @@ var VisualNovel;
             if (char == _character.toLowerCase()) {
                 for (const pose in VisualNovel.characters[char].pose) {
                     if (pose == _pose) {
-                        await VisualNovel.ƒS.Character.show(VisualNovel.characters[char], VisualNovel.characters[char].pose[pose], char.charAt(0) == "p" ? VisualNovel.protagonistPositionVector : VisualNovel.otherPersonsPositionVector);
+                        await VisualNovel.ƒS.Character.show(VisualNovel.characters[char], VisualNovel.characters[char].pose[pose], char.charAt(0) == "p" ? VisualNovel.protagonistPositionVector : Object.entries(charactersINParagraph).length < 2 ? VisualNovel.secondPersonsPositionVector : VisualNovel.thirdPersonsPositionVector);
                         //charactersINParagraph.push({ char: char, pose: _pose });
                         charactersINParagraph[char] = _pose;
                     }
