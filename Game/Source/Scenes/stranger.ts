@@ -21,10 +21,10 @@ namespace VisualNovel {
                 Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: POSES.HAPPY }
             },
             give_nothing_to_the_stranger: {
-                Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
+                Protagonist_001: { text: "Ich kann ihnen leider nichts geben." , pose: POSES.SAD},
                 Strange_man_002: { text: "sehr schade.", pose: POSES.HAPPY },
                 Strange_man_003: { text: "wohin sind sie unterwegs?", pose: POSES.HAPPY },
-                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
+                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.", pose: POSES.SAD },
                 Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.", pose: POSES.HAPPY }
             },
             ignore_the_stranger: {

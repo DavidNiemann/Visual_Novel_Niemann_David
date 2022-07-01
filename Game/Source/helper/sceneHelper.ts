@@ -25,7 +25,7 @@ namespace VisualNovel {
                 }
                 if (lastSpeaker && lastSpeaker != text.substring(0, text.length - 4).toLowerCase()) {
                     await endSpeakingAnimation(lastSpeaker, lastPose);
-                    delete charactersINParagraph[lastSpeaker];
+
                     lastSpeaker = undefined;
                     lastPose = undefined;
                 }
@@ -46,7 +46,7 @@ namespace VisualNovel {
         lastPose = undefined;
         await ƒS.update();
     }
-    
+
     export async function showCharacter(_character: string, _pose?: POSES): Promise<void> {
         for (const char in characters) {
             if (char == _character.toLowerCase()) {

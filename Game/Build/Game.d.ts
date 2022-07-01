@@ -112,9 +112,11 @@ declare namespace VisualNovel {
         startSpeaking: {
             start: {
                 scaling: ƒ.Vector2;
+                color: ƒ.Color;
             };
             end: {
                 scaling: ƒ.Vector2;
+                color: ƒ.Color;
             };
             duration: number;
             playmode: ƒ.ANIMATION_PLAYMODE;
@@ -122,9 +124,23 @@ declare namespace VisualNovel {
         endSpeaking: {
             start: {
                 scaling: ƒ.Vector2;
+                color: ƒ.Color;
             };
             end: {
                 scaling: ƒ.Vector2;
+                color: ƒ.Color;
+            };
+            duration: number;
+            playmode: ƒ.ANIMATION_PLAYMODE;
+        };
+        speaking: {
+            start: {
+                scaling: ƒ.Vector2;
+                color: ƒ.Color;
+            };
+            end: {
+                scaling: ƒ.Vector2;
+                color: ƒ.Color;
             };
             duration: number;
             playmode: ƒ.ANIMATION_PLAYMODE;

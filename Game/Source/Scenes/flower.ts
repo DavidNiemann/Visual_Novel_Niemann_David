@@ -28,7 +28,8 @@ namespace VisualNovel {
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.2, 1, true);
         await playParagraph(storyTexts.flower_field);
-        await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
+        await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);   
+        await ƒS.Sound.fade(sounds.adventureMusic, 0.2, 1, true);
         //TODO: übergang 
         ƒS.Inventory.add(items.flower);
         await playParagraph(storyTexts.way_back);

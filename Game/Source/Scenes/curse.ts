@@ -54,7 +54,7 @@ namespace VisualNovel {
                 Protagonist_006: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: POSES.SAD },
                 Doctor_007: { text: "Du musst nach Norden zu den " + `${locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: POSES.SAD },
                 Doctor_008: { text: "nach den Felder kommst du zu dem " + `${locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: POSES.SAD },
-                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch." },
+                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.", pose: POSES.SAD },
                 Doctor_010: { text: "er ist ziemlich sicher aber ist lange. ", pose: POSES.SAD },
                 Doctor_011: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: POSES.SAD },
                 Doctor_012: { text: "Dahinter ist schon der " + `${locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: POSES.SAD },

@@ -287,7 +287,7 @@ var VisualNovel;
                 Protagonist_006: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: VisualNovel.POSES.SAD },
                 Doctor_007: { text: "Du musst nach Norden zu den " + `${VisualNovel.locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: VisualNovel.POSES.SAD },
                 Doctor_008: { text: "nach den Felder kommst du zu dem " + `${VisualNovel.locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: VisualNovel.POSES.SAD },
-                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch." },
+                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.", pose: VisualNovel.POSES.SAD },
                 Doctor_010: { text: "er ist ziemlich sicher aber ist lange. ", pose: VisualNovel.POSES.SAD },
                 Doctor_011: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: VisualNovel.POSES.SAD },
                 Doctor_012: { text: "Dahinter ist schon der " + `${VisualNovel.locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: VisualNovel.POSES.SAD },
@@ -400,6 +400,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.2, 1, true);
         await VisualNovel.playParagraph(storyTexts.flower_field);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.2, 1, true);
         //TODO: übergang 
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.playParagraph(storyTexts.way_back);
@@ -768,10 +769,10 @@ var VisualNovel;
                 Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: VisualNovel.POSES.HAPPY }
             },
             give_nothing_to_the_stranger: {
-                Protagonist_001: { text: "Ich kann ihnen leider nichts geben." },
+                Protagonist_001: { text: "Ich kann ihnen leider nichts geben.", pose: VisualNovel.POSES.SAD },
                 Strange_man_002: { text: "sehr schade.", pose: VisualNovel.POSES.HAPPY },
                 Strange_man_003: { text: "wohin sind sie unterwegs?", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien." },
+                Protagonist_004: { text: "ich bin auf dem Weg zum " + `${VisualNovel.locations.forest.name}` + " ich muss eine " + `${VisualNovel.items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.", pose: VisualNovel.POSES.SAD },
                 Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.", pose: VisualNovel.POSES.HAPPY }
             },
             ignore_the_stranger: {
@@ -1286,7 +1287,6 @@ var VisualNovel;
                 }
                 if (lastSpeaker && lastSpeaker != text.substring(0, text.length - 4).toLowerCase()) {
                     await endSpeakingAnimation(lastSpeaker, lastPose);
-                    delete charactersINParagraph[lastSpeaker];
                     lastSpeaker = undefined;
                     lastPose = undefined;
                 }
@@ -1354,18 +1354,26 @@ var VisualNovel;
     VisualNovel.animations = {
         startSpeaking: {
             start: {
-                scaling: new VisualNovel.ƒS.Position(1, 1)
+                scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray")
             },
-            end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2) },
+            end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white") },
             duration: 0.1,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         },
         endSpeaking: {
             start: {
-                scaling: new VisualNovel.ƒS.Position(1.2, 1.2)
+                scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white")
             },
-            end: { scaling: new VisualNovel.ƒS.Position(1, 1) },
+            end: { scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray") },
             duration: 0.1,
+            playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        },
+        speaking: {
+            start: {
+                scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray")
+            },
+            end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white") },
+            duration: 0,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         }
     };
