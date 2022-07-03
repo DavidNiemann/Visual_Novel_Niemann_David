@@ -174,15 +174,14 @@ var VisualNovel;
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.the_fairy);
-        //TODO: Übergang mit Schrift: „Erzählt seine Geschichte“ 
+        await VisualNovel.showAnnouncement(VisualNovel.locations.cave, VisualNovel.announcements.tell_story, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.spring_water);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.magic_water);
-        VisualNovel.dataForSave.dayCounter += 1;
-        //TODO: übergang mogen
+        await VisualNovel.showAnnouncement(VisualNovel.locations.forest, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.next_morning);
-        //TODO: übergang 
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         if (VisualNovel.dataForSave.bottleWasGiven) {
             return "17";
         }
@@ -219,11 +218,11 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.introduction);
         // übergang
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        await VisualNovel.showAnnouncements(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
+        await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */
         // übergang
-        await VisualNovel.showAnnouncements(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
+        await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part2);
         return "3";
     }
@@ -363,11 +362,11 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.theDecision);
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.doubting);
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.the_end_of_the_cliff);
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         let success = await VisualNovel.fight(VisualNovel.enemys.basilisk);
         console.log(success);
         if (success) {
@@ -408,14 +407,12 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.flower_field);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.2, 1, true);
-        //TODO: übergang 
+        await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.playParagraph(storyTexts.way_back);
         VisualNovel.dataForSave.dayCounter += 1;
-        //TODO: übergang Nechster Tag
+        await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.next_morning);
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
-        await VisualNovel.ƒS.update(1);
         if (VisualNovel.dataForSave.bottleWasGiven) {
             return "17";
         }
@@ -475,27 +472,31 @@ var VisualNovel;
             left: "Nach links"
         };
         if (VisualNovel.dataForSave.forestCounter == 0) {
-            //TODO: übergang nächster Tag
+            await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
             await VisualNovel.playParagraph(storyTexts.first_encounter);
             await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
-            await VisualNovel.ƒS.update(1);
+            await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
             await VisualNovel.playParagraph(storyTexts.in_the_forest);
+        }
+        else {
+            await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
+            await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         }
         await VisualNovel.playParagraph(storyTexts.first_crossing);
         let firstDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.on_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.second_crossing);
         let secondDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.further_along_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.third_crossing);
         let thirdDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (firstDirection == crossingPaths.right && secondDirection == crossingPaths.straight && thirdDirection == crossingPaths.straight) {
             return "14";
         }
@@ -548,7 +549,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
-        await VisualNovel.ƒS.update(1);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
@@ -579,7 +580,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.the_decision);
-        // TODO: übergag +2 Tage
+        await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.two_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountains);
         VisualNovel.dataForSave.dayCounter += 2;
     }
@@ -657,11 +658,10 @@ var VisualNovel;
             longWay: "den Langen Weg"
         };
         VisualNovel.dataForSave.dayCounter += 1;
-        //TODO: zeitsprung zum nächsen Morgen
+        await VisualNovel.showAnnouncement(VisualNovel.locations.grasslands, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.morning);
-        //TODO: übergang in auf den Berg
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
-        await VisualNovel.ƒS.update(1);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.thePaths);
         let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays, "dialog_choices");
         switch (chosenWay) {
@@ -866,7 +866,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.tooLate);
-        //TODO: übergang
+        await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.some_time_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.cant_save_mother);
         return "99";
     }
@@ -897,10 +897,9 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.the_stranger_shows_up_again);
-        //TODO: übergang
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
+        await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.back_to_the_village);
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.village);
         return "18";
     }
     VisualNovel.unexpectedEncounter = unexpectedEncounter;
@@ -937,8 +936,7 @@ var VisualNovel;
         }
         await VisualNovel.playParagraph(storyTexts.rest_of_the_way);
         VisualNovel.dataForSave.dayCounter += 3;
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        //TODO übergang
+        await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.three_days_pass, VisualNovel.transitions.leftTORight);
         console.log("days: " + VisualNovel.dataForSave.dayCounter);
         if (VisualNovel.dataForSave.dayCounter > 7) {
             return "19";
@@ -971,7 +969,7 @@ var VisualNovel;
             }
         };
         await VisualNovel.playParagraph(storyTexts.success);
-        //TODO: übergang
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
         VisualNovel.dataForSave.dayCounter += 1;
     }
@@ -1000,11 +998,11 @@ var VisualNovel;
                 Narrator_013: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " macht sich auf in den Wald" }
             }
         };
+        await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.out_of_the_woods);
-        //TODO: übergang Nächster morgen
+        await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         VisualNovel.dataForSave.dayCounter += 1;
         await VisualNovel.playParagraph(storyTexts.the_next_morning);
-        //TODO: übergang
         return "11";
     }
     VisualNovel.wrongWay = wrongWay;
@@ -1377,7 +1375,7 @@ var VisualNovel;
         }
     }
     VisualNovel.startSpeakingAnimation = startSpeakingAnimation;
-    async function showAnnouncements(_location, _announcment, _firstTransition, _secondTransition) {
+    async function showAnnouncement(_location, _announcment, _firstTransition, _secondTransition) {
         await VisualNovel.ƒS.Location.show(_announcment);
         await VisualNovel.ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "");
@@ -1389,7 +1387,14 @@ var VisualNovel;
             await VisualNovel.ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
         }
     }
-    VisualNovel.showAnnouncements = showAnnouncements;
+    VisualNovel.showAnnouncement = showAnnouncement;
+    async function showBlackTransition(_location) {
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.black);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
+        await VisualNovel.ƒS.Location.show(_location);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
+    }
+    VisualNovel.showBlackTransition = showBlackTransition;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -1435,13 +1440,25 @@ var VisualNovel;
             name: "ein paar Tage vergehen",
             background: "./Images/Announcements/some_days_pass.png"
         },
+        some_time_pass: {
+            name: "ein paar Stunden später",
+            background: "./Images/Announcements/some_time_passes.png"
+        },
         two_days_pass: {
             name: "zwei Tage vergehen",
             background: "./Images/Announcements/two_days_pass.png"
         },
+        three_days_pass: {
+            name: "drei Tage vergehen",
+            background: "./Images/Announcements/three_days_pass.png"
+        },
         game_over: {
             name: "Spiel ist zu Ende",
             background: "./Images/Announcements/game_over.png"
+        },
+        tell_story: {
+            name: "er Erzählt seine Geschichte",
+            background: "./Images/Announcements/tell_story.png"
         }
     };
 })(VisualNovel || (VisualNovel = {}));

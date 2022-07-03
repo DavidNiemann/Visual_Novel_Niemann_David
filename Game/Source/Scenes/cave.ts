@@ -66,15 +66,14 @@ namespace VisualNovel {
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.3, 1, true);
         await playParagraph(storyTexts.the_fairy);
-        //TODO: Übergang mit Schrift: „Erzählt seine Geschichte“ 
+        await showAnnouncement(locations.cave, announcements.tell_story, transitions.leftTORight);
         await playParagraph(storyTexts.spring_water);
         ƒS.Inventory.add(items.magic_water);
-        dataForSave.dayCounter += 1;
-        //TODO: übergang mogen
+        await showAnnouncement(locations.forest, announcements.day_goes_by, transitions.leftTORight);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.adventureMusic, 0.3, 1, true);
         await playParagraph(storyTexts.next_morning);
-        //TODO: übergang 
+        await showBlackTransition(locations.mountains);
         if (dataForSave.bottleWasGiven) {
             return "17";
         } else {

@@ -39,7 +39,7 @@ namespace VisualNovel {
 
         };
         await playParagraph(storyTexts.tooLate);
-        //TODO: übergang
+        await showAnnouncement(locations.village, announcements.some_time_pass, transitions.leftTORight);
         await playParagraph(storyTexts.cant_save_mother);
         return "99";
 

@@ -90,7 +90,7 @@ namespace VisualNovel {
         }
     }
 
-    export async function showAnnouncements(_location: ƒS.LocationDefinition, _announcment: ƒS.LocationDefinition, _firstTransition: Transition, _secondTransition?: Transition): Promise<void> {
+    export async function showAnnouncement(_location: ƒS.LocationDefinition, _announcment: ƒS.LocationDefinition, _firstTransition: Transition, _secondTransition?: Transition): Promise<void> {
         await ƒS.Location.show(_announcment);
         await ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
         await ƒS.Speech.tell(characters.narrator, "");
@@ -100,6 +100,13 @@ namespace VisualNovel {
         } else {
             await ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
         }
+
+    }
+    export async function showBlackTransition(_location: ƒS.LocationDefinition): Promise<void> {//TODO: add Transition to black
+        await ƒS.Location.show(announcements.black);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
+        await ƒS.Location.show(_location);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
 
     }
 

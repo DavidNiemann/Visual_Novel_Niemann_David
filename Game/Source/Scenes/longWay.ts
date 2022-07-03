@@ -19,7 +19,7 @@ namespace VisualNovel {
 
         };
         await playParagraph(storyTexts.the_decision);
-        // TODO: übergag +2 Tage
+        await showAnnouncement(locations.mountains, announcements.two_days_pass, transitions.leftTORight);
         await playParagraph(storyTexts.end_of_the_mountains);
         dataForSave.dayCounter += 2;
     }

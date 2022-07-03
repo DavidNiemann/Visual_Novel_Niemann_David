@@ -31,11 +31,10 @@ namespace VisualNovel {
 
         };
         dataForSave.dayCounter += 1;
-        //TODO: zeitsprung zum nächsen Morgen
+        await showAnnouncement(locations.grasslands, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.morning);
-        //TODO: übergang in auf den Berg
         await ƒS.Location.show(locations.mountains);
-        await ƒS.update(1);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.thePaths);
 
 

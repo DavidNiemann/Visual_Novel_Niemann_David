@@ -30,11 +30,11 @@ namespace VisualNovel {
 
         };
         await playParagraph(storyTexts.theDecision);
-        //TODO: übergang
+        await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.doubting);
-        //TODO: übergang
+        await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.the_end_of_the_cliff);
-        //TODO: übergang
+        await showBlackTransition(locations.mountains);
         let success = await fight(enemys.basilisk);
         console.log(success);
 

@@ -33,8 +33,7 @@ namespace VisualNovel {
         }
         await playParagraph(storyTexts.rest_of_the_way);
         dataForSave.dayCounter += 3;
-        await ƒS.Location.show(locations.village);
-        //TODO übergang
+        await showAnnouncement(locations.village, announcements.three_days_pass, transitions.leftTORight);
         console.log("days: " + dataForSave.dayCounter);
         if (dataForSave.dayCounter > 7) {
             return "19";

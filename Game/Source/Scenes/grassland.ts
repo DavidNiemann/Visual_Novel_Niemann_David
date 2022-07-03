@@ -24,7 +24,7 @@ namespace VisualNovel {
         };
 
         await ƒS.Location.show(locations.grasslands);
-        await ƒS.update(1);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.before_the_fight);
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         let success = await fight(enemys.slime);

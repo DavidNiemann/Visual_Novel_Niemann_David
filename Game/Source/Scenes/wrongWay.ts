@@ -24,12 +24,11 @@ namespace VisualNovel {
 
         };
 
-
+        await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.out_of_the_woods);
-        //TODO: übergang Nächster morgen
+        await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
         dataForSave.dayCounter += 1;
         await playParagraph(storyTexts.the_next_morning);
-        //TODO: übergang
         return "11";
     }
 

@@ -52,27 +52,30 @@ namespace VisualNovel {
 
 
         if (dataForSave.forestCounter == 0) {
-            //TODO: übergang nächster Tag
+            await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
             await playParagraph(storyTexts.first_encounter);
             await ƒS.Location.show(locations.forest);
-            await ƒS.update(1);
+            await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
             await playParagraph(storyTexts.in_the_forest);
+        } else {
+            await ƒS.Location.show(locations.forest);
+            await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         }
         await playParagraph(storyTexts.first_crossing);
         let firstDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await showBlackTransition(locations.forest);
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.on_the_way);
         }
         await playParagraph(storyTexts.second_crossing);
         let secondDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await showBlackTransition(locations.forest);
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.further_along_the_way);
         }
         await playParagraph(storyTexts.third_crossing);
         let thirdDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
-        //TODO: übergang
+        await showBlackTransition(locations.forest);
 
 
         if (firstDirection == crossingPaths.right && secondDirection == crossingPaths.straight && thirdDirection == crossingPaths.straight) {

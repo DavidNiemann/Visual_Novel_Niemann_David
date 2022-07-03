@@ -28,17 +28,15 @@ namespace VisualNovel {
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.2, 1, true);
         await playParagraph(storyTexts.flower_field);
-        await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);   
+        await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.adventureMusic, 0.2, 1, true);
-        //TODO: übergang 
+        await showBlackTransition(locations.forest);
         ƒS.Inventory.add(items.flower);
         await playParagraph(storyTexts.way_back);
 
         dataForSave.dayCounter += 1;
-        //TODO: übergang Nechster Tag
+        await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.next_morning);
-        await ƒS.Location.show(locations.mountains);
-        await ƒS.update(1);
         if (dataForSave.bottleWasGiven) {
             return "17";
         } else {
