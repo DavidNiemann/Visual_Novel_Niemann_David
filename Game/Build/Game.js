@@ -220,6 +220,10 @@ var VisualNovel;
         await VisualNovel.ƒS.update();
         await VisualNovel.playParagraph(storyTexts.introduction);
         // TODO: übergang einfügen
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.some_days_pass);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         /* await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.child, protagonistPositionVector);
         await ƒS.Character.show(characters.mother, characters.mother.pose.happy, otherPersonsPositionVector); */
         /*  await ƒS.update(); */
@@ -1380,6 +1384,27 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    VisualNovel.announcements = {
+        black: {
+            name: "schwarz",
+            background: "./Images/Overlay/black.png"
+        },
+        day_goes_by: {
+            name: "ein Tag vergeht",
+            background: "./Images/Overlay/day_goes_by.png"
+        },
+        some_days_pass: {
+            name: "ein paar Tage vergehen",
+            background: "./Images/Overlay/some_days_pass.png"
+        },
+        two_days_pass: {
+            name: "zwei Tage vergehen",
+            background: "./Images/Overlay/two_days_pass.png"
+        }
+    };
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     let POSES;
     (function (POSES) {
         POSES["SAD"] = "sad";
@@ -1473,10 +1498,25 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     VisualNovel.transitions = {
-        puzzle: {
+        leftTORight: {
             duration: 1,
-            alpha: "./Transitions/JigsawThemedTransitions/puzzle.png",
-            edge: 1
+            alpha: "./Transitions/left_to_right.png",
+            edge: 2
+        },
+        outToIn: {
+            duration: 1,
+            alpha: "./Transitions/out_to_in.png",
+            edge: 2
+        },
+        bottomToTop: {
+            duration: 1,
+            alpha: "./Transitions/bottom_to_top.png.png",
+            edge: 2
+        },
+        inToOut: {
+            duration: 1,
+            alpha: "./Transitions/in_to_out.png",
+            edge: 2
         }
     };
 })(VisualNovel || (VisualNovel = {}));

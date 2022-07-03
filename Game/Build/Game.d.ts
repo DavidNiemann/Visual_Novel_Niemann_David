@@ -148,6 +148,11 @@ declare namespace VisualNovel {
     };
 }
 declare namespace VisualNovel {
+    let announcements: {
+        [name: string]: ƒS.LocationDefinition;
+    };
+}
+declare namespace VisualNovel {
     enum POSES {
         SAD = "sad",
         FRIGHTEND = "frightend",
@@ -173,7 +178,22 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     let transitions: {
-        puzzle: {
+        leftTORight: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        outToIn: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        bottomToTop: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        inToOut: {
             duration: number;
             alpha: string;
             edge: number;

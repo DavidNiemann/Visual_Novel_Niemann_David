@@ -23,11 +23,15 @@ namespace VisualNovel {
             }
 
         };
-
+       
         await ƒS.Location.show(locations.village);
         await ƒS.update();
         await playParagraph(storyTexts.introduction);
         // TODO: übergang einfügen
+        await ƒS.Location.show(announcements.some_days_pass);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha,  transitions.leftTORight.edge);
+        await ƒS.Location.show(locations.village);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha,  transitions.leftTORight.edge);
         /* await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.child, protagonistPositionVector);
         await ƒS.Character.show(characters.mother, characters.mother.pose.happy, otherPersonsPositionVector); */
         /*  await ƒS.update(); */
