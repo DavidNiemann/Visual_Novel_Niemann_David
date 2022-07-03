@@ -216,10 +216,9 @@ var VisualNovel;
                 Narrator_004: { text: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden." }
             }
         };
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        await VisualNovel.ƒS.update();
         await VisualNovel.playParagraph(storyTexts.introduction);
-        // übergang 
+        // übergang
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.showAnnouncements(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */
@@ -305,17 +304,25 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        await VisualNovel.ƒS.update(VisualNovel.transitions.bottomToTop.duration, VisualNovel.transitions.bottomToTop.alpha, VisualNovel.transitions.bottomToTop.edge);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_accident);
         await VisualNovel.startAnimations();
         await VisualNovel.playParagraph(storyTexts.after_the_accident);
         //TODO: Schawarzer hintergund
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.black);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.get_help);
         //TODO: zurück aufs Feld
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.talk_with_the_doctor);
         //TODO: zurück uns dorf übergang
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.black);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.transition_to_the_village);
         //TODO: Dorf sitchtabar machen
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.about_the_way);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.healing_potion);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.sword);
@@ -512,7 +519,9 @@ var VisualNovel;
     async function gameOver() {
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         VisualNovel.ƒS.Character.hideAll();
-        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.gameOver);
+        VisualNovel.ƒS.Speech.clear();
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.game_over);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.inToOut.duration, VisualNovel.transitions.inToOut.alpha, VisualNovel.transitions.inToOut.edge);
         //TODO: endscreen  einblenden und Credits
     }
     VisualNovel.gameOver = gameOver;
@@ -1429,6 +1438,10 @@ var VisualNovel;
         two_days_pass: {
             name: "zwei Tage vergehen",
             background: "./Images/Announcements/two_days_pass.png"
+        },
+        game_over: {
+            name: "Spiel ist zu Ende",
+            background: "./Images/Announcements/game_over.png"
         }
     };
 })(VisualNovel || (VisualNovel = {}));

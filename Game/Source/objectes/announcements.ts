@@ -15,6 +15,10 @@ namespace VisualNovel {
         two_days_pass: {
             name: "zwei Tage vergehen",
             background: "./Images/Announcements/two_days_pass.png"
+        },
+        game_over: {
+            name: "Spiel ist zu Ende",
+            background: "./Images/Announcements/game_over.png"
         }
         
     };

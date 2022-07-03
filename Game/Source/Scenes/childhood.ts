@@ -24,10 +24,11 @@ namespace VisualNovel {
 
         };
        
-        await ƒS.Location.show(locations.village);
-        await ƒS.update();
+       
+  
         await playParagraph(storyTexts.introduction);
-        // übergang 
+        // übergang
+        await ƒS.Location.show(locations.village);
         await showAnnouncements(locations.village, announcements.some_days_pass,  transitions.leftTORight);
         await playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */

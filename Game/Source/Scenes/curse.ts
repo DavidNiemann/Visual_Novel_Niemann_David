@@ -77,17 +77,25 @@ namespace VisualNovel {
         await playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await ƒS.Location.show(locations.village);
-        await ƒS.update(transitions.bottomToTop.duration, transitions.bottomToTop.alpha, transitions.bottomToTop.edge);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.before_the_accident);
         await startAnimations();
         await playParagraph(storyTexts.after_the_accident);
         //TODO: Schawarzer hintergund
+        await ƒS.Location.show(announcements.black);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.get_help);
         //TODO: zurück aufs Feld
+        await ƒS.Location.show(locations.village);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.talk_with_the_doctor);
         //TODO: zurück uns dorf übergang
+        await ƒS.Location.show(announcements.black);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.transition_to_the_village);
         //TODO: Dorf sitchtabar machen
+        await ƒS.Location.show(locations.village);
+        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.about_the_way);
         ƒS.Inventory.add(items.healing_potion);
         ƒS.Inventory.add(items.sword);
