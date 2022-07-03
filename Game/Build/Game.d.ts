@@ -77,6 +77,9 @@ declare namespace VisualNovel {
     function wrongWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
+    function startAnimations(): Promise<void>;
+}
+declare namespace VisualNovel {
     let items: {
         [itemName: string]: ƒS.ItemDefinition;
     };

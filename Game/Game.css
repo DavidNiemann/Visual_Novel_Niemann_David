@@ -9,6 +9,7 @@ splash {
 }
 
 canvas {
+  position: relative;
   height: 100%;
   width: 100%;
 
@@ -26,7 +27,7 @@ speech {
 }
 
 dialog[type=splash] {
-  position:absolute;
+  position: absolute;
   left: 0px;
   top: 0px;
   height: 100vh;
@@ -51,7 +52,6 @@ body {
   align-content: center;
   justify-content: center;
   align-items: center;
-  background-color: gray;
   margin: 0px;
   padding: 0px;
 }

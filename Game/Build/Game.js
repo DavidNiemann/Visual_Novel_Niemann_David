@@ -241,71 +241,73 @@ var VisualNovel;
                 Narrator_003: { text: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. " }
             },
             before_the_accident: {
-                Mother_001: { text: "steh auf " + `${VisualNovel.dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_002: { text: "ich komme gleich ich esse Kutz noch ein Stück Brot.", pose: VisualNovel.POSES.HAPPY },
-                Mother_003: { text: "ok ich gehe schon mal vor, komm dann nach.", pose: VisualNovel.POSES.HAPPY },
-                Narrator_004: { text: "nach dem " + `${VisualNovel.dataForSave.nameProtagonist}` + " sein Brot gegessen hatte machte er sich auch auf dem Weg zum Feld." },
-                Mother_005: { text: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen.", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_006: { text: "mutter schau mal das ist aber eine komische Karotte.", pose: VisualNovel.POSES.HAPPY },
-                Narrator_007: { text: "der Junge fängt an der Pflanze zu ziehen." },
-                Protagonist_008: { text: "die geht aber schwer raus.", pose: VisualNovel.POSES.HAPPY },
-                Narrator_009: { text: "Mutter dreht sich." },
-                Mother_010: { text: "Mutter HALTTTTTT, das ist eine ….", pose: VisualNovel.POSES.FRIGHTEND },
-                Mother_011: { text: "….", pose: VisualNovel.POSES.NEUTRAL },
-                Narrator_012: { text: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovel.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu." }
+                Mother_004: { text: "steh auf " + `${VisualNovel.dataForSave.nameProtagonist}` + " wir müssen die Karotten ernten.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_005: { text: "ich komme gleich ich esse Kutz noch ein Stück Brot.", pose: VisualNovel.POSES.HAPPY },
+                Mother_006: { text: "ok ich gehe schon mal vor, komm dann nach.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_007: { text: "nach dem " + `${VisualNovel.dataForSave.nameProtagonist}` + " sein Brot gegessen hatte machte er sich auch auf dem Weg zum Feld." },
+                Mother_008: { text: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen.", pose: VisualNovel.POSES.HAPPY },
+                Protagonist_009: { text: "mutter schau mal das ist aber eine komische Karotte.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_010: { text: "der Junge fängt an der Pflanze zu ziehen." },
+                Protagonist_011: { text: "die geht aber schwer raus.", pose: VisualNovel.POSES.HAPPY },
+                Narrator_012: { text: "Mutter dreht sich." },
+                Mother_013: { text: "Mutter HALTTTTTT, das ist eine ….", pose: VisualNovel.POSES.FRIGHTEND }
                 //U001:  { text: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
             },
             after_the_accident: {
-                Narrator_001: { text: "es wurde still und der junge dreht sich zu seiner Mutter um sich zu." },
-                Mother_002: { text: "ich liebe….", pose: VisualNovel.POSES.HAPPY },
-                Protagonist_003: { text: "Mutter, mutter…MAMAAAAAAA.", pose: VisualNovel.POSES.FRIGHTEND },
-                Protagonist_004: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: VisualNovel.POSES.FRIGHTEND },
-                Narrator_005: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
+                Mother_014: { text: "….", pose: VisualNovel.POSES.NEUTRAL },
+                Narrator_015: { text: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${VisualNovel.dataForSave.nameProtagonist}` + " und hebt in den Ohren zu." },
+                Narrator_016: { text: "es wurde still und der junge dreht sich zu seiner Mutter um." },
+                Mother_017: { text: "ich liebe….", pose: VisualNovel.POSES.NEUTRAL },
+                Protagonist_018: { text: "Mutter, mutter…MAMAAAAAAA.", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_019: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: VisualNovel.POSES.FRIGHTEND },
+                Narrator_020: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },
             get_help: {
-                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation," },
-                Narrator_002: { text: "Der Arzt namens Dr.Bader ging und " + `${VisualNovel.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück." }
+                Narrator_021: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation," },
+                Narrator_022: { text: "Der Arzt namens Dr.Bader ging und " + `${VisualNovel.dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück." }
             },
             talk_with_the_doctor: {
-                Protagonist_001: { text: "Helfen sie bitte meiner Mutter.", pose: VisualNovel.POSES.SAD },
-                Doctor_002: { text: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.", pose: VisualNovel.POSES.SAD },
-                Doctor_003: { text: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.", pose: VisualNovel.POSES.SAD },
-                Protagonist_005: { text: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.", pose: VisualNovel.POSES.SAD },
-                Doctor_006: { text: "bringen wir sie erstmals zurück ins Dorf.", pose: VisualNovel.POSES.SAD }
+                Protagonist_023: { text: "Helfen sie bitte meiner Mutter.", pose: VisualNovel.POSES.SAD },
+                Doctor_024: { text: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.", pose: VisualNovel.POSES.SAD },
+                Doctor_025: { text: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.", pose: VisualNovel.POSES.SAD },
+                Protagonist_026: { text: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.", pose: VisualNovel.POSES.SAD },
+                Doctor_027: { text: "bringen wir sie erstmals zurück ins Dorf.", pose: VisualNovel.POSES.SAD }
             },
             transition_to_the_village: {
-                Narrator_001: { text: "der Arzt und " + `${VisualNovel.dataForSave.nameProtagonist}` + " bringen die Mutter vorsichtig zurück ins Dorf." }
+                Narrator_028: { text: "der Arzt und " + `${VisualNovel.dataForSave.nameProtagonist}` + " bringen die Mutter vorsichtig zurück ins Dorf." }
             },
             about_the_way: {
-                Protagonist_001: { text: "Bitte Dr.Bader es muss doch irgendwas geben was man tun kann, ich flehe sie an ich würde alles tun.", pose: VisualNovel.POSES.SAD },
-                Doctor_002: { text: "Wir brauchten jemand oder etwas was mächtig genug, ist, um diesen Zauber zu lösen und dies innerhalb der nächsten <b>7</b> Tage, danach, kann man nicht mehr für sie tun", pose: VisualNovel.POSES.SAD },
-                Doctor_003: { text: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${VisualNovel.locations.forest.name}` + "  Zu finden ist.", pose: VisualNovel.POSES.SAD },
-                Doctor_004: { text: "Es wir erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.", pose: VisualNovel.POSES.SAD },
-                Doctor_005: { text: "Dieser ist aber ein 3 Tages marsch entfernt und der Weg ist sehr gefährlich.", pose: VisualNovel.POSES.SAD },
-                Protagonist_006: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: VisualNovel.POSES.SAD },
-                Doctor_007: { text: "Du musst nach Norden zu den " + `${VisualNovel.locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: VisualNovel.POSES.SAD },
-                Doctor_008: { text: "nach den Felder kommst du zu dem " + `${VisualNovel.locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: VisualNovel.POSES.SAD },
-                Doctor_009: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.", pose: VisualNovel.POSES.SAD },
-                Doctor_010: { text: "er ist ziemlich sicher aber ist lange. ", pose: VisualNovel.POSES.SAD },
-                Doctor_011: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: VisualNovel.POSES.SAD },
-                Doctor_012: { text: "Dahinter ist schon der " + `${VisualNovel.locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: VisualNovel.POSES.SAD },
-                Doctor_013: { text: "Man sagt das in dem Wald ein endloses Labyrinth ist und schon Ewigkeiten Kamm keiner mehr aus dem Wald der Versucht hat die Blume zu pflücken.", pose: VisualNovel.POSES.SAD },
-                Protagonist_014: { text: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>", pose: VisualNovel.POSES.SAD },
-                Protagonist_015: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: VisualNovel.POSES.SAD },
-                Protagonist_016: { text: "<i>Alles ist meine Schuld.</i>", pose: VisualNovel.POSES.SAD },
-                Protagonist_017: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD },
-                Narrator_018: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
-                Doctor_019: { text: "Warte!!", pose: VisualNovel.POSES.SAD },
-                Doctor_020: { text: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: VisualNovel.POSES.SAD },
-                Doctor_021: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: VisualNovel.POSES.SAD },
-                Protagonist_022: { text: "Danke. Passen sie auf meine Mutter auf.", pose: VisualNovel.POSES.SAD },
-                Narrator_023: { text: "Und so machte sich " + `${VisualNovel.dataForSave.nameProtagonist}` + " auf ein Abenteuer." }
+                Protagonist_029: { text: "Bitte Dr.Bader es muss doch irgendwas geben was man tun kann, ich flehe sie an ich würde alles tun.", pose: VisualNovel.POSES.SAD },
+                Doctor_030: { text: "Wir brauchten jemand oder etwas was mächtig genug, ist, um diesen Zauber zu lösen und dies innerhalb der nächsten <b>7</b> Tage, danach, kann man nicht mehr für sie tun", pose: VisualNovel.POSES.SAD },
+                Doctor_031: { text: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${VisualNovel.locations.forest.name}` + "  Zu finden ist.", pose: VisualNovel.POSES.SAD },
+                Doctor_032: { text: "Es wir erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.", pose: VisualNovel.POSES.SAD },
+                Doctor_033: { text: "Dieser ist aber ein 3 Tages marsch entfernt und der Weg ist sehr gefährlich.", pose: VisualNovel.POSES.SAD },
+                Protagonist_034: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: VisualNovel.POSES.SAD },
+                Doctor_035: { text: "Du musst nach Norden zu den " + `${VisualNovel.locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: VisualNovel.POSES.SAD },
+                Doctor_036: { text: "nach den Felder kommst du zu dem " + `${VisualNovel.locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: VisualNovel.POSES.SAD },
+                Doctor_037: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.", pose: VisualNovel.POSES.SAD },
+                Doctor_038: { text: "er ist ziemlich sicher aber ist lange. ", pose: VisualNovel.POSES.SAD },
+                Doctor_039: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: VisualNovel.POSES.SAD },
+                Doctor_040: { text: "Dahinter ist schon der " + `${VisualNovel.locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: VisualNovel.POSES.SAD },
+                Doctor_041: { text: "Man sagt das in dem Wald ein endloses Labyrinth ist und schon Ewigkeiten Kamm keiner mehr aus dem Wald der Versucht hat die Blume zu pflücken.", pose: VisualNovel.POSES.SAD },
+                Protagonist_042: { text: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_043: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD },
+                Narrator_046: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
+                Doctor_047: { text: "Warte!!", pose: VisualNovel.POSES.SAD },
+                Doctor_048: { text: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: VisualNovel.POSES.SAD },
+                Doctor_049: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: VisualNovel.POSES.SAD },
+                Protagonist_050: { text: "Danke. Passen sie auf meine Mutter auf.", pose: VisualNovel.POSES.SAD },
+                Narrator_051: { text: "Und so machte sich " + `${VisualNovel.dataForSave.nameProtagonist}` + " auf ein Abenteuer." }
             }
         };
         await VisualNovel.playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.bottomToTop.duration, VisualNovel.transitions.bottomToTop.alpha, VisualNovel.transitions.bottomToTop.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_accident);
-        //TODO:  übergang mit Schrein (sound),  Erzähler: …,
+        await VisualNovel.startAnimations();
         await VisualNovel.playParagraph(storyTexts.after_the_accident);
         //TODO: Schawarzer hintergund
         await VisualNovel.playParagraph(storyTexts.get_help);
@@ -510,6 +512,7 @@ var VisualNovel;
     async function gameOver() {
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         VisualNovel.ƒS.Character.hideAll();
+        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.gameOver);
         //TODO: endscreen  einblenden und Credits
     }
     VisualNovel.gameOver = gameOver;
@@ -996,6 +999,25 @@ var VisualNovel;
         return "11";
     }
     VisualNovel.wrongWay = wrongWay;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function startAnimations() {
+        let canvas = document.querySelector("canvas");
+        let animation = canvas.animate([
+            { transform: "translateX(0px) rotate(0deg)" },
+            { transform: "translateX(10px) rotate(5deg)" },
+            { transform: "translateX(0px) rotate(0deg)" },
+            { transform: "translateX(-10px) rotate(-5deg)" },
+            { transform: "translateX(0px) rotate(0deg)" }
+        ], {
+            duration: 150,
+            iterations: 3,
+            easing: "ease-in-out"
+        });
+        animation.play();
+    }
+    VisualNovel.startAnimations = startAnimations;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -1517,7 +1539,7 @@ var VisualNovel;
         },
         bottomToTop: {
             duration: 1,
-            alpha: "./Transitions/bottom_to_top.png.png",
+            alpha: "./Transitions/bottom_to_top.png",
             edge: 2
         },
         inToOut: {

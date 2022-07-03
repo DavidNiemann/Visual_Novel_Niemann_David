@@ -13,7 +13,7 @@ namespace VisualNovel {
         },
         bottomToTop: {
             duration: 1,
-            alpha: "./Transitions/bottom_to_top.png.png",
+            alpha: "./Transitions/bottom_to_top.png",
             edge: 2
         },
         inToOut: {
