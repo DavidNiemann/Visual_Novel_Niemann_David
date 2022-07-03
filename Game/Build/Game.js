@@ -219,18 +219,12 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.ƒS.update();
         await VisualNovel.playParagraph(storyTexts.introduction);
-        // TODO: übergang einfügen
-        await VisualNovel.ƒS.Location.show(VisualNovel.announcements.some_days_pass);
-        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
-        await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
-        /* await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.child, protagonistPositionVector);
-        await ƒS.Character.show(characters.mother, characters.mother.pose.happy, otherPersonsPositionVector); */
-        /*  await ƒS.update(); */
+        // übergang 
+        await VisualNovel.showAnnouncements(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */
-        /*   await ƒS.update(); */
-        // TODO: übergang einfügen
+        // übergang
+        await VisualNovel.showAnnouncements(VisualNovel.locations.village, VisualNovel.announcements.some_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.childhoodStory_Part2);
         return "3";
     }
@@ -1352,6 +1346,19 @@ var VisualNovel;
         }
     }
     VisualNovel.startSpeakingAnimation = startSpeakingAnimation;
+    async function showAnnouncements(_location, _announcment, _firstTransition, _secondTransition) {
+        await VisualNovel.ƒS.Location.show(_announcment);
+        await VisualNovel.ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "");
+        await VisualNovel.ƒS.Location.show(_location);
+        if (_secondTransition) {
+            await VisualNovel.ƒS.update(_secondTransition.duration, _secondTransition.alpha, _secondTransition.edge);
+        }
+        else {
+            await VisualNovel.ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
+        }
+    }
+    VisualNovel.showAnnouncements = showAnnouncements;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -1387,19 +1394,19 @@ var VisualNovel;
     VisualNovel.announcements = {
         black: {
             name: "schwarz",
-            background: "./Images/Overlay/black.png"
+            background: "./Images/Announcements/black.png"
         },
         day_goes_by: {
             name: "ein Tag vergeht",
-            background: "./Images/Overlay/day_goes_by.png"
+            background: "./Images/Announcements/day_goes_by.png"
         },
         some_days_pass: {
             name: "ein paar Tage vergehen",
-            background: "./Images/Overlay/some_days_pass.png"
+            background: "./Images/Announcements/some_days_pass.png"
         },
         two_days_pass: {
             name: "zwei Tage vergehen",
-            background: "./Images/Overlay/two_days_pass.png"
+            background: "./Images/Announcements/two_days_pass.png"
         }
     };
 })(VisualNovel || (VisualNovel = {}));

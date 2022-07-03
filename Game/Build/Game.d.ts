@@ -106,6 +106,7 @@ declare namespace VisualNovel {
     function showCharacter(_character: string, _pose?: POSES): Promise<void>;
     function endSpeakingAnimation(_character: string, _pose?: POSES): Promise<void>;
     function startSpeakingAnimation(_character: string, _pose?: POSES): Promise<void>;
+    function showAnnouncements(_location: ƒS.LocationDefinition, _announcment: ƒS.LocationDefinition, _firstTransition: Transition, _secondTransition?: Transition): Promise<void>;
 }
 declare namespace VisualNovel {
     let animations: {
@@ -177,26 +178,12 @@ declare namespace VisualNovel {
     };
 }
 declare namespace VisualNovel {
+    type Transition = {
+        duration: number;
+        alpha: string;
+        edge: number;
+    };
     let transitions: {
-        leftTORight: {
-            duration: number;
-            alpha: string;
-            edge: number;
-        };
-        outToIn: {
-            duration: number;
-            alpha: string;
-            edge: number;
-        };
-        bottomToTop: {
-            duration: number;
-            alpha: string;
-            edge: number;
-        };
-        inToOut: {
-            duration: number;
-            alpha: string;
-            edge: number;
-        };
+        [transitionName: string]: Transition;
     };
 }

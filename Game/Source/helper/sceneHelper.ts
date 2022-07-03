@@ -90,4 +90,17 @@ namespace VisualNovel {
         }
     }
 
+    export async function showAnnouncements(_location: ƒS.LocationDefinition, _announcment: ƒS.LocationDefinition, _firstTransition: Transition, _secondTransition?: Transition): Promise<void> {
+        await ƒS.Location.show(_announcment);
+        await ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
+        await ƒS.Speech.tell(characters.narrator, "");
+        await ƒS.Location.show(_location);
+        if (_secondTransition) {
+            await ƒS.update(_secondTransition.duration, _secondTransition.alpha, _secondTransition.edge);
+        } else {
+            await ƒS.update(_firstTransition.duration, _firstTransition.alpha, _firstTransition.edge);
+        }
+
+    }
+
 }

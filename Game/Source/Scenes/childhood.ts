@@ -27,18 +27,12 @@ namespace VisualNovel {
         await ƒS.Location.show(locations.village);
         await ƒS.update();
         await playParagraph(storyTexts.introduction);
-        // TODO: übergang einfügen
-        await ƒS.Location.show(announcements.some_days_pass);
-        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha,  transitions.leftTORight.edge);
-        await ƒS.Location.show(locations.village);
-        await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha,  transitions.leftTORight.edge);
-        /* await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.child, protagonistPositionVector);
-        await ƒS.Character.show(characters.mother, characters.mother.pose.happy, otherPersonsPositionVector); */
-        /*  await ƒS.update(); */
+        // übergang 
+        await showAnnouncements(locations.village, announcements.some_days_pass,  transitions.leftTORight);
         await playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */
-        /*   await ƒS.update(); */
-        // TODO: übergang einfügen
+        // übergang
+        await showAnnouncements(locations.village, announcements.some_days_pass,  transitions.leftTORight);
         await playParagraph(storyTexts.childhoodStory_Part2);
 
         return "3";
