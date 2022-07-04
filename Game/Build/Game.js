@@ -29,7 +29,6 @@ var VisualNovel;
     async function buttonFunktionAlitiles(_option) {
         switch (_option) {
             case inGameMenuButtens.save:
-                VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave);
                 await VisualNovel.ƒS.Progress.save();
                 break;
             case inGameMenuButtens.load:
@@ -105,6 +104,8 @@ var VisualNovel;
             { id: "19", scene: VisualNovel.tooLate, name: "zu Spät" },
             { id: "99", scene: VisualNovel.gameOver, name: "Spiel zu Ende" }
         ];
+        let uiElement = document.querySelector("[type=interface]");
+        VisualNovel.dataForSave = VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave, uiElement);
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
     }

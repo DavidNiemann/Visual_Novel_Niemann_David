@@ -33,7 +33,6 @@ namespace VisualNovel {//https://itch.io/game-assets
     async function buttonFunktionAlitiles(_option: string): Promise<void> {
         switch (_option) {
             case inGameMenuButtens.save:
-                ƒS.Progress.setData(dataForSave);
                 await ƒS.Progress.save();
                 break;
             case inGameMenuButtens.load:
@@ -110,13 +109,15 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "17", scene: unexpectedEncounter, name: "eine unerwartede Begengnung" },
             { id: "18", scene: saveMother, name: "Rettung der Mutter" },
             { id: "19", scene: tooLate, name: "zu Spät" },
-            
+
 
 
 
             { id: "99", scene: gameOver, name: "Spiel zu Ende" }
         ];
-
+        
+        let uiElement: HTMLElement = document.querySelector("[type=interface]");
+        dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
         // start the sequence
         ƒS.Progress.go(scenes);
     }
