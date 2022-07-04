@@ -18,6 +18,11 @@ namespace VisualNovel {
             }
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
         await playParagraph(storyTexts.the_decision);
         await showAnnouncement(locations.mountains, announcements.two_days_pass, transitions.leftTORight);
         await playParagraph(storyTexts.end_of_the_mountains);

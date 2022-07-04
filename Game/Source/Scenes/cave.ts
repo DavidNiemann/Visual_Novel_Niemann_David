@@ -60,6 +60,11 @@ namespace VisualNovel {
 
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
         await playParagraph(storyTexts.the_cave);
         await ƒS.Location.show(locations.cave);
         await ƒS.update(1);
@@ -69,6 +74,7 @@ namespace VisualNovel {
         await showAnnouncement(locations.cave, announcements.tell_story, transitions.leftTORight);
         await playParagraph(storyTexts.spring_water);
         ƒS.Inventory.add(items.magic_water);
+        await saveInventory();
         await showAnnouncement(locations.forest, announcements.day_goes_by, transitions.leftTORight);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.adventureMusic, 0.3, 1, true);

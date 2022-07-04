@@ -18,6 +18,11 @@ namespace VisualNovel {
             }
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
   
         await ƒS.Sound.fade(sounds.adventureMusic, 0.5, 1, true);
         await playParagraph(storyTexts.backstory);

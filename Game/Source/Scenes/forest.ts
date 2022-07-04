@@ -50,6 +50,11 @@ namespace VisualNovel {
             left: "Nach links"
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
 
         if (dataForSave.forestCounter == 0) {
             await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);

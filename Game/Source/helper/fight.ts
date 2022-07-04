@@ -171,6 +171,7 @@ namespace VisualNovel {
                 await ƒS.Speech.tell(characters.narrator, `${dataForSave.nameProtagonist}` + " hat das Item: " + `${items.empty_glass_bottle.name}` + " erhalten");
             }
         }
+        await saveInventory();
     }
 
 

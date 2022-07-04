@@ -4,12 +4,14 @@ var VisualNovel;
     VisualNovel.ƒ = FudgeCore;
     VisualNovel.ƒS = FudgeStory;
     VisualNovel.invetoryOpen = false;
+    VisualNovel.inventoryLoaded = false;
     VisualNovel.dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
         bottleWasGiven: false,
         forestCounter: 0,
-        dangerousPathChosen: false
+        dangerousPathChosen: false,
+        inventoryItems: []
     };
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("Credits");
@@ -104,7 +106,7 @@ var VisualNovel;
             { id: "19", scene: VisualNovel.tooLate, name: "zu Spät" },
             { id: "99", scene: VisualNovel.gameOver, name: "Spiel zu Ende" }
         ];
-        let uiElement = document.querySelector("[type=interface]");
+        let uiElement = document.querySelector("[type=inventory]");
         VisualNovel.dataForSave = VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave, uiElement);
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -170,6 +172,10 @@ var VisualNovel;
                 Protagonist_046: { text: "<i>dann mache ich mich wohl auf den Heimweg.</i>", pose: VisualNovel.POSES.HAPPY }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.the_cave);
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.cave);
         await VisualNovel.ƒS.update(1);
@@ -179,6 +185,7 @@ var VisualNovel;
         await VisualNovel.showAnnouncement(VisualNovel.locations.cave, VisualNovel.announcements.tell_story, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.spring_water);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.magic_water);
+        await VisualNovel.saveInventory();
         await VisualNovel.showAnnouncement(VisualNovel.locations.forest, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.3, 1, true);
@@ -217,6 +224,10 @@ var VisualNovel;
                 Narrator_004: { text: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.introduction);
         // übergang
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
@@ -302,6 +313,10 @@ var VisualNovel;
                 Narrator_051: { text: "Und so machte sich " + `${VisualNovel.dataForSave.nameProtagonist}` + " auf ein Abenteuer." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
@@ -329,6 +344,7 @@ var VisualNovel;
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.sword);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.water_bag);
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.loaf_of_bread);
+        await VisualNovel.saveInventory();
         return "4";
     }
     VisualNovel.theCurse = theCurse;
@@ -363,6 +379,10 @@ var VisualNovel;
                 Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versiuchen", pose: VisualNovel.POSES.SAD }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.theDecision);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.doubting);
@@ -404,6 +424,10 @@ var VisualNovel;
                 Protagonist_012: { text: "<i> ich habe nicht mehr viel Zeit. Auf ins Dorf. </i>", pose: VisualNovel.POSES.HAPPY }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.2, 1, true);
         await VisualNovel.playParagraph(storyTexts.flower_field);
@@ -415,6 +439,7 @@ var VisualNovel;
         VisualNovel.dataForSave.dayCounter += 1;
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.next_morning);
+        await VisualNovel.saveInventory();
         if (VisualNovel.dataForSave.bottleWasGiven) {
             return "17";
         }
@@ -473,6 +498,10 @@ var VisualNovel;
             straight: "Gerade Aus",
             left: "Nach links"
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
             await VisualNovel.playParagraph(storyTexts.first_encounter);
@@ -550,6 +579,10 @@ var VisualNovel;
                 Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " läuft den Weg weiter." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
@@ -581,6 +614,10 @@ var VisualNovel;
                 Narrator_009: { text: "Schlägt seien Lager auf und legt sich direkt hin." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.the_decision);
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.two_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountains);
@@ -609,6 +646,10 @@ var VisualNovel;
                 Protagonist_013: { text: "<i>...</i>", pose: VisualNovel.POSES.SAD }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.fail);
         return "99"; // Bad Ending 
     }
@@ -628,6 +669,10 @@ var VisualNovel;
                 Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " wurde nicht mehr in seinem Heimat Dorf gesehen." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.lost_in_The_Woods);
         return "99"; // Bad Ending 
     }
@@ -659,6 +704,10 @@ var VisualNovel;
             shortWay: "den kurzen Weg",
             longWay: "den Langen Weg"
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         VisualNovel.dataForSave.dayCounter += 1;
         await VisualNovel.showAnnouncement(VisualNovel.locations.grasslands, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.morning);
@@ -696,6 +745,10 @@ var VisualNovel;
                 Narrator_010: { text: "aber so gut sie auch sein mag so viele gefahren war mit Ihr verbunden und war der Schlimmste Gabe." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.5, 1, true);
         await VisualNovel.playParagraph(storyTexts.backstory);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt ");
@@ -748,6 +801,10 @@ var VisualNovel;
                 Mother_033: { text: "Das erinnert mich an deinen Vater.", pose: VisualNovel.POSES.NEUTRAL }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         if (VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items.magic_water) > 0) {
             await VisualNovel.playParagraph(storyTexts.save_mother_with_wather);
         }
@@ -814,6 +871,7 @@ var VisualNovel;
                     if (used) {
                         await VisualNovel.playParagraph(storyTexts.hand_over_the_bottle);
                         VisualNovel.dataForSave.bottleWasGiven = true;
+                        VisualNovel.saveInventory();
                         break;
                     }
                 }
@@ -867,6 +925,10 @@ var VisualNovel;
                 Narrator_027: { text: "Und so verlies" + `${VisualNovel.characters.doctor.name}` + " das Dorf begab sich auf seine ganz eigenen Abenteuer. " }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.tooLate);
         await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.some_time_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.cant_save_mother);
@@ -898,6 +960,10 @@ var VisualNovel;
                 Narrator_014: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo der Dr.schon auf ihn wartete." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.the_stranger_shows_up_again);
         await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.back_to_the_village);
@@ -929,6 +995,10 @@ var VisualNovel;
                 Narrator_009: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " rennt die Letzen Meter zu sich nach Hause." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.back_to_the_mountain);
         if (VisualNovel.dataForSave.dangerousPathChosen) {
             await VisualNovel.playParagraph(storyTexts.chosen_dangerus_way);
@@ -970,6 +1040,10 @@ var VisualNovel;
                 Narrator_011: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schlägt seien Lager auf und legt sich direkt hin." }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.playParagraph(storyTexts.success);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
@@ -1000,6 +1074,10 @@ var VisualNovel;
                 Narrator_013: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " macht sich auf in den Wald" }
             }
         };
+        if (VisualNovel.inventoryLoaded == false) {
+            await VisualNovel.loadInvetory();
+            VisualNovel.inventoryLoaded = true;
+        }
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.out_of_the_woods);
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
@@ -1225,6 +1303,7 @@ var VisualNovel;
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${VisualNovel.items.empty_glass_bottle.name}` + " erhalten");
             }
         }
+        await VisualNovel.saveInventory();
     }
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
@@ -1295,6 +1374,31 @@ var VisualNovel;
         });
     }
     VisualNovel.activateItem = activateItem;
+    async function saveInventory() {
+        VisualNovel.dataForSave.inventoryItems = [];
+        for (const item in VisualNovel.items) {
+            let amount = VisualNovel.ƒS.Inventory.getAmount(VisualNovel.items[item]);
+            for (let i = 0; i < amount; i++) {
+                VisualNovel.dataForSave.inventoryItems.push(item);
+            }
+        }
+        console.log(VisualNovel.dataForSave.inventoryItems);
+    }
+    VisualNovel.saveInventory = saveInventory;
+    async function loadInvetory() {
+        let dialog = document.querySelector("dialog[type=inventory]");
+        let ul = dialog.querySelector("ul");
+        console.log(ul);
+        ul.innerHTML = "";
+        for (const saveItem of VisualNovel.dataForSave.inventoryItems) {
+            for (const item in VisualNovel.items) {
+                if (item == saveItem) {
+                    VisualNovel.ƒS.Inventory.add(VisualNovel.items[item]);
+                }
+            }
+        }
+    }
+    VisualNovel.loadInvetory = loadInvetory;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {

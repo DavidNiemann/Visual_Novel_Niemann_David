@@ -60,6 +60,7 @@ namespace VisualNovel {
                     if (used) {
                         await playParagraph(storyTexts.hand_over_the_bottle);
                         dataForSave.bottleWasGiven = true;
+                        saveInventory();
                         break;
                     }
 

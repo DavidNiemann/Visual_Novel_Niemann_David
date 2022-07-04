@@ -1,19 +1,21 @@
 declare namespace VisualNovel {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
-    let invetoryOpen: boolean;
     type StoryText = {
         [textname: string]: {
             text: string;
             pose?: POSES;
         };
     };
+    let invetoryOpen: boolean;
+    let inventoryLoaded: boolean;
     let dataForSave: {
         nameProtagonist: string;
         dayCounter: number;
         bottleWasGiven: boolean;
         forestCounter: number;
         dangerousPathChosen: boolean;
+        inventoryItems: string[];
     };
     function showCredits(): void;
 }
@@ -101,6 +103,8 @@ declare namespace VisualNovel {
     function useItem(_item: string): void;
     function activateItems(_item: ƒS.ItemDefinition[]): Promise<ƒS.ItemDefinition>;
     function activateItem(_item: ƒS.ItemDefinition): Promise<ƒS.ItemDefinition>;
+    function saveInventory(): Promise<void>;
+    function loadInvetory(): Promise<void>;
 }
 declare namespace VisualNovel {
     let protagonistPositionVector: ƒ.Vector2;

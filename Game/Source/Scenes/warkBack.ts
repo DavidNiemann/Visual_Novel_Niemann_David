@@ -25,6 +25,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await playParagraph(storyTexts.back_to_the_mountain);
         if (dataForSave.dangerousPathChosen) {
             await playParagraph(storyTexts.chosen_dangerus_way);

@@ -23,6 +23,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await ƒS.Location.show(locations.grasslands);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.before_the_fight);

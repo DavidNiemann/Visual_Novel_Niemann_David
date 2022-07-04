@@ -16,6 +16,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await playParagraph(storyTexts.lost_in_The_Woods);
         return "99"; // Bad Ending 
        

@@ -24,6 +24,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.out_of_the_woods);
         await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);

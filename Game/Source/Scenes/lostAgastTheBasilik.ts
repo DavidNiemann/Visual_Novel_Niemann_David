@@ -22,6 +22,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await playParagraph(storyTexts.fail);
         return "99"; // Bad Ending 
     }

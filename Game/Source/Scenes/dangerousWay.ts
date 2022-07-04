@@ -29,6 +29,12 @@ namespace VisualNovel {
             }
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+        
         await playParagraph(storyTexts.theDecision);
         await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.doubting);

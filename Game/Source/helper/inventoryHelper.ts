@@ -27,7 +27,7 @@ namespace VisualNovel {
             dialog.showModal();
             invetoryOpen = true;
             function hndUse(_event: Event): void {
-              
+
                 dialog.querySelector("button").removeEventListener("pointerdown", hndUse);
                 let choosenItem: ƒS.ItemDefinition = null;
                 for (let index = 0; index < _item.length; index++) {
@@ -72,6 +72,32 @@ namespace VisualNovel {
             itemElement.addEventListener("pointerdown", hndUse);
         });
 
+    }
+
+    export async function saveInventory(): Promise<void> {
+        dataForSave.inventoryItems = [];
+        for (const item in items) {
+            let amount = ƒS.Inventory.getAmount(items[item]);
+            for (let i = 0; i < amount; i++) {
+                dataForSave.inventoryItems.push(item);
+
+            }
+        }
+        console.log(dataForSave.inventoryItems);
+    }
+    export async function loadInvetory(): Promise<void> {
+        let dialog: HTMLDialogElement = <HTMLDialogElement>document.querySelector("dialog[type=inventory]");
+        let ul: HTMLUListElement = dialog.querySelector("ul");
+        console.log(ul);
+        ul.innerHTML = "";
+        for (const saveItem of dataForSave.inventoryItems) {
+            for (const item in items) {
+                if (item == saveItem) {
+                    ƒS.Inventory.add(items[item]);
+                }
+
+            }
+        }
     }
 
 }

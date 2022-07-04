@@ -23,17 +23,20 @@ namespace VisualNovel {
             }
 
         };
-       
-       
-  
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await playParagraph(storyTexts.introduction);
         // übergang
         await ƒS.Location.show(locations.village);
-        await showAnnouncement(locations.village, announcements.some_days_pass,  transitions.leftTORight);
+        await showAnnouncement(locations.village, announcements.some_days_pass, transitions.leftTORight);
         await playParagraph(storyTexts.childhoodStory_Part1);
         /*  ƒS.Character.hideAll(); */
         // übergang
-        await showAnnouncement(locations.village, announcements.some_days_pass,  transitions.leftTORight);
+        await showAnnouncement(locations.village, announcements.some_days_pass, transitions.leftTORight);
         await playParagraph(storyTexts.childhoodStory_Part2);
 
         return "3";

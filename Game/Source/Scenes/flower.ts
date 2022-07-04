@@ -25,6 +25,11 @@ namespace VisualNovel {
             }
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.2, 1, true);
         await playParagraph(storyTexts.flower_field);
@@ -37,12 +42,13 @@ namespace VisualNovel {
         dataForSave.dayCounter += 1;
         await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.next_morning);
+        await saveInventory();
         if (dataForSave.bottleWasGiven) {
             return "17";
         } else {
             return "16";
         }
     }
-
+   
 
 }  

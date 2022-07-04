@@ -74,6 +74,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         await playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await ƒS.Location.show(locations.village);
@@ -101,6 +106,7 @@ namespace VisualNovel {
         ƒS.Inventory.add(items.sword);
         ƒS.Inventory.add(items.water_bag);
         ƒS.Inventory.add(items.loaf_of_bread);
+        await saveInventory();
         return "4";
     }
 }  

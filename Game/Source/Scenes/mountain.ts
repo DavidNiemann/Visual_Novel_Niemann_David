@@ -30,6 +30,11 @@ namespace VisualNovel {
 
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
         dataForSave.dayCounter += 1;
         await showAnnouncement(locations.grasslands, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.morning);

@@ -38,6 +38,11 @@ namespace VisualNovel {
             }
 
         };
+
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
         await playParagraph(storyTexts.tooLate);
         await showAnnouncement(locations.village, announcements.some_time_pass, transitions.leftTORight);
         await playParagraph(storyTexts.cant_save_mother);

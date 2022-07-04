@@ -47,6 +47,11 @@ namespace VisualNovel {
 
         };
 
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+
         if (ƒS.Inventory.getAmount(items.magic_water) > 0) {
             await playParagraph(storyTexts.save_mother_with_wather);
         } else {

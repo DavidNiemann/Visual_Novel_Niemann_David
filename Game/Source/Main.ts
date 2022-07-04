@@ -2,15 +2,26 @@ namespace VisualNovel {//https://itch.io/game-assets
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
 
-    export let invetoryOpen: boolean = false;
     export type StoryText = { [textname: string]: { text: string, pose?: POSES } };
+    export let invetoryOpen: boolean = false;
+    export let inventoryLoaded: boolean = false;
+   
 
-    export let dataForSave = {
+    export let dataForSave: {
+        nameProtagonist: string;
+        dayCounter: number;
+        bottleWasGiven: boolean;
+        forestCounter: number;
+        dangerousPathChosen: boolean;
+        inventoryItems: string[];
+    } = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
         bottleWasGiven: false,
         forestCounter: 0,
-        dangerousPathChosen: false
+        dangerousPathChosen: false,
+        inventoryItems: []
+        
     };
 
     export function showCredits(): void {
@@ -24,6 +35,7 @@ namespace VisualNovel {//https://itch.io/game-assets
         load: "Load",
         close: "Close",
         creadits: "Credits"
+
     };
 
     let gameMenu: ƒS.Menu;
@@ -49,11 +61,12 @@ namespace VisualNovel {//https://itch.io/game-assets
                 break;
         }
     }
-
+  
     document.addEventListener("keydown", hndKeyPress);
     async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
         switch (_event.code) {
             case ƒ.KEYBOARD_CODE.F8:
+              
                 await ƒS.Progress.save();
                 break;
             case ƒ.KEYBOARD_CODE.F9:
@@ -110,14 +123,12 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "18", scene: saveMother, name: "Rettung der Mutter" },
             { id: "19", scene: tooLate, name: "zu Spät" },
 
-
-
-
             { id: "99", scene: gameOver, name: "Spiel zu Ende" }
         ];
-        
-        let uiElement: HTMLElement = document.querySelector("[type=interface]");
+
+        let uiElement: HTMLElement = document.querySelector("[type=inventory]");
         dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+      
         // start the sequence
         ƒS.Progress.go(scenes);
     }

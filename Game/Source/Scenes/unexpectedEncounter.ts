@@ -23,7 +23,12 @@ namespace VisualNovel {
             }
 
         };
-
+        
+        if (inventoryLoaded == false) {
+            await loadInvetory();
+            inventoryLoaded = true;
+        }
+        
         await playParagraph(storyTexts.the_stranger_shows_up_again);
         await showAnnouncement(locations.village, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.back_to_the_village);
