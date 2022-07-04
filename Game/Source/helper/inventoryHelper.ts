@@ -16,6 +16,7 @@ namespace VisualNovel {
     export async function activateItems(_item: ƒS.ItemDefinition[]): Promise<ƒS.ItemDefinition> {
         let dialog: HTMLDialogElement = <HTMLDialogElement>document.querySelector("dialog[type=inventory]");
         return await new Promise((_resolve) => {
+            dialog.querySelector("button").addEventListener("pointerdown", hndUse);
             for (let index = 0; index < _item.length; index++) {
                 let itemId: string = _item[index].name.replaceAll(" ", "_");
                 let itemElement: HTMLLIElement = <HTMLLIElement>dialog.querySelector(`[id=${itemId}]`);
@@ -24,20 +25,26 @@ namespace VisualNovel {
             }
             //@ts-ignore
             dialog.showModal();
+            invetoryOpen = true;
             function hndUse(_event: Event): void {
+              
+                dialog.querySelector("button").removeEventListener("pointerdown", hndUse);
                 let choosenItem: ƒS.ItemDefinition = null;
                 for (let index = 0; index < _item.length; index++) {
                     let itemId: string = _item[index].name.replaceAll(" ", "_");
                     let itemElement: HTMLLIElement = <HTMLLIElement>dialog.querySelector(`[id=${itemId}]`);
                     itemElement.removeEventListener("pointerdown", hndUse);
-                    if (itemId == (<HTMLLIElement>_event.currentTarget).id) {
+                    if (_event.currentTarget && itemId == (<HTMLLIElement>_event.currentTarget).id) {
                         choosenItem = _item[index];
                     }
                 }
-                console.log();
+                if (choosenItem) {
+                    useItem(choosenItem.name);
+                }
+
+                invetoryOpen = false;
                 //@ts-ignore
                 dialog.close();
-                useItem(choosenItem.name);
                 _resolve(choosenItem);
 
             }

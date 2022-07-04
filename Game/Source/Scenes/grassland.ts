@@ -12,7 +12,7 @@ namespace VisualNovel {
                 Narrator_005: { text: "es springen 3 Schleime vor um ihn herum und verspären in dem Weg" },
                 Protagonist_006: { text: "<i>ich muss mich beeilen.</i>", pose: POSES.FRIGHTEND },
                 Protagonist_007: { text: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>", pose: POSES.FRIGHTEND },
-                Narrator_008: { text: `${dataForSave.nameProtagonist}` + "greifen zu seinem Schwert." }
+                Narrator_008: { text: `${dataForSave.nameProtagonist}` + " greifen zu seinem Schwert." }
             },
             after_the_fight: {
 

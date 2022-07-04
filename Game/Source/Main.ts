@@ -2,7 +2,7 @@ namespace VisualNovel {//https://itch.io/game-assets
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
 
-    let invetoryOpen: boolean = false;
+    export let invetoryOpen: boolean = false;
     export type StoryText = { [textname: string]: { text: string, pose?: POSES } };
 
     export let dataForSave = {
@@ -33,6 +33,7 @@ namespace VisualNovel {//https://itch.io/game-assets
     async function buttonFunktionAlitiles(_option: string): Promise<void> {
         switch (_option) {
             case inGameMenuButtens.save:
+                ƒS.Progress.setData(dataForSave);
                 await ƒS.Progress.save();
                 break;
             case inGameMenuButtens.load:
@@ -93,7 +94,7 @@ namespace VisualNovel {//https://itch.io/game-assets
             { id: "1", scene: prehistory, name: "Einführung" },
             { id: "2", scene: childhood, name: "Kindheit " },
             { id: "3", scene: theCurse, name: "Der Fluch" },
-            { id: "4", scene: theGrassland, name: "Die weite Wiesen" },
+            { id: "4", scene: theGrassland, name: "Die weite Wiese" },
             { id: "5", scene: theStranger, name: "Der Fremde" },
             { id: "6", scene: theMountain, name: "Die Berge" },
             { id: "7", scene: dangerousWay, name: "Der gefährliche Weg" },

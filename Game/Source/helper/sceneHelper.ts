@@ -102,7 +102,7 @@ namespace VisualNovel {
         }
 
     }
-    export async function showBlackTransition(_location: ƒS.LocationDefinition): Promise<void> {//TODO: add Transition to black
+    export async function showBlackTransition(_location: ƒS.LocationDefinition): Promise<void> {
         await ƒS.Location.show(announcements.black);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await ƒS.Location.show(_location);

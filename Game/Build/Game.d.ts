@@ -1,6 +1,7 @@
 declare namespace VisualNovel {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
+    let invetoryOpen: boolean;
     type StoryText = {
         [textname: string]: {
             text: string;

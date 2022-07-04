@@ -3,7 +3,7 @@ var VisualNovel;
 (function (VisualNovel) {
     VisualNovel.ƒ = FudgeCore;
     VisualNovel.ƒS = FudgeStory;
-    let invetoryOpen = false;
+    VisualNovel.invetoryOpen = false;
     VisualNovel.dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
@@ -29,6 +29,7 @@ var VisualNovel;
     async function buttonFunktionAlitiles(_option) {
         switch (_option) {
             case inGameMenuButtens.save:
+                VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave);
                 await VisualNovel.ƒS.Progress.save();
                 break;
             case inGameMenuButtens.load:
@@ -65,13 +66,13 @@ var VisualNovel;
                 }
                 break;
             case VisualNovel.ƒ.KEYBOARD_CODE.I:
-                if (invetoryOpen) {
+                if (VisualNovel.invetoryOpen) {
                     VisualNovel.ƒS.Inventory.close();
-                    invetoryOpen = false;
+                    VisualNovel.invetoryOpen = false;
                 }
                 else {
                     VisualNovel.ƒS.Inventory.open();
-                    invetoryOpen = true;
+                    VisualNovel.invetoryOpen = true;
                 }
                 break;
             default:
@@ -86,7 +87,7 @@ var VisualNovel;
             { id: "1", scene: VisualNovel.prehistory, name: "Einführung" },
             { id: "2", scene: VisualNovel.childhood, name: "Kindheit " },
             { id: "3", scene: VisualNovel.theCurse, name: "Der Fluch" },
-            { id: "4", scene: VisualNovel.theGrassland, name: "Die weite Wiesen" },
+            { id: "4", scene: VisualNovel.theGrassland, name: "Die weite Wiese" },
             { id: "5", scene: VisualNovel.theStranger, name: "Der Fremde" },
             { id: "6", scene: VisualNovel.theMountain, name: "Die Berge" },
             { id: "7", scene: VisualNovel.dangerousWay, name: "Der gefährliche Weg" },
@@ -540,7 +541,7 @@ var VisualNovel;
                 Narrator_005: { text: "es springen 3 Schleime vor um ihn herum und verspären in dem Weg" },
                 Protagonist_006: { text: "<i>ich muss mich beeilen.</i>", pose: VisualNovel.POSES.FRIGHTEND },
                 Protagonist_007: { text: "<i>ich komm nicht durch ich muss wohl Kämpfen.</i>", pose: VisualNovel.POSES.FRIGHTEND },
-                Narrator_008: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "greifen zu seinem Schwert." }
+                Narrator_008: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " greifen zu seinem Schwert." }
             },
             after_the_fight: {
                 Narrator_009: { text: "Die Restlichen schleime suchen das Weite." },
@@ -1219,7 +1220,6 @@ var VisualNovel;
             }
             await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${fightItem.name}` + " genutzt und " + `${fightItem.healing}` + " leben geheilt");
             if (_item == VisualNovel.items.healing_potion) {
-                console.log("pog");
                 VisualNovel.ƒS.Inventory.add(VisualNovel.items.empty_glass_bottle);
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${VisualNovel.items.empty_glass_bottle.name}` + " erhalten");
             }
@@ -1244,6 +1244,7 @@ var VisualNovel;
     async function activateItems(_item) {
         let dialog = document.querySelector("dialog[type=inventory]");
         return await new Promise((_resolve) => {
+            dialog.querySelector("button").addEventListener("pointerdown", hndUse);
             for (let index = 0; index < _item.length; index++) {
                 let itemId = _item[index].name.replaceAll(" ", "_");
                 let itemElement = dialog.querySelector(`[id=${itemId}]`);
@@ -1251,20 +1252,24 @@ var VisualNovel;
             }
             //@ts-ignore
             dialog.showModal();
+            VisualNovel.invetoryOpen = true;
             function hndUse(_event) {
+                dialog.querySelector("button").removeEventListener("pointerdown", hndUse);
                 let choosenItem = null;
                 for (let index = 0; index < _item.length; index++) {
                     let itemId = _item[index].name.replaceAll(" ", "_");
                     let itemElement = dialog.querySelector(`[id=${itemId}]`);
                     itemElement.removeEventListener("pointerdown", hndUse);
-                    if (itemId == _event.currentTarget.id) {
+                    if (_event.currentTarget && itemId == _event.currentTarget.id) {
                         choosenItem = _item[index];
                     }
                 }
-                console.log();
+                if (choosenItem) {
+                    useItem(choosenItem.name);
+                }
+                VisualNovel.invetoryOpen = false;
                 //@ts-ignore
                 dialog.close();
-                useItem(choosenItem.name);
                 _resolve(choosenItem);
             }
         });
