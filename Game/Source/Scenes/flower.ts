@@ -14,7 +14,7 @@ namespace VisualNovel {
                 Protagonist_008: { text: "<i>Zum Glück habe ich mir den Weg gemerkt.</i>", pose: POSES.HAPPY }
             },
             way_back: {
-                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es " + `${dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
+                Narrator_009: { text: "Passend zum Sonnenuntergang, schaft es " + `${dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
                 Protagonist_010: { text: "<i>ich habe es geschafft. Ich bin aus dem Wald draußen, bevor die Sonne untergegangen ist, </i>", pose: POSES.HAPPY },
                 Protagonist_011: { text: "<i>Morgenfrühe mache ich mich direkt auf den Weg zurück ins Dorf.</i>", pose: POSES.HAPPY }
 
@@ -30,16 +30,22 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat die Wiese auf der die " + `${items.flower.name}` + " wächst betreten </p>");
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.2, 1, true);
         await playParagraph(storyTexts.flower_field);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat eine " + `${items.flower.name}` + " mitgenommen </p>");
+
+        ƒS.Inventory.add(items.flower);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.adventureMusic, 0.2, 1, true);
         await showBlackTransition(locations.forest);
-        ƒS.Inventory.add(items.flower);
-        await playParagraph(storyTexts.way_back);
 
+        await playParagraph(storyTexts.way_back);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat den " + `${locations.forest.name}` + " verlassen </p>");
         dataForSave.dayCounter += 1;
+        dataForSave.logText.push("<h1>die Rückreise</h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
         await playParagraph(storyTexts.next_morning);
         await saveInventory();
@@ -49,6 +55,6 @@ namespace VisualNovel {
             return "16";
         }
     }
-   
+
 
 }  

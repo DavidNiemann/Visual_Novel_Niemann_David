@@ -5,19 +5,71 @@ var VisualNovel;
     VisualNovel.ƒS = FudgeStory;
     VisualNovel.invetoryOpen = false;
     VisualNovel.inventoryLoaded = false;
+    let currentLogPage = 0;
     VisualNovel.dataForSave = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
         bottleWasGiven: false,
         forestCounter: 0,
         dangerousPathChosen: false,
-        inventoryItems: []
+        inventoryItems: [],
+        logText: []
     };
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("Credits");
-        VisualNovel.ƒS.Text.print("David Niemann");
+        VisualNovel.ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann");
     }
     VisualNovel.showCredits = showCredits;
+    function showAdventureLog(_text) {
+        VisualNovel.ƒS.Text.setClass("Adventure_Log");
+        if (_text.length == 0) {
+            return;
+        }
+        VisualNovel.ƒS.Text.print(_text[currentLogPage]);
+        let dialog = document.querySelector("dialog[class=Adventure_Log]");
+        let buttonDiv = document.createElement("div");
+        dialog.appendChild(buttonDiv);
+        let forwardButton = document.createElement("button");
+        let closeButton = document.createElement("button");
+        let backwardButton = document.createElement("button");
+        closeButton.addEventListener("click", () => {
+            //@ts-ignore
+            dialog.close();
+        });
+        closeButton.innerHTML = "Schliesen";
+        forwardButton.addEventListener("click", () => {
+            currentLogPage++;
+            showAdventureLog(_text);
+        });
+        forwardButton.innerHTML = "nächste Seite";
+        backwardButton.addEventListener("click", () => {
+            currentLogPage--;
+            showAdventureLog(_text);
+        });
+        backwardButton.innerHTML = "voherige Seite";
+        buttonDiv.appendChild(backwardButton);
+        buttonDiv.appendChild(closeButton);
+        buttonDiv.appendChild(forwardButton);
+        if (currentLogPage <= 0) {
+            if (_text.length == 1) {
+                forwardButton.disabled = true;
+                backwardButton.disabled = true;
+            }
+            else {
+                forwardButton.disabled = false;
+                backwardButton.disabled = true;
+            }
+        }
+        else if (currentLogPage >= _text.length - 1) {
+            forwardButton.disabled = true;
+            backwardButton.disabled = false;
+        }
+        else {
+            forwardButton.disabled = false;
+            backwardButton.disabled = false;
+        }
+    }
+    VisualNovel.showAdventureLog = showAdventureLog;
     /** MENÜ **/
     let inGameMenuButtens = {
         save: "Save",
@@ -75,6 +127,9 @@ var VisualNovel;
                     VisualNovel.ƒS.Inventory.open();
                     VisualNovel.invetoryOpen = true;
                 }
+                break;
+            case VisualNovel.ƒ.KEYBOARD_CODE.L:
+                showAdventureLog(VisualNovel.dataForSave.logText);
                 break;
             default:
                 break;
@@ -176,20 +231,30 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText.push("<h1>Die Höle</h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.playParagraph(storyTexts.the_cave);
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.cave);
         await VisualNovel.ƒS.update(1);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat die " + `${VisualNovel.locations.cave.name}` + " betreten </p>");
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.the_fairy);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist der " + `${VisualNovel.characters.Fairy.name}` + " begebnet </p>");
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
         await VisualNovel.showAnnouncement(VisualNovel.locations.cave, VisualNovel.announcements.tell_story, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.spring_water);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat " + `${VisualNovel.items.magic_water.name}` + " erhalten  </p>");
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.magic_water);
         await VisualNovel.saveInventory();
         await VisualNovel.showAnnouncement(VisualNovel.locations.forest, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.3, 1, true);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den " + `${VisualNovel.locations.forest.name}` + " verlassen </p>");
         await VisualNovel.playParagraph(storyTexts.next_morning);
+        VisualNovel.dataForSave.dayCounter += 1;
+        VisualNovel.dataForSave.logText.push("<h1>die Rückreise</h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         if (VisualNovel.dataForSave.bottleWasGiven) {
             return "17";
@@ -305,7 +370,7 @@ var VisualNovel;
                 Protagonist_043: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD },
-                Narrator_046: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
+                Narrator_046: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: VisualNovel.POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: VisualNovel.POSES.SAD },
                 Doctor_049: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: VisualNovel.POSES.SAD },
@@ -317,6 +382,8 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText.push("<h1>das Dorf</h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
@@ -324,10 +391,12 @@ var VisualNovel;
         await VisualNovel.playParagraph(storyTexts.before_the_accident);
         await VisualNovel.startAnimations();
         await VisualNovel.playParagraph(storyTexts.after_the_accident);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.characters.mother.name}` + " wurde von einem dem Zauaber eienr Alraune versteinert </p>";
         //TODO: Schawarzer hintergund
         await VisualNovel.ƒS.Location.show(VisualNovel.announcements.black);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.get_help);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " holte hilfe </p>";
         //TODO: zurück aufs Feld
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
@@ -340,10 +409,20 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.about_the_way);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<ul> <h3> tipps von " + `${VisualNovel.characters.doctor.name}` + ":</h3>  ";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> Auf der" + `${VisualNovel.locations.grasslands.name}` + "können schleime sein</li>  ";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> in dem" + `${VisualNovel.locations.mountains.name}` + " giebt es gefähliche Monster</li>  ";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> im " + `${VisualNovel.locations.forest.name}` + " scheinen sich Leute zu verlaufen </li>  ";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> um die" + `${VisualNovel.items.flower.name}` + " zu finden geh richtung Licht </li>  ";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "</ul>";
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.healing_potion);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.items.healing_potion.name}` + "wurde eingepackt </p>";
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.sword);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.items.sword.name}` + "wurde eingepackt </p>";
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.water_bag);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.items.water_bag.name}` + "wurde eingepackt </p>";
         VisualNovel.ƒS.Inventory.add(VisualNovel.items.loaf_of_bread);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.items.loaf_of_bread.name}` + "wurde eingepackt </p>";
         await VisualNovel.saveInventory();
         return "4";
     }
@@ -376,21 +455,25 @@ var VisualNovel;
                 Narrator_015: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " schreckt sofort auf und greift an zu seinem Schwert." },
                 Protagonist_016: { text: "<i>Ich hätte mich nicht zu früh freuen sollen.</i>", pose: VisualNovel.POSES.SAD },
                 Narrator_017: { text: "Ein kleiner Basilisk landet vor ihm" },
-                Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versiuchen", pose: VisualNovel.POSES.SAD }
+                Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versuchen", pose: VisualNovel.POSES.SAD }
             }
         };
         if (VisualNovel.inventoryLoaded == false) {
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den Gerfärlichen Weg genommen </p>";
         await VisualNovel.playParagraph(storyTexts.theDecision);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.doubting);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Ende Der Klippe erreicht </p>";
         await VisualNovel.playParagraph(storyTexts.the_end_of_the_cliff);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " wurde von einem " + `${VisualNovel.enemys.basilisk.name}` + " angegriffen </p>";
         let success = await VisualNovel.fight(VisualNovel.enemys.basilisk);
         console.log(success);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat gegen den " + `${VisualNovel.enemys.basilisk.name}` + (success ? " gewonnen</p>" : " verloren</p>");
         if (success) {
             return "9";
         }
@@ -416,7 +499,7 @@ var VisualNovel;
                 Protagonist_008: { text: "<i>Zum Glück habe ich mir den Weg gemerkt.</i>", pose: VisualNovel.POSES.HAPPY }
             },
             way_back: {
-                Narrator_009: { text: "Passend zum sonnen Untergang, schaft es " + `${VisualNovel.dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
+                Narrator_009: { text: "Passend zum Sonnenuntergang, schaft es " + `${VisualNovel.dataForSave.nameProtagonist}` + " aus dem Wald heraus." },
                 Protagonist_010: { text: "<i>ich habe es geschafft. Ich bin aus dem Wald draußen, bevor die Sonne untergegangen ist, </i>", pose: VisualNovel.POSES.HAPPY },
                 Protagonist_011: { text: "<i>Morgenfrühe mache ich mich direkt auf den Weg zurück ins Dorf.</i>", pose: VisualNovel.POSES.HAPPY }
             },
@@ -428,15 +511,20 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat die Wiese auf der die " + `${VisualNovel.items.flower.name}` + " wächst betreten </p>");
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.2, 1, true);
         await VisualNovel.playParagraph(storyTexts.flower_field);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat eine " + `${VisualNovel.items.flower.name}` + " mitgenommen </p>");
+        VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.2, 1, true);
         await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
-        VisualNovel.ƒS.Inventory.add(VisualNovel.items.flower);
         await VisualNovel.playParagraph(storyTexts.way_back);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den " + `${VisualNovel.locations.forest.name}` + " verlassen </p>");
         VisualNovel.dataForSave.dayCounter += 1;
+        VisualNovel.dataForSave.logText.push("<h1>die Rückreise</h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.next_morning);
         await VisualNovel.saveInventory();
@@ -457,7 +545,7 @@ var VisualNovel;
             first_encounter: {
                 Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ist wach und wartet bis die Hellgenug ist, um in den Wald zu gehen." },
                 Protagonist_002: { text: "<i>Es sollte jetzt hell genug sein ich haben nur noch" + `${VisualNovel.dataForSave.dayCounter}` + " bis  es zu spät ist.</i>", pose: VisualNovel.POSES.HAPPY },
-                Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " betritt den Wald." },
+                Narrator_003: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " betritt den Wald." }
             },
             in_the_forest: {
                 Protagonist_004: { text: "<i>Es sieht aus als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: VisualNovel.POSES.HAPPY },
@@ -495,7 +583,7 @@ var VisualNovel;
         };
         let crossingPaths = {
             right: "Nach rechts",
-            straight: "Gerade Aus",
+            straight: "Gerade sus",
             left: "Nach links"
         };
         if (VisualNovel.inventoryLoaded == false) {
@@ -503,8 +591,11 @@ var VisualNovel;
             VisualNovel.inventoryLoaded = true;
         }
         if (VisualNovel.dataForSave.forestCounter == 0) {
+            VisualNovel.dataForSave.logText.push("<h1>Der Wald</h1>");
+            VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
             await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
             await VisualNovel.playParagraph(storyTexts.first_encounter);
+            VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den " + `${VisualNovel.locations.forest.name}` + "betreten </p>");
             await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
             await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
             await VisualNovel.playParagraph(storyTexts.in_the_forest);
@@ -512,21 +603,26 @@ var VisualNovel;
         else {
             await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
             await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
+            VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den " + `${VisualNovel.locations.forest.name}` + "betreten </p>");
         }
         await VisualNovel.playParagraph(storyTexts.first_crossing);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist an einer Kreuzung angekommen</p>");
         let firstDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist " + (firstDirection.toLocaleLowerCase()) + " gegangen </p>");
         await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.on_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.second_crossing);
         let secondDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist " + (secondDirection.toLocaleLowerCase()) + " gegangen </p>");
         await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (VisualNovel.dataForSave.forestCounter == 0) {
             await VisualNovel.playParagraph(storyTexts.further_along_the_way);
         }
         await VisualNovel.playParagraph(storyTexts.third_crossing);
         let thirdDirection = await VisualNovel.ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist " + (thirdDirection.toLocaleLowerCase()) + " gegangen </p>");
         await VisualNovel.showBlackTransition(VisualNovel.locations.forest);
         if (firstDirection == crossingPaths.right && secondDirection == crossingPaths.straight && thirdDirection == crossingPaths.straight) {
             return "14";
@@ -583,12 +679,17 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText.push("<h1>die Wiese</h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + "s reise zu dem " + `${VisualNovel.locations.forest.name}` + " um die  " + `${VisualNovel.items.flower.name}` + " zu finden und seine Mutter zu retten hat begonnen</p>");
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " wurde von einem " + `${VisualNovel.enemys.slime.name}` + " angegriffen </p>";
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat gegen den" + `${VisualNovel.enemys.slime.name}` + (success ? " gewonnen</p>" : " verloren</p>");
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.5, 1, true);
         await VisualNovel.playParagraph(storyTexts.after_the_fight);
         return "5";
@@ -618,9 +719,12 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den langen Weg genommen </p>";
         await VisualNovel.playParagraph(storyTexts.the_decision);
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.two_days_pass, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountains);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hatte 2 Tage masche zu Fuß duch das " + `${VisualNovel.locations.Gebirge}` + " und es gab keine zwischen Zwischenfälle </p>";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Ende des " + `${VisualNovel.locations.Gebirge}` + " erreicht </p>";
         VisualNovel.dataForSave.dayCounter += 2;
     }
     VisualNovel.longWay = longWay;
@@ -651,6 +755,7 @@ var VisualNovel;
             VisualNovel.inventoryLoaded = true;
         }
         await VisualNovel.playParagraph(storyTexts.fail);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + "s Reise wurde durch den " + `${VisualNovel.enemys.basilisk.name}` + " beendet </p>";
         return "99"; // Bad Ending 
     }
     VisualNovel.lostAgastTheBasilik = lostAgastTheBasilik;
@@ -674,6 +779,7 @@ var VisualNovel;
             VisualNovel.inventoryLoaded = true;
         }
         await VisualNovel.playParagraph(storyTexts.lost_in_The_Woods);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat sich in dem " + `${VisualNovel.locations.forest.name}` + " verlaufen </p>";
         return "99"; // Bad Ending 
     }
     VisualNovel.lostinTheWoods = lostinTheWoods;
@@ -708,13 +814,16 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText.push("<h1>Die Berge</h1>");
         VisualNovel.dataForSave.dayCounter += 1;
         await VisualNovel.showAnnouncement(VisualNovel.locations.grasslands, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.playParagraph(storyTexts.morning);
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.mountains);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.thePaths);
         let chosenWay = await VisualNovel.ƒS.Menu.getInput(differentWays, "dialog_choices");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist an einer Kreuzung angekommen </p>";
         switch (chosenWay) {
             case differentWays.shortWay:
                 return "7";
@@ -863,6 +972,7 @@ var VisualNovel;
             isGiveNothing: "Dem Fremden nichts geben"
         };
         await VisualNovel.playParagraph(storyTexts.encounter_with_the_stranger);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " traff auf einen fremden Mann</p>";
         let answerToTheStranger = await VisualNovel.ƒS.Menu.getInput(answersForStranger, "dialog_choices");
         switch (answerToTheStranger) {
             case answersForStranger.isHandOver:
@@ -872,19 +982,23 @@ var VisualNovel;
                         await VisualNovel.playParagraph(storyTexts.hand_over_the_bottle);
                         VisualNovel.dataForSave.bottleWasGiven = true;
                         VisualNovel.saveInventory();
+                        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat dem Mann geholfen</p>";
                         break;
                     }
                 }
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.protagonist, "<i>Ich besitze leider keine leere flsche.</i>");
             case answersForStranger.isGiveNothing:
                 await VisualNovel.playParagraph(storyTexts.give_nothing_to_the_stranger);
+                VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat dem Mann nicht geholfen</p>";
                 break;
             case answersForStranger.isIgnore:
                 await VisualNovel.playParagraph(storyTexts.ignore_the_stranger);
+                VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat dem  nicht geholfen</p>";
                 break;
             default:
                 break;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das " + `${VisualNovel.locations.mountains.name}` + " erreicht </p>";
         await VisualNovel.playParagraph(storyTexts.back_to_the_way);
         return "6";
     }
@@ -954,18 +1068,21 @@ var VisualNovel;
                 Strange_man_010: { text: "Spring auf, wir fahren direkt los.", pose: VisualNovel.POSES.HAPPY }
             },
             back_to_the_village: {
-                Narrator_011: { text: `${VisualNovel.characters.strange_man.name}` + " und " + `${VisualNovel.dataForSave.nameProtagonist}` + "machten sich auf den Weg in dorf." },
+                Narrator_011: { text: `${VisualNovel.characters.strange_man.name}` + " und " + `${VisualNovel.dataForSave.nameProtagonist}` + " machten sich auf den Weg in dorf." },
                 Narrator_012: { text: "Es wurde Abend und Die Kutsche Kamm im Dorf an." },
                 Protagonist_013: { text: "vielen Dank, ohne ihre Hilfe, hätte ich es vielleicht rechtzeitig Geschäft", pose: VisualNovel.POSES.HAPPY },
-                Narrator_014: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo der Dr.schon auf ihn wartete." }
+                Narrator_014: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo " + `${VisualNovel.characters.doctor.name}` + " schon auf ihn wartete." }
             }
         };
         if (VisualNovel.inventoryLoaded == false) {
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " trifft wieder auf den Fremden Mann </p>";
         await VisualNovel.playParagraph(storyTexts.the_stranger_shows_up_again);
         await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>Der Fremde mann nahm " + `${VisualNovel.dataForSave.nameProtagonist}` + " mit seiner Kutsche mit </p>";
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist wieder im " + `${VisualNovel.locations.village.name}` + " angekommen </p>";
         await VisualNovel.playParagraph(storyTexts.back_to_the_village);
         await VisualNovel.showBlackTransition(VisualNovel.locations.village);
         return "18";
@@ -978,7 +1095,7 @@ var VisualNovel;
         console.log("Scene: the walk to the village");
         let storyTexts = {
             back_to_the_mountain: {
-                Narrator_001: { text: " <name> machte sich auf den auf den Berg." }
+                Narrator_001: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " machte sich auf den auf den Berg." }
             },
             chosen_long_way: {
                 Protagonist_002: { text: "<i>Ich kann jetzt nicht noch was passieren lassen ich nehmen lieber wieder den sicheren Weg.</i>", pose: VisualNovel.POSES.HAPPY }
@@ -999,6 +1116,7 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " begiebt sich wieder id das " + `${VisualNovel.locations.mountains.name}` + "</p>";
         await VisualNovel.playParagraph(storyTexts.back_to_the_mountain);
         if (VisualNovel.dataForSave.dangerousPathChosen) {
             await VisualNovel.playParagraph(storyTexts.chosen_dangerus_way);
@@ -1006,9 +1124,11 @@ var VisualNovel;
         else {
             await VisualNovel.playParagraph(storyTexts.chosen_long_way);
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat den langen Weg genommen </p>";
         await VisualNovel.playParagraph(storyTexts.rest_of_the_way);
         VisualNovel.dataForSave.dayCounter += 3;
         await VisualNovel.showAnnouncement(VisualNovel.locations.village, VisualNovel.announcements.three_days_pass, VisualNovel.transitions.leftTORight);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist wieder im " + `${VisualNovel.locations.village.name}` + " angekommen < /p>";
         console.log("days: " + VisualNovel.dataForSave.dayCounter);
         if (VisualNovel.dataForSave.dayCounter > 7) {
             return "19";
@@ -1032,7 +1152,7 @@ var VisualNovel;
                 Narrator_005: { text: `${VisualNovel.dataForSave.nameProtagonist}` + "verschwendet seine Zeit  und läuft schnell in den pfade weiter." }
             },
             end_of_the_mountain: {
-                Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " kommt am Ende des Gebirges an.Die Sonne ist am schon untergehen" },
+                Narrator_006: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " kommt am Ende des Gebirges an. Die Sonne ist am schon untergehen" },
                 Protagonist_007: { text: "<i>Endlich dort weck.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_008: { text: "<i>Da vorne  ist ein Wald, das muss er sein, der Ort, an dem die Blume wachst.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_009: { text: "<i>Ich brauche jetzt erst mal eine Pause, bevor ich weitergehe.</i>", pose: VisualNovel.POSES.SAD },
@@ -1046,6 +1166,7 @@ var VisualNovel;
         }
         await VisualNovel.playParagraph(storyTexts.success);
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das " + `${VisualNovel.locations.mountains.name}` + " hintersich gelassen</p>";
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
         VisualNovel.dataForSave.dayCounter += 1;
     }
@@ -1064,7 +1185,7 @@ var VisualNovel;
                 Protagonist_005: { text: "<i>und jetzt geht auch schon wieder die Sonne unter </i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_006: { text: "<i>Ich muss wieder auf den nächsten Morgen warten</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_007: { text: "<i>Ich muss die Blume morgen finden sonst komme ich nicht mehr rechtzeitig zurück ins Dorf</i>", pose: VisualNovel.POSES.SAD },
-                Protagonist_008: { text: "<i>Ich werde jetzt erstmal schlafen, morgen muss ich direkt bei Sonnenaufgang wieder los.</i>", pose: VisualNovel.POSES.SAD },
+                Protagonist_008: { text: "<i>Ich werde jetzt erstmal schlafen, morgen muss ich direkt bei Sonnenaufgang wieder los.</i>", pose: VisualNovel.POSES.SAD }
             },
             the_next_morning: {
                 Narrator_009: { text: "Der nächste Morgen ist angebrochen." },
@@ -1078,10 +1199,13 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist wieder am anfang des Waldes </p>");
         await VisualNovel.showBlackTransition(VisualNovel.locations.mountains);
         await VisualNovel.playParagraph(storyTexts.out_of_the_woods);
         await VisualNovel.showAnnouncement(VisualNovel.locations.mountains, VisualNovel.announcements.day_goes_by, VisualNovel.transitions.leftTORight);
         VisualNovel.dataForSave.dayCounter += 1;
+        VisualNovel.dataForSave.logText.push("<h1>Der Wald (2 Versuch) </h1>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>Tag: " + `${VisualNovel.dataForSave.dayCounter}` + "</p>");
         await VisualNovel.playParagraph(storyTexts.the_next_morning);
         return "11";
     }
@@ -1301,8 +1425,10 @@ var VisualNovel;
             if (_item == VisualNovel.items.healing_potion) {
                 VisualNovel.ƒS.Inventory.add(VisualNovel.items.empty_glass_bottle);
                 await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Item: " + `${VisualNovel.items.empty_glass_bottle.name}` + " erhalten");
+                VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.items.empty_glass_bottle.name}` + "wurde eingepackt </p>";
             }
         }
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${_item.name}` + " wurde verwendet </p>";
         await VisualNovel.saveInventory();
     }
 })(VisualNovel || (VisualNovel = {}));
@@ -1388,7 +1514,6 @@ var VisualNovel;
     async function loadInvetory() {
         let dialog = document.querySelector("dialog[type=inventory]");
         let ul = dialog.querySelector("ul");
-        console.log(ul);
         ul.innerHTML = "";
         for (const saveItem of VisualNovel.dataForSave.inventoryItems) {
             for (const item in VisualNovel.items) {

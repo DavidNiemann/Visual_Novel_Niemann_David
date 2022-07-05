@@ -11,7 +11,7 @@ namespace VisualNovel {
                 Narrator_005: { text: `${dataForSave.nameProtagonist}` + "verschwendet seine Zeit  und läuft schnell in den pfade weiter." }
             },
             end_of_the_mountain: {
-                Narrator_006: { text: `${dataForSave.nameProtagonist}` + " kommt am Ende des Gebirges an.Die Sonne ist am schon untergehen" },
+                Narrator_006: { text: `${dataForSave.nameProtagonist}` + " kommt am Ende des Gebirges an. Die Sonne ist am schon untergehen" },
                 Protagonist_007: { text: "<i>Endlich dort weck.</i>", pose: POSES.SAD },
                 Protagonist_008: { text: "<i>Da vorne  ist ein Wald, das muss er sein, der Ort, an dem die Blume wachst.</i>", pose: POSES.SAD },
                 Protagonist_009: { text: "<i>Ich brauche jetzt erst mal eine Pause, bevor ich weitergehe.</i>", pose: POSES.SAD },
@@ -28,6 +28,7 @@ namespace VisualNovel {
         
         await playParagraph(storyTexts.success);
         await showBlackTransition(locations.mountains);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das " + `${locations.mountains.name}` + " hintersich gelassen</p>";
         await playParagraph(storyTexts.end_of_the_mountain);
         dataForSave.dayCounter += 1;
 

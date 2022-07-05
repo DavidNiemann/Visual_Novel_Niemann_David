@@ -4,7 +4,7 @@ namespace VisualNovel {
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
             back_to_the_mountain: {
-                Narrator_001: { text: " <name> machte sich auf den auf den Berg." }
+                Narrator_001: { text: `${dataForSave.nameProtagonist}` + " machte sich auf den auf den Berg." }
             },
             chosen_long_way: {
                 Protagonist_002: { text: "<i>Ich kann jetzt nicht noch was passieren lassen ich nehmen lieber wieder den sicheren Weg.</i>", pose: POSES.HAPPY }
@@ -29,16 +29,18 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " begiebt sich wieder id das " + `${locations.mountains.name}` + "</p>";
         await playParagraph(storyTexts.back_to_the_mountain);
         if (dataForSave.dangerousPathChosen) {
             await playParagraph(storyTexts.chosen_dangerus_way);
         } else {
             await playParagraph(storyTexts.chosen_long_way);
         }
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat den langen Weg genommen </p>";
         await playParagraph(storyTexts.rest_of_the_way);
         dataForSave.dayCounter += 3;
         await showAnnouncement(locations.village, announcements.three_days_pass, transitions.leftTORight);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " ist wieder im " + `${locations.village.name}` + " angekommen < /p>";
         console.log("days: " + dataForSave.dayCounter);
         if (dataForSave.dayCounter > 7) {
             return "19";

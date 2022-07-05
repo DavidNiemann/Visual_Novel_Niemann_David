@@ -88,7 +88,6 @@ namespace VisualNovel {
     export async function loadInvetory(): Promise<void> {
         let dialog: HTMLDialogElement = <HTMLDialogElement>document.querySelector("dialog[type=inventory]");
         let ul: HTMLUListElement = dialog.querySelector("ul");
-        console.log(ul);
         ul.innerHTML = "";
         for (const saveItem of dataForSave.inventoryItems) {
             for (const item in items) {

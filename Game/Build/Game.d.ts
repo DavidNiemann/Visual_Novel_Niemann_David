@@ -16,8 +16,10 @@ declare namespace VisualNovel {
         forestCounter: number;
         dangerousPathChosen: boolean;
         inventoryItems: string[];
+        logText: string[];
     };
     function showCredits(): void;
+    function showAdventureLog(_text: string[]): void;
 }
 declare namespace VisualNovel {
     function cave(): ƒS.SceneReturn;

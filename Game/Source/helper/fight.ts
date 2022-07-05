@@ -169,8 +169,10 @@ namespace VisualNovel {
             if (_item == items.healing_potion) {
                 ƒS.Inventory.add(items.empty_glass_bottle);
                 await ƒS.Speech.tell(characters.narrator, `${dataForSave.nameProtagonist}` + " hat das Item: " + `${items.empty_glass_bottle.name}` + " erhalten");
+                dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${items.empty_glass_bottle.name}` + "wurde eingepackt </p>";
             }
         }
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${_item.name}` + " wurde verwendet </p>";
         await saveInventory();
     }
 

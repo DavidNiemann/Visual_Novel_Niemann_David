@@ -65,20 +65,30 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
+        dataForSave.logText.push("<h1>Die Höle</h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await playParagraph(storyTexts.the_cave);
         await ƒS.Location.show(locations.cave);
         await ƒS.update(1);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat die " + `${locations.cave.name}` + " betreten </p>");
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.3, 1, true);
         await playParagraph(storyTexts.the_fairy);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist der " + `${characters.Fairy.name}` + " begebnet </p>");
+        await ƒS.Location.show(locations.forest);
         await showAnnouncement(locations.cave, announcements.tell_story, transitions.leftTORight);
         await playParagraph(storyTexts.spring_water);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat " + `${items.magic_water.name}` + " erhalten  </p>");
         ƒS.Inventory.add(items.magic_water);
         await saveInventory();
         await showAnnouncement(locations.forest, announcements.day_goes_by, transitions.leftTORight);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.adventureMusic, 0.3, 1, true);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat den " + `${locations.forest.name}` + " verlassen </p>");
         await playParagraph(storyTexts.next_morning);
+        dataForSave.dayCounter += 1;
+        dataForSave.logText.push("<h1>die Rückreise</h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await showBlackTransition(locations.mountains);
         if (dataForSave.bottleWasGiven) {
             return "17";

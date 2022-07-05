@@ -23,9 +23,12 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat den langen Weg genommen </p>";
         await playParagraph(storyTexts.the_decision);
         await showAnnouncement(locations.mountains, announcements.two_days_pass, transitions.leftTORight);
         await playParagraph(storyTexts.end_of_the_mountains);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hatte 2 Tage masche zu Fuß duch das " + `${locations.Gebirge}` + " und es gab keine zwischen Zwischenfälle </p>";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das Ende des " + `${locations.Gebirge}` + " erreicht </p>";
         dataForSave.dayCounter += 2;
     }
 

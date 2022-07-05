@@ -28,6 +28,7 @@ namespace VisualNovel {
         }
 
         await playParagraph(storyTexts.fail);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + "s Reise wurde durch den " + `${enemys.basilisk.name}` + " beendet </p>";
         return "99"; // Bad Ending 
     }
 }

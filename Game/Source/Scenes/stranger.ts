@@ -21,7 +21,7 @@ namespace VisualNovel {
                 Strange_man_005: { text: "oh, ich habe gehört das ist eine Schwere aufgaben viel Erfolg.Und nochmal Danke für die Flasche.", pose: POSES.HAPPY }
             },
             give_nothing_to_the_stranger: {
-                Protagonist_001: { text: "Ich kann ihnen leider nichts geben." , pose: POSES.SAD},
+                Protagonist_001: { text: "Ich kann ihnen leider nichts geben.", pose: POSES.SAD },
                 Strange_man_002: { text: "sehr schade.", pose: POSES.HAPPY },
                 Strange_man_003: { text: "wohin sind sie unterwegs?", pose: POSES.HAPPY },
                 Protagonist_004: { text: "ich bin auf dem Weg zum " + `${locations.forest.name}` + " ich muss eine " + `${items.flower.name}` + " holen, um meine Mutter von Zauber zu befreien.", pose: POSES.SAD },
@@ -50,6 +50,7 @@ namespace VisualNovel {
 
         };
         await playParagraph(storyTexts.encounter_with_the_stranger);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " traff auf einen fremden Mann</p>";
         let answerToTheStranger = await ƒS.Menu.getInput(answersForStranger, "dialog_choices");
 
         switch (answerToTheStranger) {
@@ -61,6 +62,7 @@ namespace VisualNovel {
                         await playParagraph(storyTexts.hand_over_the_bottle);
                         dataForSave.bottleWasGiven = true;
                         saveInventory();
+                        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat dem Mann geholfen</p>";
                         break;
                     }
 
@@ -69,14 +71,17 @@ namespace VisualNovel {
             case answersForStranger.isGiveNothing:
 
                 await playParagraph(storyTexts.give_nothing_to_the_stranger);
+                dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat dem Mann nicht geholfen</p>";
                 break;
             case answersForStranger.isIgnore:
 
                 await playParagraph(storyTexts.ignore_the_stranger);
+                dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat dem  nicht geholfen</p>";
                 break;
             default:
                 break;
         }
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das " + `${locations.mountains.name}` + " erreicht </p>";
         await playParagraph(storyTexts.back_to_the_way);
 
         return "6";

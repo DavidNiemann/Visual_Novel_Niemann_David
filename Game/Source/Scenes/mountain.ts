@@ -35,16 +35,17 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
+        dataForSave.logText.push("<h1>Die Berge</h1>");
         dataForSave.dayCounter += 1;
         await showAnnouncement(locations.grasslands, announcements.day_goes_by, transitions.leftTORight);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await playParagraph(storyTexts.morning);
         await ƒS.Location.show(locations.mountains);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.thePaths);
 
-
         let chosenWay = await ƒS.Menu.getInput(differentWays, "dialog_choices");
-
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " ist an einer Kreuzung angekommen </p>";
         switch (chosenWay) {
             case differentWays.shortWay:
                 return "7";

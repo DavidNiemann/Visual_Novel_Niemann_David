@@ -11,7 +11,7 @@ namespace VisualNovel {
                 Protagonist_005: { text: "<i> Es ist hoffnungslos ich sollte nur noch einen Ausgang suchen. </i>", pose: POSES.SAD },
                 Narrator_006: { text: `${dataForSave.nameProtagonist}` + " wurde nicht mehr in seinem Heimat Dorf gesehen." }
             }
-            
+
 
 
         };
@@ -22,8 +22,9 @@ namespace VisualNovel {
         }
 
         await playParagraph(storyTexts.lost_in_The_Woods);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat sich in dem " + `${locations.forest.name}` + " verlaufen </p>";
         return "99"; // Bad Ending 
-       
+
     }
 
 

@@ -26,6 +26,12 @@ speech {
   display: flex;
 }
 
+dialog[type=text]>ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
 dialog[type=splash] {
   position: absolute;
   left: 0px;

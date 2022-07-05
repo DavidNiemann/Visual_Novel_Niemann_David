@@ -25,7 +25,7 @@ namespace VisualNovel {
                 Narrator_015: { text: `${dataForSave.nameProtagonist}` + " schreckt sofort auf und greift an zu seinem Schwert." },
                 Protagonist_016: { text: "<i>Ich hätte mich nicht zu früh freuen sollen.</i>", pose: POSES.SAD },
                 Narrator_017: { text: "Ein kleiner Basilisk landet vor ihm" },
-                Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versiuchen", pose: POSES.SAD }
+                Protagonist_018: { text: "<i>Den kann ich nicht besiegen, aber ich habe keine andere Wahl wie es zu versuchen", pose: POSES.SAD }
             }
 
         };
@@ -34,16 +34,18 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-        
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat den Gerfärlichen Weg genommen </p>";
         await playParagraph(storyTexts.theDecision);
         await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.doubting);
         await showBlackTransition(locations.mountains);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das Ende Der Klippe erreicht </p>";
         await playParagraph(storyTexts.the_end_of_the_cliff);
         await showBlackTransition(locations.mountains);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " wurde von einem " + `${enemys.basilisk.name}` + " angegriffen </p>";
         let success = await fight(enemys.basilisk);
         console.log(success);
-
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat gegen den " + `${enemys.basilisk.name}` + (success ? " gewonnen</p>" : " verloren</p>");
         if (success) {
             return "9";
         }

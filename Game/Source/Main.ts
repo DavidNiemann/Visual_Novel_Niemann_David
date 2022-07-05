@@ -5,7 +5,7 @@ namespace VisualNovel {//https://itch.io/game-assets
     export type StoryText = { [textname: string]: { text: string, pose?: POSES } };
     export let invetoryOpen: boolean = false;
     export let inventoryLoaded: boolean = false;
-   
+    let currentLogPage: number = 0;
 
     export let dataForSave: {
         nameProtagonist: string;
@@ -14,20 +14,75 @@ namespace VisualNovel {//https://itch.io/game-assets
         forestCounter: number;
         dangerousPathChosen: boolean;
         inventoryItems: string[];
+        logText: string[];
     } = {
         nameProtagonist: "Protagonist",
         dayCounter: 0,
         bottleWasGiven: false,
         forestCounter: 0,
         dangerousPathChosen: false,
-        inventoryItems: []
-        
+        inventoryItems: [],
+        logText: []
+
     };
 
     export function showCredits(): void {
         ƒS.Text.setClass("Credits");
-        ƒS.Text.print("David Niemann");
+        ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann");
+
     }
+
+    export function showAdventureLog(_text: string[]): void {
+        ƒS.Text.setClass("Adventure_Log");
+        if (_text.length == 0) {
+            return;
+        }
+        ƒS.Text.print(_text[currentLogPage]);
+        let dialog: HTMLDialogElement = <HTMLDialogElement>document.querySelector("dialog[class=Adventure_Log]");
+        let buttonDiv: HTMLDivElement = document.createElement("div");
+        dialog.appendChild(buttonDiv);
+        let forwardButton: HTMLButtonElement = document.createElement("button");
+        let closeButton: HTMLButtonElement = document.createElement("button");
+        let backwardButton: HTMLButtonElement = document.createElement("button");
+        closeButton.addEventListener("click", () => {
+            //@ts-ignore
+            dialog.close();
+        });
+        closeButton.innerHTML = "Schliesen";
+        forwardButton.addEventListener("click", () => {
+            currentLogPage++;
+            showAdventureLog(_text);
+        });
+        forwardButton.innerHTML = "nächste Seite";
+        backwardButton.addEventListener("click", () => {
+            currentLogPage--;
+            showAdventureLog(_text);
+        });
+        backwardButton.innerHTML = "voherige Seite";
+        buttonDiv.appendChild(backwardButton);
+        buttonDiv.appendChild(closeButton);
+        buttonDiv.appendChild(forwardButton);
+
+
+        if (currentLogPage <= 0) {
+            if (_text.length == 1) {
+                forwardButton.disabled = true;
+                backwardButton.disabled = true;
+            } else {
+                forwardButton.disabled = false;
+                backwardButton.disabled = true;
+            }
+        } else if (currentLogPage >= _text.length - 1) {
+            forwardButton.disabled = true;
+            backwardButton.disabled = false;
+        } else {
+            forwardButton.disabled = false;
+            backwardButton.disabled = false;
+        }
+
+    }
+
+
 
     /** MENÜ **/
     let inGameMenuButtens = {
@@ -61,12 +116,12 @@ namespace VisualNovel {//https://itch.io/game-assets
                 break;
         }
     }
-  
+
     document.addEventListener("keydown", hndKeyPress);
     async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
         switch (_event.code) {
             case ƒ.KEYBOARD_CODE.F8:
-              
+
                 await ƒS.Progress.save();
                 break;
             case ƒ.KEYBOARD_CODE.F9:
@@ -90,6 +145,9 @@ namespace VisualNovel {//https://itch.io/game-assets
                     ƒS.Inventory.open();
                     invetoryOpen = true;
                 }
+                break;
+            case ƒ.KEYBOARD_CODE.L:
+                showAdventureLog(dataForSave.logText);
                 break;
             default:
                 break;
@@ -128,7 +186,7 @@ namespace VisualNovel {//https://itch.io/game-assets
 
         let uiElement: HTMLElement = document.querySelector("[type=inventory]");
         dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-      
+
         // start the sequence
         ƒS.Progress.go(scenes);
     }

@@ -11,7 +11,7 @@ namespace VisualNovel {
                 Protagonist_005: { text: "<i>und jetzt geht auch schon wieder die Sonne unter </i>", pose: POSES.SAD },
                 Protagonist_006: { text: "<i>Ich muss wieder auf den nächsten Morgen warten</i>", pose: POSES.SAD },
                 Protagonist_007: { text: "<i>Ich muss die Blume morgen finden sonst komme ich nicht mehr rechtzeitig zurück ins Dorf</i>", pose: POSES.SAD },
-                Protagonist_008: { text: "<i>Ich werde jetzt erstmal schlafen, morgen muss ich direkt bei Sonnenaufgang wieder los.</i>", pose: POSES.SAD },
+                Protagonist_008: { text: "<i>Ich werde jetzt erstmal schlafen, morgen muss ich direkt bei Sonnenaufgang wieder los.</i>", pose: POSES.SAD }
             },
             the_next_morning: {
                 Narrator_009: { text: "Der nächste Morgen ist angebrochen." },
@@ -28,11 +28,13 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist wieder am anfang des Waldes </p>");
         await showBlackTransition(locations.mountains);
         await playParagraph(storyTexts.out_of_the_woods);
         await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
         dataForSave.dayCounter += 1;
+        dataForSave.logText.push("<h1>Der Wald (2 Versuch) </h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await playParagraph(storyTexts.the_next_morning);
         return "11";
     }

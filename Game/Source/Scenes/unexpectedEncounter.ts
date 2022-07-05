@@ -16,10 +16,10 @@ namespace VisualNovel {
                 Strange_man_010: { text: "Spring auf, wir fahren direkt los.", pose: POSES.HAPPY }
             },
             back_to_the_village: {
-                Narrator_011: { text: `${characters.strange_man.name}` + " und " + `${dataForSave.nameProtagonist}` + "machten sich auf den Weg in dorf." },
+                Narrator_011: { text: `${characters.strange_man.name}` + " und " + `${dataForSave.nameProtagonist}` + " machten sich auf den Weg in dorf." },
                 Narrator_012: { text: "Es wurde Abend und Die Kutsche Kamm im Dorf an." },
                 Protagonist_013: { text: "vielen Dank, ohne ihre Hilfe, hätte ich es vielleicht rechtzeitig Geschäft", pose: POSES.HAPPY },
-                Narrator_014: { text: `${dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo der Dr.schon auf ihn wartete." }
+                Narrator_014: { text: `${dataForSave.nameProtagonist}` + " ging zu seinem Haus, wo " + `${characters.doctor.name}` + " schon auf ihn wartete." }
             }
 
         };
@@ -28,9 +28,11 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-        
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " trifft wieder auf den Fremden Mann </p>";
         await playParagraph(storyTexts.the_stranger_shows_up_again);
         await showAnnouncement(locations.village, announcements.day_goes_by, transitions.leftTORight);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>Der Fremde mann nahm " + `${dataForSave.nameProtagonist}` + " mit seiner Kutsche mit </p>";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " ist wieder im " + `${locations.village.name}` + " angekommen </p>";
         await playParagraph(storyTexts.back_to_the_village);
         await showBlackTransition(locations.village);
         return "18";

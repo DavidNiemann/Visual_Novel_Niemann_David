@@ -63,7 +63,7 @@ namespace VisualNovel {
                 Protagonist_043: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: POSES.SAD },
                 Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: POSES.SAD },
                 Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: POSES.SAD },
-                Narrator_046: { text: `${dataForSave.nameProtagonist}` + "rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
+                Narrator_046: { text: `${dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: POSES.SAD },
                 Doctor_049: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: POSES.SAD },
@@ -78,7 +78,8 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-
+        dataForSave.logText.push("<h1>das Dorf</h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
         await playParagraph(storyTexts.introduction);
         //TODO:  übergang zum feld
         await ƒS.Location.show(locations.village);
@@ -86,10 +87,12 @@ namespace VisualNovel {
         await playParagraph(storyTexts.before_the_accident);
         await startAnimations();
         await playParagraph(storyTexts.after_the_accident);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${characters.mother.name}` + " wurde von einem dem Zauaber eienr Alraune versteinert </p>";
         //TODO: Schawarzer hintergund
         await ƒS.Location.show(announcements.black);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.get_help);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " holte hilfe </p>";
         //TODO: zurück aufs Feld
         await ƒS.Location.show(locations.village);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
@@ -102,10 +105,20 @@ namespace VisualNovel {
         await ƒS.Location.show(locations.village);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.about_the_way);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<ul> <h3> tipps von " + `${characters.doctor.name}` + ":</h3>  ";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<li> Auf der" + `${locations.grasslands.name}`  + "können schleime sein</li>  ";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<li> in dem" + `${locations.mountains.name}`  + " giebt es gefähliche Monster</li>  ";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<li> im " + `${locations.forest.name}` + " scheinen sich Leute zu verlaufen </li>  ";
+        dataForSave.logText[dataForSave.logText.length - 1] += "<li> um die" + `${items.flower.name}` + " zu finden geh richtung Licht </li>  ";
+        dataForSave.logText[dataForSave.logText.length - 1] += "</ul>";
         ƒS.Inventory.add(items.healing_potion);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${items.healing_potion.name}` + "wurde eingepackt </p>";
         ƒS.Inventory.add(items.sword);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${items.sword.name}` + "wurde eingepackt </p>";
         ƒS.Inventory.add(items.water_bag);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${items.water_bag.name}` + "wurde eingepackt </p>";
         ƒS.Inventory.add(items.loaf_of_bread);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${items.loaf_of_bread.name}` + "wurde eingepackt </p>";
         await saveInventory();
         return "4";
     }

@@ -27,13 +27,17 @@ namespace VisualNovel {
             await loadInvetory();
             inventoryLoaded = true;
         }
-
+        dataForSave.logText.push("<h1>die Wiese</h1>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + "s reise zu dem " + `${locations.forest.name}` + " um die  " + `${items.flower.name}` + " zu finden und seine Mutter zu retten hat begonnen</p>");
         await ƒS.Location.show(locations.grasslands);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.before_the_fight);
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " wurde von einem " + `${enemys.slime.name}` + " angegriffen </p>";
         let success = await fight(enemys.slime);
         console.log(success);
+        dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat gegen den" + `${enemys.slime.name}` + (success ? " gewonnen</p>" : " verloren</p>");
         await ƒS.Sound.fade(sounds.adventureMusic, 0.5, 1, true);
         await playParagraph(storyTexts.after_the_fight);
         return "5";

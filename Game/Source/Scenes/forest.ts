@@ -7,7 +7,7 @@ namespace VisualNovel {
             first_encounter: {
                 Narrator_001: { text: `${dataForSave.nameProtagonist}` + " ist wach und wartet bis die Hellgenug ist, um in den Wald zu gehen." },
                 Protagonist_002: { text: "<i>Es sollte jetzt hell genug sein ich haben nur noch" + `${dataForSave.dayCounter}` + " bis  es zu spät ist.</i>", pose: POSES.HAPPY },
-                Narrator_003: { text: `${dataForSave.nameProtagonist}` + " betritt den Wald." },
+                Narrator_003: { text: `${dataForSave.nameProtagonist}` + " betritt den Wald." }
             },
             in_the_forest: {
                 Protagonist_004: { text: "<i>Es sieht aus als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: POSES.HAPPY },
@@ -46,7 +46,7 @@ namespace VisualNovel {
         };
         let crossingPaths = {
             right: "Nach rechts",
-            straight: "Gerade Aus",
+            straight: "Gerade sus",
             left: "Nach links"
         };
 
@@ -55,31 +55,38 @@ namespace VisualNovel {
             inventoryLoaded = true;
         }
 
-
         if (dataForSave.forestCounter == 0) {
+            dataForSave.logText.push("<h1>Der Wald</h1>");
+            dataForSave.logText[dataForSave.logText.length - 1] += ("<p>Tag: " + `${dataForSave.dayCounter}` + "</p>");
             await showAnnouncement(locations.mountains, announcements.day_goes_by, transitions.leftTORight);
             await playParagraph(storyTexts.first_encounter);
+            dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat den " + `${locations.forest.name}` + "betreten </p>");
             await ƒS.Location.show(locations.forest);
             await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
             await playParagraph(storyTexts.in_the_forest);
         } else {
             await ƒS.Location.show(locations.forest);
             await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
+            dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " hat den " + `${locations.forest.name}` + "betreten </p>");
         }
         await playParagraph(storyTexts.first_crossing);
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist an einer Kreuzung angekommen</p>");
         let firstDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist " + (firstDirection.toLocaleLowerCase()) + " gegangen </p>");
         await showBlackTransition(locations.forest);
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.on_the_way);
         }
         await playParagraph(storyTexts.second_crossing);
         let secondDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist " + (secondDirection.toLocaleLowerCase()) + " gegangen </p>");
         await showBlackTransition(locations.forest);
         if (dataForSave.forestCounter == 0) {
             await playParagraph(storyTexts.further_along_the_way);
         }
         await playParagraph(storyTexts.third_crossing);
         let thirdDirection = await ƒS.Menu.getInput(crossingPaths, "dialog_choices");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist " + (thirdDirection.toLocaleLowerCase()) + " gegangen </p>");
         await showBlackTransition(locations.forest);
 
 
