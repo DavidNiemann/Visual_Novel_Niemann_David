@@ -24,7 +24,7 @@ namespace VisualNovel {
             inventoryLoaded = true;
         }
   
-        await ƒS.Sound.fade(sounds.adventureMusic, 0.5, 1, true);
+        await ƒS.Sound.fade(sounds.adventureMusic, 0.3, 1, true);
         await playParagraph(storyTexts.backstory);
         await ƒS.Speech.tell(characters.narrator, "Dieser Junge heißt ");
         dataForSave.nameProtagonist = await ƒS.Speech.getInput();

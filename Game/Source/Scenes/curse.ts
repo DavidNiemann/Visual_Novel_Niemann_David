@@ -62,7 +62,9 @@ namespace VisualNovel {
                 Protagonist_042: { text: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>", pose: POSES.SAD },
                 Protagonist_043: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: POSES.SAD },
                 Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: POSES.SAD },
-                Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: POSES.SAD },
+                Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: POSES.SAD }
+            },
+            departure:{
                 Narrator_046: { text: `${dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: POSES.SAD },
@@ -105,6 +107,9 @@ namespace VisualNovel {
         await ƒS.Location.show(locations.village);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.about_the_way);
+        await ƒS.Sound.fade(sounds.adventureMusic, 0, 3, false);
+        await ƒS.Sound.fade(sounds.departureMusic, 0.3, 3, true);
+        await playParagraph(storyTexts.departure);
         dataForSave.logText[dataForSave.logText.length - 1] += "<ul> <h3> tipps von " + `${characters.doctor.name}` + ":</h3>  ";
         dataForSave.logText[dataForSave.logText.length - 1] += "<li> Auf der" + `${locations.grasslands.name}`  + "können schleime sein</li>  ";
         dataForSave.logText[dataForSave.logText.length - 1] += "<li> in dem" + `${locations.mountains.name}`  + " giebt es gefähliche Monster</li>  ";

@@ -369,7 +369,9 @@ var VisualNovel;
                 Protagonist_042: { text: "<i>Mein Vater hätte es sicher geschafft, ich wollte immer so sein, aber nach seinem Tod war mir bewusst was führ gefahren da daraus sind, und hatte nur noch Angst.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_043: { text: "<i>Ich muss es versuchen, Sie ich bin daran Schuld die Alraune aus dem Boden zu gezogen zu haben.</i>", pose: VisualNovel.POSES.SAD },
                 Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: VisualNovel.POSES.SAD },
-                Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD },
+                Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: VisualNovel.POSES.SAD }
+            },
+            departure: {
                 Narrator_046: { text: `${VisualNovel.dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${VisualNovel.items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: VisualNovel.POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${VisualNovel.items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: VisualNovel.POSES.SAD },
@@ -409,6 +411,9 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.village);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.about_the_way);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 3, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.departureMusic, 0.3, 3, true);
+        await VisualNovel.playParagraph(storyTexts.departure);
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<ul> <h3> tipps von " + `${VisualNovel.characters.doctor.name}` + ":</h3>  ";
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> Auf der" + `${VisualNovel.locations.grasslands.name}` + "können schleime sein</li>  ";
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<li> in dem" + `${VisualNovel.locations.mountains.name}` + " giebt es gefähliche Monster</li>  ";
@@ -685,7 +690,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.grasslands);
         await VisualNovel.ƒS.update(VisualNovel.transitions.leftTORight.duration, VisualNovel.transitions.leftTORight.alpha, VisualNovel.transitions.leftTORight.edge);
         await VisualNovel.playParagraph(storyTexts.before_the_fight);
-        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.departureMusic, 0, 1, false);
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " wurde von einem " + `${VisualNovel.enemys.slime.name}` + " angegriffen </p>";
         let success = await VisualNovel.fight(VisualNovel.enemys.slime);
         console.log(success);
@@ -858,7 +863,7 @@ var VisualNovel;
             await VisualNovel.loadInvetory();
             VisualNovel.inventoryLoaded = true;
         }
-        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.5, 1, true);
+        await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.backstory);
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, "Dieser Junge heißt ");
         VisualNovel.dataForSave.nameProtagonist = await VisualNovel.ƒS.Speech.getInput();
@@ -1786,7 +1791,8 @@ var VisualNovel;
     VisualNovel.sounds = {
         fightMusic: "./Audio/fightMusic.mp3",
         adventureMusic: "./Audio/adventureMusic.mp3",
-        mysteriousMusic: "./Audio/mysteriousMusic.mp3"
+        mysteriousMusic: "./Audio/mysteriousMusic.mp3",
+        departureMusic: "./Audio/departureMusic.mp3"
     };
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;

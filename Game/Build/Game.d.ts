@@ -186,6 +186,7 @@ declare namespace VisualNovel {
         fightMusic: string;
         adventureMusic: string;
         mysteriousMusic: string;
+        departureMusic: string;
     };
 }
 declare namespace VisualNovel {

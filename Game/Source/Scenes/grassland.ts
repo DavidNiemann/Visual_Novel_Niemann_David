@@ -33,7 +33,7 @@ namespace VisualNovel {
         await ƒS.Location.show(locations.grasslands);
         await ƒS.update(transitions.leftTORight.duration, transitions.leftTORight.alpha, transitions.leftTORight.edge);
         await playParagraph(storyTexts.before_the_fight);
-        await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
+        await ƒS.Sound.fade(sounds.departureMusic, 0, 1, false);
         dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " wurde von einem " + `${enemys.slime.name}` + " angegriffen </p>";
         let success = await fight(enemys.slime);
         console.log(success);
