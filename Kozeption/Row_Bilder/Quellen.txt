@@ -7,3 +7,11 @@ Mountains: https://pixabay.com/de/photos/berge-gipfel-schnee-landschaft-276995/
 Wiese: https://pixabay.com/de/photos/feld-gras-natur-landschaft-himmel-5429112/
 
 cave: Photo by Tsvetoslav Hristov from Pexels: https://www.pexels.com/photo/tree-under-watergrasspaont-2499862/
+
+potion: breahttps://www.flaticon.com/free-icon/potion_129094?term=potion&page=1&position=2&page=1&position=2&related_id=129094&origin=tag
+
+bread: https://www.flaticon.com/free-icon/bread_3348078?term=bread&page=1&position=7&page=1&position=7&related_id=3348078&origin=tag
+
+sword: https://www.flaticon.com/free-icon/sword_7202245?term=sword&page=1&position=32&page=1&position=32&related_id=7202245&origin=tag
+
+flower: https://www.flaticon.com/de/premium-icon/blume_1490628?term=blumen&page=1&position=3&page=1&position=3&related_id=1490628&origin=tag
