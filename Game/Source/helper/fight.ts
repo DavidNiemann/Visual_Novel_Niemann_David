@@ -40,8 +40,8 @@ namespace VisualNovel {
 
     let actions = {
         attack: "angreifen",
-        parry: "parieren", // 25% + schaden verursachen 
-        dodge: "ausweichen", // 50%
+        parry: "parieren", // 50% + schaden verursachen 
+        dodge: "ausweichen", // 75%
         useItems: "Gegenstand benutzen"
     };
 
@@ -85,6 +85,7 @@ namespace VisualNovel {
                 case actions.dodge:
 
                     let dodgeSuccessful: number = Math.random();
+                    console.log(dodgeSuccessful);
                     if (dodgeSuccessful <= dodgeChance) {
                         await ƒS.Speech.tell(characters.narrator, fightText.dodgeSuccessful);
                     }
@@ -96,6 +97,7 @@ namespace VisualNovel {
                 case actions.parry:
 
                     let parrySuccessful: number = Math.random();
+                    console.log(parrySuccessful);
                     if (parrySuccessful <= parryChance) {
                         enemyCurrentHealth -= damage;
                         await ƒS.Speech.tell(characters.narrator, fightText.parrySuccessful);

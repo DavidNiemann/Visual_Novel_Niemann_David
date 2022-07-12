@@ -1352,6 +1352,7 @@ var VisualNovel;
                     break;
                 case actions.dodge:
                     let dodgeSuccessful = Math.random();
+                    console.log(dodgeSuccessful);
                     if (dodgeSuccessful <= dodgeChance) {
                         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.dodgeSuccessful);
                     }
@@ -1362,6 +1363,7 @@ var VisualNovel;
                     break;
                 case actions.parry:
                     let parrySuccessful = Math.random();
+                    console.log(parrySuccessful);
                     if (parrySuccessful <= parryChance) {
                         enemyCurrentHealth -= damage;
                         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.narrator, fightText.parrySuccessful);
