@@ -17,7 +17,7 @@ var VisualNovel;
     };
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("Credits");
-        VisualNovel.ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann");
+        VisualNovel.ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann </br> charakter assets:  <a href='https://sutemo.itch.io/'>sutemo: sutemo.itch.io</a>");
     }
     VisualNovel.showCredits = showCredits;
     function showAdventureLog(_text) {

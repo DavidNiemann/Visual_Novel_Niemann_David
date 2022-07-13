@@ -28,7 +28,7 @@ namespace VisualNovel {//https://itch.io/game-assets
 
     export function showCredits(): void {
         ƒS.Text.setClass("Credits");
-        ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann");
+        ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann </br> charakter assets:  <a href='https://sutemo.itch.io/'>sutemo: sutemo.itch.io</a>");
 
     }
 
