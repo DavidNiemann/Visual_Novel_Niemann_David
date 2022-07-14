@@ -30,12 +30,12 @@ namespace VisualNovel {
                 Narrator_020: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },
             get_help: {
-                Narrator_021: { text: `${dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arztl, und schildert ihm die Situation," },
+                Narrator_021: { text: `${dataForSave.nameProtagonist}` + " geht sich zu dem Dorf Arzt, und schildert ihm die Situation," },
                 Narrator_022: { text: "Der Arzt namens Dr.Bader ging und " + `${dataForSave.nameProtagonist}` + " die gingen schnellstmöglich zum Feld zurück." }
             },
             talk_with_the_doctor: {
                 Protagonist_023: { text: "Helfen sie bitte meiner Mutter.", pose: POSES.SAD },
-                Doctor_024: { text: "Ich ferstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.", pose: POSES.SAD },
+                Doctor_024: { text: "Ich verstehe jetzt was, passiert ist.Sie hat den schrei einer Alraune gehört und wurde dadurch zu stein verwandelt.", pose: POSES.SAD },
                 Doctor_025: { text: "Ich kann ihr leider nicht helfen, keiner meiner Gegenstände kann gegen so ein mächtiger Zauber wie diesen etwas ausrichten.", pose: POSES.SAD },
                 Protagonist_026: { text: "Es muss doch irgendetwas geben was wir tun können, sie ist das Einzige was ich habe.", pose: POSES.SAD },
                 Doctor_027: { text: "bringen wir sie erstmals zurück ins Dorf.", pose: POSES.SAD }
@@ -47,14 +47,14 @@ namespace VisualNovel {
             about_the_way: {
                 Protagonist_029: { text: "Bitte Dr.Bader es muss doch irgendwas geben was man tun kann, ich flehe sie an ich würde alles tun.", pose: POSES.SAD },
                 Doctor_030: { text: "Wir brauchten jemand oder etwas was mächtig genug, ist, um diesen Zauber zu lösen und dies innerhalb der nächsten <b>7</b> Tage, danach, kann man nicht mehr für sie tun", pose: POSES.SAD },
-                Doctor_031: { text: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${locations.forest.name}` + "  Zu finden ist.", pose: POSES.SAD },
-                Doctor_032: { text: "Es wir erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.", pose: POSES.SAD },
+                Doctor_031: { text: "Das einzige, das Mir bekannt wehre, ist ein Magische pflanze, die im " + `${locations.forest.name}` + " zu finden ist.", pose: POSES.SAD },
+                Doctor_032: { text: "Es wird erzählt, dass sie inmitten dieses Waldes eine kleine Wiese ist, auf die Die Sonne durchs Dickicht leichtet. Auf dieser Wiese soll die Blume wachsen und magisch von der Sonne angeleuchtet werden.", pose: POSES.SAD },
                 Doctor_033: { text: "Dieser ist aber ein 3 Tages marsch entfernt und der Weg ist sehr gefährlich.", pose: POSES.SAD },
                 Protagonist_034: { text: "Ist mir egal ich muss es versuchen, wie komme ich zu dem Wald.", pose: POSES.SAD },
                 Doctor_035: { text: "Du musst nach Norden zu den " + `${locations.grasslands.name}` + ", aber pass auf dort wimmelt es von Schleimen sie sind nicht zwar nicht stark, aber man sollte sich trotzdem von ihnen in Acht nehme.", pose: POSES.SAD },
                 Doctor_036: { text: "nach den Felder kommst du zu dem " + `${locations.mountains.name}` + ", wenn du dich beeilst, kommst du noch bis heute Abend dort an.", pose: POSES.SAD },
                 Doctor_037: { text: "ein Pfad führt durch das Gebirge, über diesen Weg ist es ein 2 Tages Marsch.", pose: POSES.SAD },
-                Doctor_038: { text: "er ist ziemlich sicher aber ist lange. ", pose: POSES.SAD },
+                Doctor_038: { text: "er ist dort sicher, aber es ist ein langer Weg.", pose: POSES.SAD },
                 Doctor_039: { text: "Man kann auch eine Klippe durch den Berg gehen, aber dort ist es steil und manchem tauchen dort Monster auf.", pose: POSES.SAD },
                 Doctor_040: { text: "Dahinter ist schon der " + `${locations.forest.name}` + " .Die Blume scheint tief im Wald zu wachsen. ", pose: POSES.SAD },
                 Doctor_041: { text: "Man sagt das in dem Wald ein endloses Labyrinth ist und schon Ewigkeiten Kamm keiner mehr aus dem Wald der Versucht hat die Blume zu pflücken.", pose: POSES.SAD },
@@ -64,7 +64,7 @@ namespace VisualNovel {
                 Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: POSES.SAD }
             },
             departure:{
-                Narrator_046: { text: `${dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater, was jetzt eher einem Doch nach der grösser ist und eilt zur Tür." },
+                Narrator_046: { text: `${dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater bekommen hatte, welches einem Dolch von der Größe entspricht und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: POSES.SAD },
                 Doctor_049: { text: "Ich hoffe du wirst ich nicht brauchen.", pose: POSES.SAD },
