@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function wrongWay(): ƒS.SceneReturn {
+    export async function theWrongWay(): ƒS.SceneReturn {
         console.log("Scene:  wrong Way");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

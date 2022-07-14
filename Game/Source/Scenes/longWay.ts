@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function longWay(): ƒS.SceneReturn {
+    export async function theLongWay(): ƒS.SceneReturn {
         console.log("Scene: long way");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

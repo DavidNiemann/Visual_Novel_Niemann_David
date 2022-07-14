@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function flower(): ƒS.SceneReturn {
+    export async function theFlowerField(): ƒS.SceneReturn {
         console.log("Scene:  flower");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

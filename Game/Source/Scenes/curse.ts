@@ -5,7 +5,7 @@ namespace VisualNovel {
         let storyTexts: { [paragraphName: string]: StoryText } = {
             introduction: {
                 Narrator_001: { text: "Es gingen viele Jahre in die Lande." },
-                Narrator_002: { text: "Seitdem Tod des Vaters, hatte die Familie es nicht  immer leicht, da sie nicht viel Geld hatten." },
+                Narrator_002: { text: "Seitdem Tod des Vaters, hatte die Familie es nicht immer leicht, da sie nicht viel Geld hatten." },
                 Narrator_003: { text: "Die verdienten sich genug, indem sie Gemüse, selbst der Junge hat direkt nach dem Tod seiner Mutter auf dem Felt geholfen. " }
             },
             before_the_accident: {
@@ -13,20 +13,19 @@ namespace VisualNovel {
                 Protagonist_005: { text: "ich komme gleich ich esse Kutz noch ein Stück Brot.", pose: POSES.HAPPY },
                 Mother_006: { text: "ok ich gehe schon mal vor, komm dann nach.", pose: POSES.HAPPY },
                 Narrator_007: { text: "nach dem " + `${dataForSave.nameProtagonist}` + " sein Brot gegessen hatte machte er sich auch auf dem Weg zum Feld." },
-                Mother_008: { text: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen.", pose: POSES.HAPPY },
-                Protagonist_009: { text: "mutter schau mal das ist aber eine komische Karotte.", pose: POSES.HAPPY },
+                Narrator_008: { text: "Beim Feld angekommen fing er seiner Mutter zu helfen Karotten aus der Erde zu ziehen." },
+                Protagonist_009: { text: "Mutter schau mal das ist aber eine komische Karotte.", pose: POSES.HAPPY },
                 Narrator_010: { text: "der Junge fängt an der Pflanze zu ziehen." },
                 Protagonist_011: { text: "die geht aber schwer raus.", pose: POSES.HAPPY },
                 Narrator_012: { text: "Mutter dreht sich." },
-                Mother_013: { text: "Mutter HALTTTTTT, das ist eine ….", pose: POSES.FRIGHTEND }
-                //U001:  { text: "AAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" -> Sound
+                Mother_013: { text: "HALTTTTTT, das ist eine ….", pose: POSES.FRIGHTEND }
             },
             after_the_accident: {
                 Mother_014: { text: "….", pose: POSES.NEUTRAL },
-                Narrator_015: { text: "der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${dataForSave.nameProtagonist}` + " und hebt in den Ohren zu." },
+                Narrator_015: { text: "Der Junge zieht die Wurzel raus, die Mutter springt zu  " + `${dataForSave.nameProtagonist}` + "hin und hebt in den Ohren zu." },
                 Narrator_016: { text: "es wurde still und der junge dreht sich zu seiner Mutter um." },
                 Mother_017: { text: "ich liebe….", pose: POSES.NEUTRAL },
-                Protagonist_018: { text: "Mutter, mutter…MAMAAAAAAA.", pose: POSES.FRIGHTEND },
+                Protagonist_018: { text: "Mutter, Mutter…MAMAAAAAAA.", pose: POSES.FRIGHTEND },
                 Protagonist_019: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: POSES.FRIGHTEND },
                 Narrator_020: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },

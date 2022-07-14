@@ -17,7 +17,7 @@ namespace VisualNovel {
             },
             childhoodStory_Part2: {
                 Narrator_001: { text: "ein Bote Kamm vorbei und brachte der Familie einen Brief in dem Stand," },
-                Narrator_002: { text: "dass Der Vater bei einem Auftrag einen Händler zu begleiten von <Monster> überfallen wurde und dabei stab." },
+                Narrator_002: { text: "dass Der Vater bei einem Auftrag einen Händler zu begleiten von Monstern überfallen wurde und dabei stab." },
                 Narrator_003: { text: "Der Junge fing auf diese Nachricht an zu weinen." },
                 Narrator_004: { text: "Er schaute immer zu seinem Vater auf und wollte auch ein Abenteurer wie sein Vater werden." }
             }

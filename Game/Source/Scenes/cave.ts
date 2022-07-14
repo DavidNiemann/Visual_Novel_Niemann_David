@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function cave(): ƒS.SceneReturn {
+    export async function theCave(): ƒS.SceneReturn {
         console.log("Scene: the cave");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function dangerousWay(): ƒS.SceneReturn {
+    export async function theDangerousWay(): ƒS.SceneReturn {
         console.log("Scene: dangerous way");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {

@@ -1,5 +1,5 @@
 namespace VisualNovel {
-    export async function winAgastTheBasilik(): ƒS.SceneReturn {
+    export async function theWinAgastTheBasilik(): ƒS.SceneReturn {
         console.log("Scene: win agast the Basilik");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
