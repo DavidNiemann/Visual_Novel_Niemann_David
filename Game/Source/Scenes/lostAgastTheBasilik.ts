@@ -5,7 +5,7 @@ namespace VisualNovel {
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
             fail: {
-                Narrator_001: { text: "Der Basilisk hat " + `${dataForSave.nameProtagonist}` + " eine Schwerte Wunde am Arm verpasst.Er Kanna um noch seine Waffe halten." },
+                Narrator_001: { text: "Der Basilisk hat " + `${dataForSave.nameProtagonist}` + " eine Schwerte Wunde am Arm verpasst. Er Kanna um noch seine Waffe halten." },
                 Protagonist_002: { text: "<i>Das wars Wohl mit mir!</i>", pose: POSES.SAD },
                 Narrator_003: { text: " Der Basilisk macht sich bereit auf  " + `${dataForSave.nameProtagonist}` + " den letzten schlag zu verpassen." },
                 Protagonist_004: { text: "<i>Ich habe keine Kraft mehr, ich muss ausweichen.</i>", pose: POSES.SAD },

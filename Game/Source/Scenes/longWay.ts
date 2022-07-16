@@ -5,10 +5,10 @@ namespace VisualNovel {
         let storyTexts: { [paragraphName: string]: StoryText } = {
             the_decision: {
                 Protagonist_001: { text: "<i>ich nehme den kurzen Weg. Das wichtige ist, das ich auch ankomme. </i>", pose: POSES.HAPPY },
-                Narrator_002: { text: `${dataForSave.nameProtagonist}` + " macht ging den langen Weg entlang." }
+                Narrator_002: { text: `${dataForSave.nameProtagonist}` + " ging den langen Weg entlang." }
             },
             end_of_the_mountains: {
-                Narrator_003: { text: "Nach 2 Tagen Kamm " + `${dataForSave.nameProtagonist}` + " am Ende des Gebirges an.Die Sonne ist am schon untergehen." },
+                Narrator_003: { text: "Nach 2 Tagen Kamm " + `${dataForSave.nameProtagonist}` + " am Ende des Gebirges an. Die Sonne ist am schon untergehen." },
                 Protagonist_004: { text: "<i>Endlich bin ich dich Gebirge gekommen.</i>", pose: POSES.HAPPY },
                 Protagonist_005: { text: "<i>Der Weg war länger als erwartet, ich hoffe es war kein Fehler den lagen weg zu nehme.</i>", pose: POSES.HAPPY },
                 Protagonist_006: { text: "<i>Da vorne  ist ein Wald, das muss er sein, der Ort, an dem die Blume wachst.</i>", pose: POSES.HAPPY },

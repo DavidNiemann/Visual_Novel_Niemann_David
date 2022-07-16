@@ -22,7 +22,6 @@ namespace VisualNovel {
                 Narrator_009: { text: `${dataForSave.nameProtagonist}` + " rennt die Letzen Meter zu sich nach Hause." }
             }
 
-
         };
 
         if (inventoryLoaded == false) {

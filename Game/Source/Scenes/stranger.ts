@@ -35,7 +35,7 @@ namespace VisualNovel {
                 Protagonist_002: { text: "<i>Was für ein Komischer Mann hate schon angst das er mich angreift.</i>", pose: POSES.SAD }
             },
             back_to_the_way: {
-                Narrator_001: { text: `${dataForSave.nameProtagonist}` + " ist am Fuße der " + `${locations.mountains.name}` + " Berge angekommen." },
+                Narrator_001: { text: `${dataForSave.nameProtagonist}` + " ist am Fuße des " + `${locations.mountains.name}` + "s angekommen." },
                 Protagonist_002: { text: "</i>Die Sonne ist schon untergegangen.Ich sollte mich ein paar Stunden ausruhen </i>", pose: POSES.SAD },
                 Narrator_003: { text: `${dataForSave.nameProtagonist}` + " schlagt ein Lager auf und legt sich hin." }
             }

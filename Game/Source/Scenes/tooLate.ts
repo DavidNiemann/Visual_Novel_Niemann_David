@@ -34,7 +34,6 @@ namespace VisualNovel {
                 Protagonist_026: { text: "vielen Dank für alles.", pose: POSES.HAPPY },
                 Narrator_027: { text: "Und so verlies" + `${characters.doctor.name}` + " das Dorf begab sich auf seine ganz eigenen Abenteuer. " }
                
-
             }
 
         };

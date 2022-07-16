@@ -38,7 +38,7 @@ namespace VisualNovel {
                 Protagonist_028: { text: "kannst du mir nicht den Weg zu den Blumen zeigen.", pose: POSES.SAD },
                 Fairy_029: { text: "Das könnte ich, aber tue ich nicht hehehe.", pose: POSES.HAPPY },
                 Protagonist_030: { text: "Warum nicht? Dann werde ich sie selbst suche.", pose: POSES.SAD },
-                Fairy_031: { text: "Du hast eine reines herz und ein starken Willen.", pose: POSES.HAPPY },
+                Fairy_031: { text: "Du hast eine reines herz und ein starker Willen.", pose: POSES.HAPPY },
                 Fairy_032: { text: "hehehe", pose: POSES.HAPPY },
                 Fairy_033: { text: "Du kannst statt der Blume, eine Glas Wasser dieser Magischen haben,", pose: POSES.HAPPY },
                 Fairy_034: { text: "das sollte das sollte deiner Mutter Rettern Können.", pose: POSES.HAPPY },
@@ -51,7 +51,7 @@ namespace VisualNovel {
                 Narrator_0041: { text: `${dataForSave.nameProtagonist}` + " wird schwarz vor Augen." }
             },
             next_morning: {
-                Narrator_0042: { text: `${dataForSave.nameProtagonist}` + " wacht am nächsten morgen am Eingang des Waldes wieder auf." },
+                Narrator_0042: { text: `${dataForSave.nameProtagonist}` + " wacht am nächsten Morgen am Eingang des Waldes wieder auf." },
                 Protagonist_043: { text: "<i>was ist da passiert ich war doch gerade noch in einer Höhler mit einer Fee</i>", pose: POSES.FRIGHTEND },
                 Narrator_0044: { text: "Er schaut in seine Tasche." },
                 Protagonist_045: { text: "<i>zum Glück ich habe noch das Wasser ich hoffe die Fee hat mich nicht angelogen.</i>", pose: POSES.HAPPY },

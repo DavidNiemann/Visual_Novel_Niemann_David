@@ -1,7 +1,7 @@
 namespace VisualNovel {
 
     export async function theForest(): ƒS.SceneReturn {
-        console.log("Scene:  forest");
+        console.log("Scene: the forest");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
             first_encounter: {
@@ -10,9 +10,9 @@ namespace VisualNovel {
                 Narrator_003: { text: `${dataForSave.nameProtagonist}` + " betritt den Wald." }
             },
             in_the_forest: {
-                Protagonist_004: { text: "<i>Es sieht aus als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: POSES.HAPPY },
+                Protagonist_004: { text: "<i>Es sieht aus, als wäre hier einen Weg, ich sollte ihm folgen,</i>", pose: POSES.HAPPY },
                 Protagonist_005: { text: "<i>wenn ich war los im Wald rumlaufe finde ich nicht mehr zurück.</i>", pose: POSES.HAPPY },
-                Narrator_006: { text: "Nach einer Weile teilte der weg sich in drei Weitere Wege auf." },
+                Narrator_006: { text: "Nach einer Weile teilte der weg sich in drei weitere Wege auf." },
                 Protagonist_007: { text: "<i>Das hat mir gerade noch gefehlt.</i>", pose: POSES.HAPPY },
                 Protagonist_008: { text: "<i>Welchen Weg soll ich nur gehen.</i>", pose: POSES.HAPPY }
             },
@@ -34,7 +34,7 @@ namespace VisualNovel {
             },
             further_along_the_way: {
                 Narrator_018: { text: "Nach einer Weile teilte der weg sich in drei weitere Wege auf." },
-                Protagonist_019: { text: "<i>Das war ja klar.</i>", pose: POSES.SAD },
+                Protagonist_019: { text: "<i>Das war klar.</i>", pose: POSES.SAD },
                 Protagonist_020: { text: "<i>Welchen weg soll ich jetzt gehen?</i>", pose: POSES.SAD }
             },
             third_crossing: {

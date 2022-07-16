@@ -63,7 +63,7 @@ namespace VisualNovel {
                 Protagonist_044: { text: "<i>Alles ist meine Schuld.</i>", pose: POSES.SAD },
                 Protagonist_045: { text: "Ich werde die Blume Holen, ich bin daran schuld an allem.", pose: POSES.SAD }
             },
-            departure:{
+            departure: {
                 Narrator_046: { text: `${dataForSave.nameProtagonist}` + " rennt in sein Zimmer hol seinen Rucksack.In die Küche packt etwas zu essen und trinken eine. Schnappt sich das " + `${items.sword.name}` + " was er von seinem Vater bekommen hatte, welches einem Dolch von der Größe entspricht und eilt zur Tür." },
                 Doctor_047: { text: "Warte!!", pose: POSES.SAD },
                 Doctor_048: { text: "Nimm da hier, ein " + `${items.healing_potion.name}` + ". Er ist zwar nur schwach, aber besser als gar nicht.", pose: POSES.SAD },

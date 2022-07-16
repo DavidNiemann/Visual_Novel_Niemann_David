@@ -1,7 +1,7 @@
 
 namespace VisualNovel {
     export async function theMountain(): ƒS.SceneReturn {
-        console.log("Scene:  theMountain");
+        console.log("Scene:  the Mountain");
 
         let storyTexts: { [paragraphName: string]: StoryText } = {
             morning: {
