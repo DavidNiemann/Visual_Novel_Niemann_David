@@ -5,7 +5,7 @@ namespace VisualNovel {
     let health: number = 100;
     let damage: number = 10;
     let parryChance: number = 0.50;
-    let dodgeChance: number = 0.75;
+    let dodgeChance: number = 1.00;
     type Enemy = { name: string, health: number, damage: number };
     type FightItems = { name: string, healing: number };
     export let enemys: { [id: string]: Enemy } = {
@@ -25,15 +25,15 @@ namespace VisualNovel {
     let fightItems: { [id: string]: FightItems } = {
         healing_potion: {
             name: "Heiltrank",
-            healing: 50
+            healing: 100
         },
         loaf_of_bread: {
             name: "Ein Laib Brot",
-            healing: 25
+            healing: 30
         },
         water_bag: {
             name: "wasser beutel",
-            healing: 5
+            healing: 15
         }
 
     };

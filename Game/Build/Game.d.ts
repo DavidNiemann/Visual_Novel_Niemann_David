@@ -22,7 +22,7 @@ declare namespace VisualNovel {
     function showAdventureLog(_text: string[]): void;
 }
 declare namespace VisualNovel {
-    function cave(): ƒS.SceneReturn;
+    function theCave(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function childhood(): ƒS.SceneReturn;
@@ -31,10 +31,10 @@ declare namespace VisualNovel {
     function theCurse(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function dangerousWay(): ƒS.SceneReturn;
+    function theDangerousWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function flower(): ƒS.SceneReturn;
+    function theFlowerField(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function theForest(): ƒS.SceneReturn;
@@ -46,13 +46,13 @@ declare namespace VisualNovel {
     function theGrassland(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function longWay(): ƒS.SceneReturn;
+    function theLongWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function lostAgastTheBasilik(): ƒS.SceneReturn;
+    function theLostAgastTheBasilik(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function lostinTheWoods(): ƒS.SceneReturn;
+    function lostInTheWoods(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function theMountain(): ƒS.SceneReturn;
@@ -76,10 +76,10 @@ declare namespace VisualNovel {
     function warkBack(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function winAgastTheBasilik(): ƒS.SceneReturn;
+    function theWinAgastTheBasilik(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function wrongWay(): ƒS.SceneReturn;
+    function theWrongWay(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function startAnimations(): Promise<void>;

@@ -94,15 +94,11 @@ dialog[type="inventory"]>ul>li {
   display: flex;
   align-content: space-between;
   justify-content: space-between;
-}
-
-ul li {
   float: left;
   padding: 10px;
   border-bottom: 1px solid #000;
-  display: flexbox;
+  
 }
-
 
 dialog[type="inventory"] img {
   position: relative;
@@ -121,4 +117,8 @@ dialog[type="inventory"]>ul>li>description {
 
 dialog[type="inventory"]>ul>li>amount {
   display: none;
+}
+
+.creditsList{
+  list-style-type: none;
 }

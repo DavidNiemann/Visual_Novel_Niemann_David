@@ -28,7 +28,19 @@ namespace VisualNovel {//https://itch.io/game-assets
 
     export function showCredits(): void {
         ƒS.Text.setClass("Credits");
-        ƒS.Text.print("Story: David Niemann </br> Musik: Samuel Kasper </br> Development: David Niemann </br> charakter assets:  <a href='https://sutemo.itch.io/'>sutemo: sutemo.itch.io</a>");
+        ƒS.Text.print("Story: David Niemann </br>" +
+            "Musik: <a href='https://github.com/SamuelKasper' target='_blank'>Samuel Kasper</a> </br>" +
+            "Development: David Niemann </br>" +
+            "charakter assets:  <a href='https://sutemo.itch.io/' target='_blank'>sutemo: sutemo.itch.io</a> </br> " +
+            "Inventar Icons: <ul class='creditsList'>" +
+            "<li><a href='https://www.flaticon.com/de/premium-icon/blume_1490628' target='_blank'>Blume: Freepik - Flaticon</a></li>" +
+            "<li><a href='https://www.flaticon.com/free-icon/sword_7202245' target='_blank'>Schwert: Iconic Panda – Flaticon</a></li>" +
+            "<li>Wasser beutel: David Niemann</li>" +
+            "<li><a href='https://www.flaticon.com/free-icon/potion_129094' target='_blank'>HeilTrank: Freepik - Flaticon</a></li>" +
+            "<li><a href='https://www.flaticon.com/free-icon/potion_129094' target='_blank'>leere Flasche: Freepik - Flaticon</a></li>" +
+            "<li><a href='https://www.flaticon.com/free-icon/bread_3348078' target='_blank'>laib Brot: Freepik - Flaticon</a></li>" +
+            "<li>magisches Wasser: David Niemann</li>" +
+            "</ul>");
 
     }
 
