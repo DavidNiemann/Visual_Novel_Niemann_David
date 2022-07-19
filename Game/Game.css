@@ -39,12 +39,32 @@ speech {
   width: 80%;
 }
 
-
-dialog[type=text]>ul {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+#creditsList {
+  list-style-type: disc;
 }
+
+#iconCredits {
+  list-style-type: disclosure-closed;
+}
+
+li {
+  margin: 5px 0px 5px 0px;
+}
+
+.Adventure_Log {
+  height: 500px;
+  width: 500px;
+}
+
+.Adventure_Log>div {
+  position: absolute;
+  bottom: 10px;
+}
+
+.Adventure_Log>p::before {
+  content: "▸ ";
+}
+
 
 dialog[type=splash] {
   position: absolute;
@@ -86,7 +106,7 @@ dialog[type=splash]>img#FudgeStoryLogo {
   margin: auto;
   margin-top: 50px;
   width: fit-content;
-  
+
 }
 
 body {
@@ -146,8 +166,4 @@ dialog[type="inventory"]>ul>li>description {
 
 dialog[type="inventory"]>ul>li>amount {
   display: none;
-}
-
-.creditsList {
-  list-style-type: none;
 }
