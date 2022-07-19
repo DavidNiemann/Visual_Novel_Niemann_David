@@ -9,7 +9,10 @@ Tastenbelegung:
  * I : öffnen des Inventars 
  * L : öffnen der Abenteuer Aufzeichnungen
  * F8: spiel Speichern 
- * F9: spiel Laden 
+ * F9: spiel Laden  
+  
+Link zum Spiel: [https://davidniemann.github.io/Visual_Novel_Niemann_David//Game/Game.html](https://davidniemann.github.io/Visual_Novel_Niemann_David//Game/Game.html)
+
 
 Link zum programmcode: [https://github.com/DavidNiemann/Visual_Novel_Niemann_David/tree/main/Game](https://github.com/DavidNiemann/Visual_Novel_Niemann_David/tree/main/Game)
 
