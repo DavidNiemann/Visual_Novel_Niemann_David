@@ -46,7 +46,7 @@ namespace VisualNovel {
         };
         let crossingPaths = {
             right: "Nach rechts",
-            straight: "Gerade sus",
+            straight: "Gerade aus",
             left: "Nach links"
         };
 

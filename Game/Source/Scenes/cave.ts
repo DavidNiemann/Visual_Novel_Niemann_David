@@ -74,7 +74,7 @@ namespace VisualNovel {
         await ƒS.Sound.fade(sounds.adventureMusic, 0, 1, false);
         await ƒS.Sound.fade(sounds.mysteriousMusic, 0.3, 1, true);
         await playParagraph(storyTexts.the_fairy);
-        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist der " + `${characters.Fairy.name}` + " begebnet </p>");
+        dataForSave.logText[dataForSave.logText.length - 1] += ("<p>" + `${dataForSave.nameProtagonist}` + " ist der " + `${characters.fairy.name}` + " begebnet </p>");
         await ƒS.Location.show(locations.forest);
         await showAnnouncement(locations.cave, announcements.tell_story, transitions.leftTORight);
         await playParagraph(storyTexts.spring_water);

@@ -26,7 +26,7 @@ namespace VisualNovel {
                 Narrator_016: { text: "es wurde still und der junge dreht sich zu seiner Mutter um." },
                 Mother_017: { text: "ich liebe….", pose: POSES.NEUTRAL },
                 Protagonist_018: { text: "Mutter, Mutter…MAMAAAAAAA.", pose: POSES.FRIGHTEND },
-                Protagonist_019: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: POSES.FRIGHTEND },
+                Protagonist_019: { text: "Sag was. Ich muss Hilfe holen ich muss mich beeilen.", pose: POSES.FRIGHTEND },
                 Narrator_020: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },
             get_help: {

@@ -252,7 +252,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.adventureMusic, 0, 1, false);
         await VisualNovel.ƒS.Sound.fade(VisualNovel.sounds.mysteriousMusic, 0.3, 1, true);
         await VisualNovel.playParagraph(storyTexts.the_fairy);
-        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist der " + `${VisualNovel.characters.Fairy.name}` + " begebnet </p>");
+        VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += ("<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " ist der " + `${VisualNovel.characters.fairy.name}` + " begebnet </p>");
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.forest);
         await VisualNovel.showAnnouncement(VisualNovel.locations.cave, VisualNovel.announcements.tell_story, VisualNovel.transitions.leftTORight);
         await VisualNovel.playParagraph(storyTexts.spring_water);
@@ -346,7 +346,7 @@ var VisualNovel;
                 Narrator_016: { text: "es wurde still und der junge dreht sich zu seiner Mutter um." },
                 Mother_017: { text: "ich liebe….", pose: VisualNovel.POSES.NEUTRAL },
                 Protagonist_018: { text: "Mutter, Mutter…MAMAAAAAAA.", pose: VisualNovel.POSES.FRIGHTEND },
-                Protagonist_019: { text: "Sag was.Ich muss Hilfe holen ich muss mich beeilen.", pose: VisualNovel.POSES.FRIGHTEND },
+                Protagonist_019: { text: "Sag was. Ich muss Hilfe holen ich muss mich beeilen.", pose: VisualNovel.POSES.FRIGHTEND },
                 Narrator_020: { text: "Er legt die Muttervorsichtig zu Boden und fing an zu dem Dorfe zu rennen um den Arzt zu Holen." }
             },
             get_help: {
@@ -599,7 +599,7 @@ var VisualNovel;
         };
         let crossingPaths = {
             right: "Nach rechts",
-            straight: "Gerade sus",
+            straight: "Gerade aus",
             left: "Nach links"
         };
         if (VisualNovel.inventoryLoaded == false) {
@@ -1656,13 +1656,13 @@ var VisualNovel;
             start: {
                 scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray")
             },
-            end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white") },
+            end: { scaling: new VisualNovel.ƒS.Position(1.1, 1.1), color: VisualNovel.ƒS.Color.CSS("white") },
             duration: 0.1,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         },
         endSpeaking: {
             start: {
-                scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white")
+                scaling: new VisualNovel.ƒS.Position(1.1, 1.1), color: VisualNovel.ƒS.Color.CSS("white")
             },
             end: { scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray") },
             duration: 0.1,
@@ -1672,7 +1672,7 @@ var VisualNovel;
             start: {
                 scaling: new VisualNovel.ƒS.Position(1, 1), color: VisualNovel.ƒS.Color.CSS("gray")
             },
-            end: { scaling: new VisualNovel.ƒS.Position(1.2, 1.2), color: VisualNovel.ƒS.Color.CSS("white") },
+            end: { scaling: new VisualNovel.ƒS.Position(1.1, 1.1), color: VisualNovel.ƒS.Color.CSS("white") },
             duration: 0,
             playmode: VisualNovel.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         }
