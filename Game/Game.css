@@ -34,7 +34,7 @@ speech {
   background-color: white;
   border: solid black;
   bottom: 100px;
-  
+
   height: 80px;
   width: 80%;
 }
@@ -61,8 +61,32 @@ dialog[type=splash] {
   text-align: center;
 }
 
+dialog[type=splash]>#novelscreen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  left: 0px;
+}
+
 dialog[type=splash]>img#FudgeStoryLogo {
-  width: 100%;
+  z-index: 1;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  top: 0px;
+}
+
+#titel {
+  font-family: Arial;
+  font-size: 5em;
+  z-index: 1;
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
+  width: fit-content;
+  
 }
 
 body {
@@ -72,6 +96,11 @@ body {
   justify-content: center;
   margin: 0px;
   padding: 0px;
+  -ms-user-select: None;
+  -moz-user-select: None;
+  -webkit-user-select: None;
+  user-select: None;
+  overflow: hidden;
 }
 
 dialog[type="inventory"] {
@@ -97,7 +126,7 @@ dialog[type="inventory"]>ul>li {
   float: left;
   padding: 10px;
   border-bottom: 1px solid #000;
-  
+
 }
 
 dialog[type="inventory"] img {
@@ -119,6 +148,6 @@ dialog[type="inventory"]>ul>li>amount {
   display: none;
 }
 
-.creditsList{
+.creditsList {
   list-style-type: none;
 }
