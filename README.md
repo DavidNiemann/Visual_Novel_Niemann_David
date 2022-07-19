@@ -18,7 +18,7 @@ Link zum programmcode: [https://github.com/DavidNiemann/Visual_Novel_Niemann_Dav
 
 Link zur Konzept: [https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Concept_Document/Konzept_Dokument.pdf](https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Concept_Document/Konzept_Dokument.pdf)
 
-Link zum Szenendiagramm: [https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Diagramme/StorryFinal.drawio.pdf](https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Diagramme/StorryFinal.drawio.pdf)
+Link zum Szenendiagramm: [https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Diagramme/StoryFinal.drawio.pdf](https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Kozeption/Diagramme/StoryFinal.drawio.pdf)
 
 Link zur Zip: [https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Zip](https://github.com/DavidNiemann/Visual_Novel_Niemann_David/blob/main/Zip)
 
