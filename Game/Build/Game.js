@@ -744,6 +744,7 @@ var VisualNovel;
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hatte 2 Tage masche zu Fuß duch das " + `${VisualNovel.locations.Gebirge}` + " und es gab keine zwischen Zwischenfälle </p>";
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das Ende des " + `${VisualNovel.locations.Gebirge}` + " erreicht </p>";
         VisualNovel.dataForSave.dayCounter += 2;
+        return "11";
     }
     VisualNovel.theLongWay = theLongWay;
 })(VisualNovel || (VisualNovel = {}));
@@ -1187,6 +1188,7 @@ var VisualNovel;
         VisualNovel.dataForSave.logText[VisualNovel.dataForSave.logText.length - 1] += "<p>" + `${VisualNovel.dataForSave.nameProtagonist}` + " hat das " + `${VisualNovel.locations.mountains.name}` + " hintersich gelassen</p>";
         await VisualNovel.playParagraph(storyTexts.end_of_the_mountain);
         VisualNovel.dataForSave.dayCounter += 1;
+        return "11";
     }
     VisualNovel.theWinAgastTheBasilik = theWinAgastTheBasilik;
 })(VisualNovel || (VisualNovel = {}));
@@ -1301,6 +1303,7 @@ var VisualNovel;
 (function (VisualNovel) {
     let health = 100;
     let damage = 10;
+    let protagonistCurrentHealth = health;
     let parryChance = 0.50;
     let dodgeChance = 1.00;
     VisualNovel.enemys = {
@@ -1336,7 +1339,7 @@ var VisualNovel;
         useItems: "Gegenstand benutzen"
     };
     async function fight(_enemy) {
-        let protagonistCurrentHealth = health;
+        protagonistCurrentHealth = health;
         let enemyCurrentHealth = _enemy.health;
         let fightText = {
             fightStart: " ein Kampf hat gengen " + `${_enemy.name}` + " begonnen ",
@@ -1437,7 +1440,7 @@ var VisualNovel;
             }
         }
         if (fightItem) {
-            health += fightItem.healing;
+            protagonistCurrentHealth += fightItem.healing;
             if (health > 100) {
                 health = 100;
             }

@@ -31,6 +31,7 @@ namespace VisualNovel {
         dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das " + `${locations.mountains.name}` + " hintersich gelassen</p>";
         await playParagraph(storyTexts.end_of_the_mountain);
         dataForSave.dayCounter += 1;
+        return "11";
 
     }
 }

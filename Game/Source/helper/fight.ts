@@ -4,6 +4,7 @@ namespace VisualNovel {
 
     let health: number = 100;
     let damage: number = 10;
+    let protagonistCurrentHealth: number = health;
     let parryChance: number = 0.50;
     let dodgeChance: number = 1.00;
     type Enemy = { name: string, health: number, damage: number };
@@ -49,8 +50,8 @@ namespace VisualNovel {
 
 
     export async function fight(_enemy: Enemy): Promise<boolean> {
-       
-        let protagonistCurrentHealth: number = health;
+
+        protagonistCurrentHealth = health;
         let enemyCurrentHealth: number = _enemy.health;
 
         let fightText = {
@@ -134,7 +135,7 @@ namespace VisualNovel {
             await ƒS.Speech.tell(characters.narrator, fightText.fightWon);
             return true;
         }
-       
+
     }
     async function lookForFightItems(): Promise<ƒS.ItemDefinition[]> {
         let possibleFightItems: ƒS.ItemDefinition[] = [];
@@ -161,7 +162,7 @@ namespace VisualNovel {
             }
         }
         if (fightItem) {
-            health += fightItem.healing;
+            protagonistCurrentHealth += fightItem.healing;
             if (health > 100) {
                 health = 100;
             }

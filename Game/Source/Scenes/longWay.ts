@@ -30,6 +30,7 @@ namespace VisualNovel {
         dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hatte 2 Tage masche zu Fuß duch das " + `${locations.Gebirge}` + " und es gab keine zwischen Zwischenfälle </p>";
         dataForSave.logText[dataForSave.logText.length - 1] += "<p>" + `${dataForSave.nameProtagonist}` + " hat das Ende des " + `${locations.Gebirge}` + " erreicht </p>";
         dataForSave.dayCounter += 2;
+        return "11";
     }
 
 
